@@ -20,7 +20,12 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  nav: {
+    background:
+      'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 0%, rgba(31,9,4,1) 79%)',
+  },
   title: {
+    marginLeft: theme.spacing(1),
     flexGrow: 1,
   },
 }));
@@ -41,9 +46,11 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar className={classes.nav} position='static'>
         <Toolbar>
-          <Avatar src={logo} />
+          <Link to='/'>
+            <Avatar src={logo} />
+          </Link>
           <Typography variant='h6' className={classes.title}>
             Lockdown Poker
           </Typography>
@@ -54,8 +61,7 @@ export default function Navbar() {
                 aria-controls='menu-appbar'
                 aria-haspopup='true'
                 onClick={handleMenu}
-                color='inherit'
-              >
+                color='inherit'>
                 <MenuIcon />
               </IconButton>
               <Menu
@@ -71,10 +77,13 @@ export default function Navbar() {
                   horizontal: 'right',
                 }}
                 open={open}
-                onClose={handleClose}
-              >
-                <LinkButton to={HOME}>Home</LinkButton>
-                <LinkButton to={PLAYERS}>Players</LinkButton>
+                onClose={handleClose}>
+                <LinkButton style={{ display: 'inline' }} to={HOME}>
+                  Home
+                </LinkButton>
+                <LinkButton style={{ display: 'inline' }} to={PLAYERS}>
+                  Players
+                </LinkButton>
                 <LinkButton to={GAMES}>Games</LinkButton>
                 <LinkButton to={SIGN_IN}>Admin</LinkButton>
               </Menu>

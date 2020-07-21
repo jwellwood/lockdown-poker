@@ -4,7 +4,7 @@ import PageContainer from '../../ui/layout/PageContainer';
 
 const AddGamePage = () => {
   return (
-    <PageContainer>
+    <PageContainer title='Add Game'>
       Add game
       <div>
         <AddGameForm />

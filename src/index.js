@@ -6,12 +6,15 @@ import store, { rrfProps } from './store';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import Routes from './router/Routes';
+import AppThemeWrapper from './utils/AppThemeWrapper';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-        <Routes />
+        <AppThemeWrapper>
+          <Routes />
+        </AppThemeWrapper>
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,

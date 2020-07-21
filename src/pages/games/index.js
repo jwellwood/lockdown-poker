@@ -12,7 +12,7 @@ const GamesPage = () => {
   const { games } = useSelector((state) => state.firestore.ordered);
 
   return (
-    <PageContainer>
+    <PageContainer title='Games'>
       {!isEmpty && isLoaded ? (
         <LinkButton to={ADD_GAME}>Add Game</LinkButton>
       ) : null}
