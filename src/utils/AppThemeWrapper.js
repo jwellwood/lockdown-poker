@@ -5,7 +5,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 const AppThemeWrapper = ({ children }) => {
   const theme = createMuiTheme({
     palette: {
-      type: 'dark',
+      type: 'light',
       primary: { main: '#970004' },
       secondary: { main: '#e7e7e7' },
       background: {
