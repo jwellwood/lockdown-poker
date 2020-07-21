@@ -8,8 +8,7 @@ const LinkButton = ({ children, to, type, color }) => {
       variant={type || 'text'}
       component={RouterLink}
       to={to}
-      color={color || 'secondary'}
-    >
+      color={color || 'secondary'}>
       {children}
     </Button>
   );

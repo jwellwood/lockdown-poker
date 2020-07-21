@@ -12,7 +12,7 @@ const SignInPage = () => {
   }
 
   return (
-    <PageContainer>
+    <PageContainer title='Admin'>
       Admin
       <div>
         <SignInForm />

@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "date-fns": "^2.15.0",
     "firebase": "^7.16.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.0.8",
