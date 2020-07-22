@@ -10,7 +10,8 @@ const AppThemeWrapper = ({ children }) => {
       secondary: { main: '#e7e7e7' },
       background: {
         default:
-          'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 0%, rgba(31,9,4,1) 79%)',
+          // 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 0%, rgba(31,9,4,1) 79%)',
+          '#333',
         contrastText: '#ffffff',
       },
     },

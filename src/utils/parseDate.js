@@ -1,6 +1,4 @@
-// TODO not currently working
-
 export const parseDate = (rawDate) => {
-  const date = new Date(rawDate);
-  return date.toDateString().substring(4);
+  const timestamp = rawDate.seconds;
+  return new Date(timestamp * 1000).toDateString();
 };
