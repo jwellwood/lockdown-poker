@@ -8,7 +8,12 @@ import PageContainer from '../../ui/layout/PageContainer';
 import ListPageContainer from '../../ui/layout/ListPageContainer';
 
 const GamesPage = () => {
-  useFirestoreConnect('games');
+  useFirestoreConnect([
+    {
+      collection: 'games',
+      orderBy: ['date', 'desc'],
+    },
+  ]);
   const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
   const { games } = useSelector((state) => state.firestore.ordered);
 
