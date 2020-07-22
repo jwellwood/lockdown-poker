@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import GamesList from './GamesList';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_GAME } from '../../router';
-import PageContainer from '../../ui/layout/PageContainer';
 import ListPageContainer from '../../ui/layout/ListPageContainer';
 
 const GamesPage = () => {
