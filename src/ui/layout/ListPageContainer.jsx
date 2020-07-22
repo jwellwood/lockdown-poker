@@ -1,10 +1,14 @@
 import React from 'react';
 import { Container, Paper } from '@material-ui/core';
+import PageTitle from '../headers/PageTitle';
 
-const ListPageContainer = ({ children }) => {
+const ListPageContainer = ({ children, title }) => {
   return (
     <Container maxWidth='md'>
-      <Paper>{children}</Paper>
+      <Paper>
+        <PageTitle>{title}</PageTitle>
+        {children}
+      </Paper>
     </Container>
   );
 };
