@@ -5,6 +5,7 @@ import GamesList from './GamesList';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_GAME } from '../../router';
 import PageContainer from '../../ui/layout/PageContainer';
+import ListPageContainer from '../../ui/layout/ListPageContainer';
 
 const GamesPage = () => {
   useFirestoreConnect('games');
@@ -12,13 +13,13 @@ const GamesPage = () => {
   const { games } = useSelector((state) => state.firestore.ordered);
 
   return (
-    <PageContainer title='Games'>
+    <ListPageContainer title='Games'>
       {!isEmpty && isLoaded ? (
         <LinkButton to={ADD_GAME}>Add Game</LinkButton>
       ) : null}
 
       <GamesList games={games} />
-    </PageContainer>
+    </ListPageContainer>
   );
 };
 

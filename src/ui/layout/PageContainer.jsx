@@ -34,7 +34,7 @@ const PageContainer = ({ title, children }) => {
   return (
     <Grid container className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container>
+        <Grid container direction='column'>
           <Grid item xs={12} className={classes.title}>
             <Typography>{title}</Typography>
             <Divider

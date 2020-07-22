@@ -1,30 +1,31 @@
 import React from 'react';
 import { parseDate } from '../../utils/parseDate';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const GamesList = ({ games }) => {
   return games ? (
-    games.map((game) => {
-      console.log(game.date);
-      return (
-        <div key={game.id} style={{ border: '1px solid black' }}>
-          <div>Date: {parseDate(game.date)}</div>
-          <div>Buy in: {game.buyIn}</div>
-          <div>
-            No.of players: {game.participants && game.participants.length}
-          </div>
-          <div>
+    <List>
+      {games.map((game) => {
+        return (
+          <ListItem key={game.id}>
+            <ListItemText
+              primary={parseDate(game.date)}
+              secondary={`Players: ${
+                game.participants && game.participants.length
+              }`}
+            />
             {game.participants &&
               game.participants.map((player) => (
-                <ul key={player.id} style={{ border: '1px solid green' }}>
-                  <li>Name: {player.name}</li>
-                  <li>Buy backs:{player.buyBacks}</li>
-                  <li>Final position:{player.finalPosition}</li>
-                </ul>
+                <List key={player.id} style={{ border: '1px solid green' }}>
+                  <ListItem>Name: {player.name}</ListItem>
+                  <ListItem>Buy backs:{player.buyBacks}</ListItem>
+                  <ListItem>Final position:{player.finalPosition}</ListItem>
+                </List>
               ))}
-          </div>
-        </div>
-      );
-    })
+          </ListItem>
+        );
+      })}
+    </List>
   ) : (
     <div>No games yet!</div>
   );
