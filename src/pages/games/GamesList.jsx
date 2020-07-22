@@ -4,7 +4,7 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const GamesList = ({ games }) => {
   return games ? (
-    <List>
+    <List style={{ overflow: 'scroll' }}>
       {games.map((game) => {
         return (
           <ListItem key={game.id}>
