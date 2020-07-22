@@ -1,18 +1,18 @@
 import React from 'react';
+import { List } from '@material-ui/core';
+import PlayerListItem from './PlayerListItem';
 
-const PlayersList = ({ players }) => {
+const PlayersList = ({ players, games }) => {
   return (
-    <div>
+    <List>
       {players ? (
         players.map((player) => (
-          <div key={player.id}>
-            Name:{player.name}, IBAN: {player.iban}
-          </div>
+          <PlayerListItem key={player.id} player={player} games={games} />
         ))
       ) : (
         <div>No players</div>
       )}
-    </div>
+    </List>
   );
 };
 
