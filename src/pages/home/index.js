@@ -52,7 +52,7 @@ const HomePage = () => {
   const exampleDate = '24-7-2020 9:30PM';
 
   const exampleZoomValue = 'https://www.zoom.us';
-  const exampleGameValue = 'https://www.bbc.com';
+  const exampleGameValue = 'https://www.bbc.com/hhashashdhashdhashdhasdhahsd';
   // @TODO Add these values from firebase in useEffect
   useEffect(() => {
     setZoomInputValue({ ...zoomInputValue, value: exampleZoomValue });

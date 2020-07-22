@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import HomePage from '../pages/home';
-import Navbar from '../ui/Navbar.component';
+import Navbar from '../ui/navigation/Navbar.component';
 import PlayersPage from '../pages/players';
 import GamesPage from '../pages/games';
 import SignInPage from '../pages/sign_in';

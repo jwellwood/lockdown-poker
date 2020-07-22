@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const GamesList = ({ games }) => {
   return games ? (
-    <List>
+    <List style={{ overflow: 'scroll' }}>
       {games.map((game) => {
         return (
           <ListItem
