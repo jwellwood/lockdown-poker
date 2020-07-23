@@ -1,13 +1,12 @@
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 // MUI
-import { DatePicker } from '@material-ui/pickers';
+import { DateTimePicker } from '@material-ui/pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import FormErrorMessage from './FormErrorMessage';
 
-const DateInput = ({
+const DateTimeInput = ({
   inputName,
-  disableFuture,
   defaultValue,
   onChange,
   label,
@@ -17,17 +16,14 @@ const DateInput = ({
   return (
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker
-          disableFuture={disableFuture}
+        <DateTimePicker
           color='secondary'
           inputVariant='filled'
           value={defaultValue}
           onChange={onChange}
-          openTo='date'
-          format='dd/MM/yyyy'
+          openTo='dateTime'
           label={label}
           name={inputName}
-          views={['year', 'month', 'date']}
           variant='filled'
           margin='normal'
           fullWidth
@@ -39,4 +35,4 @@ const DateInput = ({
   );
 };
 
-export default DateInput;
+export default DateTimeInput;

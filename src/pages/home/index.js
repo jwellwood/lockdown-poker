@@ -22,6 +22,9 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
+import { parseDate } from '../../utils/parseDate';
+import Spinner from '../../ui/spinners/Spinner.component';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -52,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 const HomePage = () => {
   const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
   const classes = useStyles();
+  const [gameDate, setGameDate] = useState('');
+  const [loading, setLoading] = useState(true);
   const [zoomInputValue, setZoomInputValue] = useState({
     value: '',
     copied: false,
@@ -61,6 +66,18 @@ const HomePage = () => {
     copied: false,
   });
 
+  useFirestoreConnect([
+    {
+      collection: 'gamepreviews',
+      orderBy: ['date'],
+      limit: 1,
+    },
+  ]);
+  const gamePreview = useSelector(
+    (state) => state.firestore.ordered.gamepreviews
+  );
+  console.log(isLoaded);
+
   //@TODO get real date from firebase
   const exampleDate = '24-7-2020 9:30PM';
 
@@ -68,9 +85,23 @@ const HomePage = () => {
   const exampleGameValue = 'https://www.bbc.com/hhashashdhashdhashdhasdhahsd';
   // @TODO Add these values from firebase in useEffect
   useEffect(() => {
-    setZoomInputValue({ ...zoomInputValue, value: exampleZoomValue });
-    setGameInputValue({ ...gameInputValue, value: exampleGameValue });
-  }, []);
+    const getNextGame = async () => {
+      if (!gamePreview) return;
+      else {
+        await setGameDate(parseDate(gamePreview[0].date));
+        await setZoomInputValue({
+          ...zoomInputValue,
+          value: gamePreview[0].zoomLink,
+        });
+        await setGameInputValue({
+          ...gameInputValue,
+          value: gamePreview[0].gameLink,
+        });
+        setLoading(false);
+      }
+    };
+    getNextGame();
+  }, [gamePreview]);
 
   const onCopy = (copyId) => {
     if (copyId === 'zoom')
@@ -84,7 +115,7 @@ const HomePage = () => {
       icon: <EventAvailableRounded />,
       text: 'Next Game:',
       copyButton: false,
-      date: exampleDate,
+      date: gameDate,
     },
     {
       icon: <VideoCamRounded />,
@@ -107,7 +138,9 @@ const HomePage = () => {
   ];
   return (
     <PageContainer title='Home'>
-      {!isEmpty && isLoaded ? (
+      {loading ? (
+        <Spinner />
+      ) : !isEmpty && isLoaded ? (
         <LinkButton type='outlined' color='inherit' to={ADD_GAME_DETAILS}>
           Add details for a new game
         </LinkButton>
@@ -122,49 +155,57 @@ const HomePage = () => {
           </Typography>
         </Grid>
         <Divider variant='middle'></Divider>
-        <Grid container className={classes.linksContainer}>
-          <List>
-            {homeLinks.map((link) => (
-              <div key={link.text}>
-                <ListItem>
-                  <ListItemIcon className={classes.icon}>
-                    {link.icon}
-                  </ListItemIcon>
-                  <ListItemText>{link.text}</ListItemText>
-                  {link.inputValue && !link.date ? (
-                    <Input className={classes.input} value={link.inputValue} />
-                  ) : (
-                    <ListItemText variant='h6'>{link.date}</ListItemText>
-                  )}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Grid container className={classes.linksContainer}>
+            <List>
+              {homeLinks.map((link) => (
+                <div key={link.text}>
+                  <ListItem>
+                    <ListItemIcon className={classes.icon}>
+                      {link.icon}
+                    </ListItemIcon>
 
-                  <ListItemSecondaryAction>
-                    {link.copyButton && (
-                      <CopyToClipboard
-                        onCopy={() => onCopy(link.copyId)}
-                        text={link.inputValue}>
-                        <IconButton className={classes.icon}>
-                          <FileCopyRounded
-                            style={{
-                              color: link.copiedStatus ? 'green' : 'initial',
-                            }}
-                          />
-                        </IconButton>
-                      </CopyToClipboard>
+                    <ListItemText>{link.text}</ListItemText>
+                    {link.inputValue && !link.date ? (
+                      <Input
+                        className={classes.input}
+                        value={link.inputValue}
+                      />
+                    ) : (
+                      <ListItemText variant='h6'>{link.date}</ListItemText>
                     )}
-                  </ListItemSecondaryAction>
-                </ListItem>
-                {link.copiedStatus ? (
-                  <div className={classes.copiedMessage}>
-                    <Typography variant='caption'>
-                      {link.copiedMessage}
-                    </Typography>
-                  </div>
-                ) : null}
-                <Divider variant='middle' />
-              </div>
-            ))}
-          </List>
-        </Grid>
+
+                    <ListItemSecondaryAction>
+                      {link.copyButton && (
+                        <CopyToClipboard
+                          onCopy={() => onCopy(link.copyId)}
+                          text={link.inputValue}>
+                          <IconButton className={classes.icon}>
+                            <FileCopyRounded
+                              style={{
+                                color: link.copiedStatus ? 'green' : 'initial',
+                              }}
+                            />
+                          </IconButton>
+                        </CopyToClipboard>
+                      )}
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  {link.copiedStatus ? (
+                    <div className={classes.copiedMessage}>
+                      <Typography variant='caption'>
+                        {link.copiedMessage}
+                      </Typography>
+                    </div>
+                  ) : null}
+                  <Divider variant='middle' />
+                </div>
+              ))}
+            </List>
+          </Grid>
+        )}
       </Grid>
     </PageContainer>
   );
