@@ -11,11 +11,15 @@ import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_GAME_DETAILS } from '../../router';
 import logo from '../../assets/images/logo.jpg';
 import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Input,
+  ListItemSecondaryAction,
   Typography,
   Divider,
-  Icon,
   IconButton,
-  TextField,
 } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -23,17 +27,26 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     maxHeight: '50%',
   },
-  icon: {},
+  icon: {
+    color: 'black',
+  },
   linksContainer: {
     marginTop: theme.spacing(1),
     maxWidth: '400px',
     margin: '0 auto',
   },
   appTitle: { margin: theme.spacing(1, 0) },
-  text: {},
-  link: {},
-  copyButton: {},
-  individualLinkContainer: {},
+  input: {
+    margin: theme.spacing(0, 1),
+  },
+  copiedMessage: {
+    width: '100%',
+    margin: 0,
+    padding: 0,
+    fontSize: '8px',
+    color: 'green',
+    lineHeight: 0,
+  },
 }));
 
 const HomePage = () => {
@@ -80,7 +93,7 @@ const HomePage = () => {
       copyButton: true,
       copyId: 'zoom',
       copiedStatus: zoomInputValue.copied,
-      copiedMessage: 'Copied!',
+      copiedMessage: 'Zoom link copied!',
     },
     {
       icon: <LinkRounded />,
@@ -89,7 +102,7 @@ const HomePage = () => {
       copyButton: true,
       copyId: 'game',
       copiedStatus: gameInputValue.copied,
-      copiedMessage: 'Copied!',
+      copiedMessage: 'Game link copied!',
     },
   ];
   return (
@@ -110,40 +123,47 @@ const HomePage = () => {
         </Grid>
         <Divider variant='middle'></Divider>
         <Grid container className={classes.linksContainer}>
-          {homeLinks.map((link) => (
-            <Grid
-              key={link.text}
-              className={classes.individualLinkContainer}
-              container
-              direction='row'
-              alignItems='center'>
-              <Grid className={classes.icon} item xs={1}>
-                <Icon>{link.icon}</Icon>
-              </Grid>
-              <Grid className={classes.text} item xs={4}>
-                <Typography>{link.text}</Typography>
-              </Grid>
-              <Grid className={classes.link} item xs={6}>
-                {link.inputValue && !link.date ? (
-                  <TextField value={link.inputValue} />
-                ) : (
-                  <Typography>{link.date}</Typography>
-                )}
-              </Grid>
-              {link.copyButton && (
-                <Grid className={classes.copyButton} item xs={1}>
-                  <CopyToClipboard
-                    onCopy={() => onCopy(link.copyId)}
-                    text={link.inputValue}>
-                    <IconButton>
-                      <FileCopyRounded />
-                    </IconButton>
-                  </CopyToClipboard>
-                  {link.copiedStatus ? <p>{link.copiedMessage}</p> : null}
-                </Grid>
-              )}
-            </Grid>
-          ))}
+          <List>
+            {homeLinks.map((link) => (
+              <div key={link.text}>
+                <ListItem>
+                  <ListItemIcon className={classes.icon}>
+                    {link.icon}
+                  </ListItemIcon>
+                  <ListItemText>{link.text}</ListItemText>
+                  {link.inputValue && !link.date ? (
+                    <Input className={classes.input} value={link.inputValue} />
+                  ) : (
+                    <ListItemText variant='h6'>{link.date}</ListItemText>
+                  )}
+
+                  <ListItemSecondaryAction>
+                    {link.copyButton && (
+                      <CopyToClipboard
+                        onCopy={() => onCopy(link.copyId)}
+                        text={link.inputValue}>
+                        <IconButton className={classes.icon}>
+                          <FileCopyRounded
+                            style={{
+                              color: link.copiedStatus ? 'green' : 'initial',
+                            }}
+                          />
+                        </IconButton>
+                      </CopyToClipboard>
+                    )}
+                  </ListItemSecondaryAction>
+                </ListItem>
+                {link.copiedStatus ? (
+                  <div className={classes.copiedMessage}>
+                    <Typography variant='caption'>
+                      {link.copiedMessage}
+                    </Typography>
+                  </div>
+                ) : null}
+                <Divider variant='middle' />
+              </div>
+            ))}
+          </List>
         </Grid>
       </Grid>
     </PageContainer>

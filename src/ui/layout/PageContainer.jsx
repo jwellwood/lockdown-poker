@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: '90%',
     color: theme.typography.color,
-    background: theme.palette.grey[300],
+    // background: theme.palette.grey[300],
     boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
   },
   title: {
