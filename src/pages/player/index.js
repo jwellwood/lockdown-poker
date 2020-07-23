@@ -8,6 +8,7 @@ import { useLoadPlayerGames } from '../../hooks/useLoadPlayerGames';
 import OtherDetails from './OtherDetails';
 import UserDetails from './UserDetails';
 import GamePlayerDetails from '../game/GamePlayerDetails';
+import LinkButton from '../../ui/buttons/LinkButton.component';
 
 const PlayerPage = () => {
   const { id } = useParams();
@@ -20,6 +21,8 @@ const PlayerPage = () => {
       collection: 'games',
     },
   ]);
+
+  const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
   const player = useSelector(
     ({ firestore: { data } }) => data.players && data.players[id]
   );
@@ -27,10 +30,13 @@ const PlayerPage = () => {
   const { games } = useSelector((state) => state.firestore.ordered);
 
   const { playerGames, gamesPlayedIn } = useLoadPlayerGames(id, games);
-  useEffect(() => {}, [games]);
+  // useEffect(() => {}, [games]);
 
   return player && games ? (
     <div>
+      {!isEmpty && isLoaded ? (
+        <LinkButton to={`/players/edit/${id}`}>Edit Player</LinkButton>
+      ) : null}
       <UserDetails player={player} id={id} />
       <PlayerDetails
         player={player}

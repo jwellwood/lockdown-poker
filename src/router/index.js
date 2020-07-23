@@ -2,6 +2,7 @@ export const HOME = '/';
 export const SIGN_IN = '/sign_in';
 export const PLAYERS = '/players';
 export const PLAYER = '/players/:id';
+export const EDIT_PLAYER = '/players/edit/:id';
 export const GAMES = '/games';
 export const GAME = '/games/:id';
 export const ADD_GAME = '/games/add';
