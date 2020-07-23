@@ -15,6 +15,7 @@ import AddGamePage from '../pages/add_game';
 import AddGameDetailsPage from '../pages/add_game_details';
 import * as routes from '.';
 import GamePage from '../pages/game';
+import PlayerPage from '../pages/player';
 
 const Routes = () => {
   return (
@@ -23,6 +24,7 @@ const Routes = () => {
       <Switch>
         <Route exact path={routes.HOME} component={HomePage} />
         <Route exact path={routes.PLAYERS} component={PlayersPage} />
+        <Route exact path={routes.PLAYER} component={PlayerPage} />
         <Route exact path={routes.GAMES} component={GamesPage} />
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
         <Route exact path={routes.ADD_PLAYER} component={AddPlayerPage} />
