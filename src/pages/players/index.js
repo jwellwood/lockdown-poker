@@ -1,11 +1,11 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
-import PlayersList from './PlayersList';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_PLAYER } from '../../router';
 import PageContainer from '../../ui/layout/PageContainer';
 import Spinner from '../../ui/spinners/Spinner.component';
+import PlayersTable from './PlayersTable';
 
 const PlayersPage = () => {
   const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
@@ -21,7 +21,7 @@ const PlayersPage = () => {
         <LinkButton to={ADD_PLAYER}>Add Player</LinkButton>
       ) : null}
       {games && players ? (
-        <PlayersList players={players} games={games} />
+        <PlayersTable players={players} games={games} />
       ) : (
         <Spinner />
       )}

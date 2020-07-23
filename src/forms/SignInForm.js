@@ -25,8 +25,6 @@ const SignInForm = () => {
     firebase.logout();
   };
 
-  console.log(auth);
-
   return auth.isLoaded && auth.isEmpty ? (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextInput
