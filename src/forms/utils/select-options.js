@@ -14,3 +14,12 @@ export const finalPositionOptions = (players) => {
   }
   return options;
 };
+
+export const preferredPaymentOptions = () => {
+  const list = ['Bank Transfer', 'Bizum', 'Paypal', 'Cash', 'Other'];
+  const options = [{ text: '', value: '' }];
+  list.forEach((el) => {
+    options.push({ text: el, value: el });
+  });
+  return options;
+};
