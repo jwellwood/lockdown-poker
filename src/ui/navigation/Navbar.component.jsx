@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const bigScreen = useMediaQuery('(min-width: 769px)');
   const smallScreen = useMediaQuery('(max-width: 768px)');
 
@@ -51,7 +50,7 @@ export default function Navbar() {
             Lockdown Poker
           </Typography>
           {/* //@TODO @Joe - why this auth? */}
-          {auth && <div>{bigScreen && <NavLinks navType='topNav' />}</div>}
+          {<div>{bigScreen && <NavLinks navType='topNav' />}</div>}
         </Toolbar>
       </AppBar>
       {/* //Stops app bar covering content */}
