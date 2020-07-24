@@ -83,6 +83,8 @@ const EditPlayerForm = () => {
           errors={errors.iban || null}
         />
         <Button type='submit'>Update</Button>
+
+        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
       </form>
       <DeleteConfirmation onDelete={onDelete} type='player' />
     </FormContainer>

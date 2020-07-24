@@ -8,7 +8,7 @@ import FileCopyRounded from '@material-ui/icons/FileCopyRounded';
 import PageContainer from '../../ui/layout/PageContainer';
 import { useSelector } from 'react-redux';
 import LinkButton from '../../ui/buttons/LinkButton.component';
-import { ADD_GAME_DETAILS } from '../../router';
+import { ADD_GAME } from '../../router';
 import logo from '../../assets/images/logo.jpg';
 import {
   List,
@@ -22,7 +22,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
+import { useFirestoreConnect } from 'react-redux-firebase';
 import { parseDate } from '../../utils/parseDate';
 import Spinner from '../../utils/Spinner';
 
@@ -73,27 +73,28 @@ const HomePage = () => {
       limit: 1,
     },
   ]);
-  const gamePreview = useSelector((state) => state.firestore.ordered.games);
-  console.log(gamePreview);
+  
+  const games = useSelector((state) => state.firestore.ordered.games);
+
 
   useEffect(() => {
     const getNextGame = async () => {
-      if (!gamePreview) return;
+      if (!games) return;
       else {
-        await setGameDate(parseDate(gamePreview[0].date));
+        await setGameDate(parseDate(games[0].date));
         await setZoomInputValue({
           ...zoomInputValue,
-          value: gamePreview[0].zoomLink,
+          value: games[0].zoomLink,
         });
         await setGameInputValue({
           ...gameInputValue,
-          value: gamePreview[0].gameLink,
+          value: games[0].gameLink,
         });
         setLoading(false);
       }
     };
     getNextGame();
-  }, [gamePreview]);
+  }, [games]);
 
   const onCopy = (copyId) => {
     if (copyId === 'zoom')
@@ -133,8 +134,8 @@ const HomePage = () => {
       {loading ? (
         <Spinner />
       ) : !isEmpty && isLoaded ? (
-        <LinkButton type='outlined' color='inherit' to={ADD_GAME_DETAILS}>
-          Add details for a new game
+        <LinkButton type='outlined' color='inherit' to={ADD_GAME}>
+          Add new game
         </LinkButton>
       ) : null}
       <Grid className={classes.logo} container>
@@ -173,7 +174,8 @@ const HomePage = () => {
                       {link.copyButton && (
                         <CopyToClipboard
                           onCopy={() => onCopy(link.copyId)}
-                          text={link.inputValue}>
+                          text={link.inputValue}
+                        >
                           <IconButton className={classes.icon}>
                             <FileCopyRounded
                               style={{

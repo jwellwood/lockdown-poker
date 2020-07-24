@@ -12,7 +12,6 @@ import GamesPage from '../pages/games';
 import SignInPage from '../pages/sign_in';
 import AddPlayerPage from '../pages/add_player';
 import AddGamePage from '../pages/add_game';
-import AddGameDetailsPage from '../pages/add_game_details';
 import * as routes from '.';
 import GamePage from '../pages/game';
 import PlayerPage from '../pages/player';
@@ -34,11 +33,7 @@ const Routes = () => {
         <Route exact path={routes.GAME} component={GamePage} />
         <Route exact path={routes.EDIT_GAME} component={EditGamePage} />
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
-        <Route
-          exact
-          path={routes.ADD_GAME_DETAILS}
-          component={AddGameDetailsPage}
-        />
+
         <Redirect path='*' to={routes.HOME} />
       </Switch>
     </Router>
