@@ -82,7 +82,7 @@ const EditPlayerForm = () => {
           })} // min = Belgium, max = Seychelles!
           errors={errors.iban || null}
         />
-        <Button type='submit'>Submit</Button>
+        <Button type='submit'>Update</Button>
       </form>
       <DeleteConfirmation onDelete={onDelete} type='player' />
     </FormContainer>

@@ -23,3 +23,28 @@ export const preferredPaymentOptions = () => {
   });
   return options;
 };
+
+export const tableNameOptions = () => {
+  const list = ['PokerNow', 'PokerStars', 'Live Table', 'Other'];
+  const options = [{ text: '', value: '' }];
+  list.forEach((el) => {
+    options.push({ text: el, value: el });
+  });
+  return options;
+};
+
+export const buyInOptions = () => {
+  const options = [{ text: '', value: '' }];
+  for (let i = 0; i < 30; i += 5) {
+    options.push({ text: i, value: i });
+  }
+  return options;
+};
+
+export const buyBackOptions = () => {
+  const options = [{ text: '', value: '' }];
+  for (let i = 1; i < 6; i++) {
+    options.push({ text: i, value: i });
+  }
+  return options;
+};

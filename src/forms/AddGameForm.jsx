@@ -16,14 +16,20 @@ import { useSelector } from 'react-redux';
 import {
   playerNameOptions,
   finalPositionOptions,
+  tableNameOptions,
+  buyBackOptions,
+  buyInOptions,
 } from './utils/select-options';
+import FormContainer from '../ui/layout/FormContainer';
 
 const AddGameForm = () => {
   const fireStore = useFirestore();
   const history = useHistory();
+
   useFirestoreConnect(['players']);
   const players = useSelector((state) => state.firestore.ordered.players) || [];
-  const initPlayerForm = { name: '', buyIns: 1, finalPosition: '' };
+
+  const initPlayerForm = { name: '', buyIns: '', finalPosition: '' };
   const { register, handleSubmit, errors } = useForm();
   const [input, setInput] = useState({});
   const [inputFields, setInputFields] = useState([initPlayerForm]);
@@ -59,76 +65,93 @@ const AddGameForm = () => {
     history.push(GAMES);
   };
 
+  const isValid = inputFields.every(
+    (field) => Object.values(field).every((k) => k !== '')
+    // field.name !== '' && field.buyIns !== '' && field.finalPosition !== ''
+  );
+
   return !isLoaded ? (
     <div>not loaded</div>
   ) : (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <DateInput
-        inputName='date'
-        label='Date'
-        defaultValue={selectedDate}
-        onChange={setSelectedDate}
-        validators={register({ required: true })}
-        errors={errors.date || null}
-      />
-      <TextInput
-        inputName='table'
-        label='Table'
-        onChange={onChange}
-        validators={register({ required: false, maxLength: 20 })}
-        errors={errors.table || null}
-      />
-      <NumberInput
-        inputName='buyIn'
-        label='Buy In'
-        onChange={onChange}
-        validators={register({ required: true, min: 0, max: 10000 })}
-        errors={errors.buyIn || null}
-      />
+    <FormContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DateInput
+          inputName='date'
+          label='Date'
+          defaultValue={selectedDate}
+          onChange={setSelectedDate}
+          validators={register({ required: true })}
+          errors={errors.date || null}
+        />
+        <SelectInput
+          inputName='table'
+          label='Table Name'
+          onChange={onChange}
+          validators={register({ required: true })}
+          errors={errors.table || null}
+          options={tableNameOptions()}
+        />
+        <SelectInput
+          inputName='buyIn'
+          label='Buy In Price'
+          onChange={onChange}
+          validators={register({ required: true })}
+          errors={errors.buyIn || null}
+          options={buyInOptions()}
+        />
+        <h3>Game Players</h3>
+        {inputFields.map((inputField, index) => (
+          <React.Fragment key={`${inputField}~${index}`}>
+            <Card>
+              <SelectInput
+                inputName='name'
+                label='Name'
+                onChange={(e) => handleInputChange(index, e)}
+                validators={register({ required: true })}
+                errors={errors.name || null}
+                options={playerNameOptions(players)}
+              />
 
-      {inputFields.map((inputField, index) => (
-        <React.Fragment key={`${inputField}~${index}`}>
-          <Card>
-            <SelectInput
-              inputName='name'
-              label='Name'
-              onChange={(e) => handleInputChange(index, e)}
-              validators={register({ required: true })}
-              errors={errors.name || null}
-              options={playerNameOptions(players)}
-            />
+              <SelectInput
+                inputName='buyIns'
+                label='Buy Ins'
+                onChange={(e) => handleInputChange(index, e)}
+                validators={register({ required: true })}
+                errors={errors.buyIns || null}
+                options={buyBackOptions()}
+              />
+              <SelectInput
+                inputName='finalPosition'
+                label='Final Position'
+                onChange={(e) => handleInputChange(index, e)}
+                validators={register({ required: true })}
+                errors={errors.finalPosition || null}
+                options={finalPositionOptions(players)}
+              />
+            </Card>
+            <div>
+              <Button
+                disabled={inputFields.length < 2}
+                type='button'
+                onClick={handleRemoveFields}
+              >
+                -
+              </Button>
+              <Button type='button' onClick={handleAddFields}>
+                +
+              </Button>
+            </div>
+          </React.Fragment>
+        ))}
 
-            <NumberInput
-              inputName='buyIns'
-              label='Buy Ins'
-              defaultValue={inputFields.buyIns}
-              onChange={(e) => handleInputChange(index, e)}
-              validators={register({ required: true, min: 1, max: 3 })}
-              errors={errors.buyIn || null}
-            />
-            <SelectInput
-              inputName='finalPosition'
-              label='Final Position'
-              onChange={(e) => handleInputChange(index, e)}
-              validators={register({ required: true })}
-              errors={errors.finalPosition || null}
-              options={finalPositionOptions(players)}
-            />
-          </Card>
-          <div>
-            <Button type='button' onClick={handleRemoveFields}>
-              -
-            </Button>
-            <Button type='button' onClick={handleAddFields}>
-              +
-            </Button>
-          </div>
-        </React.Fragment>
-      ))}
-
-      <pre>{JSON.stringify(inputFields, null, 2)}</pre>
-      <Button type='submit'>Submit</Button>
-    </form>
+        <pre>DATE: {JSON.stringify(selectedDate, null, 2)}</pre>
+        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
+        <pre>PARTICIPANTS: {JSON.stringify(inputFields, null, 2)}</pre>
+        <Button type='submit' disabled={!isValid}>
+          Submit
+        </Button>
+      </form>
+    </FormContainer>
   );
 };
 
