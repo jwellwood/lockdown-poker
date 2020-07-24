@@ -1,11 +1,12 @@
 import React from 'react';
 import EditPlayerForm from '../../forms/EditPlayerForm';
+import PageContainer from '../../ui/layout/PageContainer';
 
 const EditPlayerPage = () => {
   return (
-    <div>
+    <PageContainer title='Edit Player'>
       <EditPlayerForm />
-    </div>
+    </PageContainer>
   );
 };
 

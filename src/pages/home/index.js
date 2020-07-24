@@ -73,9 +73,8 @@ const HomePage = () => {
       limit: 1,
     },
   ]);
-  
-  const games = useSelector((state) => state.firestore.ordered.games);
 
+  const games = useSelector((state) => state.firestore.ordered.games);
 
   useEffect(() => {
     const getNextGame = async () => {
@@ -134,9 +133,7 @@ const HomePage = () => {
       {loading ? (
         <Spinner />
       ) : !isEmpty && isLoaded ? (
-        <LinkButton type='outlined' color='inherit' to={ADD_GAME}>
-          Add new game
-        </LinkButton>
+        <LinkButton to={ADD_GAME}>Add new game</LinkButton>
       ) : null}
       <Grid className={classes.logo} container>
         <Grid item xs={12}>

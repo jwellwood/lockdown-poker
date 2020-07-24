@@ -8,6 +8,7 @@ import { useFirestore } from 'react-redux-firebase';
 import SelectInput from '../ui/inputs/SelectInput';
 import { tableNameOptions, buyInOptions } from './utils/select-options';
 import Spinner from '../ui/spinners/Spinner.component';
+import FormContainer from '../ui/layout/FormContainer';
 
 const EditGameForm = () => {
   const { id } = useParams();
@@ -54,54 +55,56 @@ const EditGameForm = () => {
   };
 
   return game && input.buyIn ? (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <DateTimeInput
-        disableFuture={false}
-        inputName='date'
-        label='Date'
-        defaultValue={selectedDate}
-        onChange={setSelectedDate}
-        validators={register({ required: true })}
-        errors={errors.date || null}
-      />
-      <TextInput
-        inputName='zoomLink'
-        label='Zoom Link'
-        defaultValue={input.zoomLink}
-        onChange={onChange}
-        validators={register({ required: true, maxLength: 200 })} // Guard against posting huge portions of text
-        errors={errors.zoomLink || null}
-      />
-      <TextInput
-        inputName='gameLink'
-        label='Game Link'
-        defaultValue={input.gameLink}
-        onChange={onChange}
-        validators={register({ required: true, maxLength: 200 })}
-        errors={errors.gameLink || null}
-      />
-      <SelectInput
-        inputName='table'
-        label='Table Name'
-        defaultValue={input.table}
-        onChange={onChange}
-        validators={register({ required: true })}
-        errors={errors.table || null}
-        options={tableNameOptions()}
-      />
-      <SelectInput
-        inputName='buyIn'
-        label='Buy In Price'
-        defaultValue={input.buyIn}
-        onChange={onChange}
-        validators={register({ required: true })}
-        errors={errors.buyIn || null}
-        options={buyInOptions()}
-      />
-      <Button type='submit'>Submit</Button>
-      <pre>DATE: {JSON.stringify(selectedDate, null, 2)}</pre>
-      <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
-    </form>
+    <FormContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DateTimeInput
+          disableFuture={false}
+          inputName='date'
+          label='Date'
+          defaultValue={selectedDate}
+          onChange={setSelectedDate}
+          validators={register({ required: true })}
+          errors={errors.date || null}
+        />
+        <TextInput
+          inputName='zoomLink'
+          label='Zoom Link'
+          defaultValue={input.zoomLink}
+          onChange={onChange}
+          validators={register({ required: true, maxLength: 200 })} // Guard against posting huge portions of text
+          errors={errors.zoomLink || null}
+        />
+        <TextInput
+          inputName='gameLink'
+          label='Game Link'
+          defaultValue={input.gameLink}
+          onChange={onChange}
+          validators={register({ required: true, maxLength: 200 })}
+          errors={errors.gameLink || null}
+        />
+        <SelectInput
+          inputName='table'
+          label='Table Name'
+          defaultValue={input.table}
+          onChange={onChange}
+          validators={register({ required: true })}
+          errors={errors.table || null}
+          options={tableNameOptions()}
+        />
+        <SelectInput
+          inputName='buyIn'
+          label='Buy In Price'
+          defaultValue={input.buyIn}
+          onChange={onChange}
+          validators={register({ required: true })}
+          errors={errors.buyIn || null}
+          options={buyInOptions()}
+        />
+        <Button type='submit'>Submit</Button>
+        <pre>DATE: {JSON.stringify(selectedDate, null, 2)}</pre>
+        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
+      </form>
+    </FormContainer>
   ) : (
     <Spinner />
   );

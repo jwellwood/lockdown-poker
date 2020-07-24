@@ -17,6 +17,7 @@ import GamePage from '../pages/game';
 import PlayerPage from '../pages/player';
 import EditPlayerPage from '../pages/edit_player';
 import EditGamePage from '../pages/edit_game';
+import AddPlayerToGamePage from '../pages/add_player_to_game';
 
 const Routes = () => {
   return (
@@ -32,6 +33,11 @@ const Routes = () => {
         <Route exact path={routes.ADD_GAME} component={AddGamePage} />
         <Route exact path={routes.GAME} component={GamePage} />
         <Route exact path={routes.EDIT_GAME} component={EditGamePage} />
+        <Route
+          exact
+          path={routes.ADD_PLAYER_TO_GAME}
+          component={AddPlayerToGamePage}
+        />
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
 
         <Redirect path='*' to={routes.HOME} />

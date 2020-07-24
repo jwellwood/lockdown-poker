@@ -47,7 +47,7 @@ const PageContainer = ({ title, children }) => {
               }}
             />
           </Grid>
-          <Grid container direction='row'>
+          <Grid container direction='column'>
             {children}
           </Grid>
         </Grid>

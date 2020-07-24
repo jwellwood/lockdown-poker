@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
 import Spinner from '../../ui/spinners/Spinner.component';
 import { useLoadPlayerGames } from '../../hooks/useLoadPlayerGames';
-import OtherDetails from './OtherDetails';
 import UserDetails from './UserDetails';
 import LinkButton from '../../ui/buttons/LinkButton.component';
+import PageContainer from '../../ui/layout/PageContainer';
 
 const PlayerPage = () => {
   const { id } = useParams();
@@ -31,23 +31,26 @@ const PlayerPage = () => {
   const { playerGames, gamesPlayedIn } = useLoadPlayerGames(id, games);
   // useEffect(() => {}, [games]);
 
-  return player && games ? (
-    <div>
-      {!isEmpty && isLoaded ? (
-        <LinkButton to={`/players/edit/${id}`}>Edit Player</LinkButton>
-      ) : null}
-      <UserDetails player={player} id={id} />
-      <PlayerDetails
-        player={player}
-        id={id}
-        games={games}
-        playerGames={playerGames}
-        gamesPlayedIn={gamesPlayedIn}
-      />
-      <OtherDetails player={player} />
-    </div>
-  ) : (
-    <Spinner />
+  return (
+    <PageContainer title='Player Details'>
+      {player && games ? (
+        <div>
+          {!isEmpty && isLoaded ? (
+            <LinkButton to={`/players/edit/${id}`}>Edit Player</LinkButton>
+          ) : null}
+          <UserDetails player={player} id={id} />
+          <PlayerDetails
+            player={player}
+            id={id}
+            games={games}
+            playerGames={playerGames}
+            gamesPlayedIn={gamesPlayedIn}
+          />
+        </div>
+      ) : (
+        <Spinner />
+      )}
+    </PageContainer>
   );
 };
 

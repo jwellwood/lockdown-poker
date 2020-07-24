@@ -9,3 +9,4 @@ export const GAME = '/games/:id';
 export const EDIT_GAME = '/games/edit/:id';
 export const ADD_GAME = '/games/add';
 export const ADD_GAME_DETAILS = '/add_game_details';
+export const ADD_PLAYER_TO_GAME = '/games/:id/add_player';
