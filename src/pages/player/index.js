@@ -4,10 +4,10 @@ import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
 import Spinner from '../../ui/spinners/Spinner.component';
-import { useLoadPlayerGames } from '../../hooks/useLoadPlayerGames';
+import { useLoadPlayerGames } from '../../shared/hooks/useLoadPlayerGames';
 import UserDetails from './UserDetails';
 import LinkButton from '../../ui/buttons/LinkButton.component';
-import PageContainer from '../../ui/layout/PageContainer';
+import PageContainer from '../../layout/PageContainer';
 
 const PlayerPage = () => {
   const { id } = useParams();

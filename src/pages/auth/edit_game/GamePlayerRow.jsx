@@ -3,9 +3,9 @@ import React from 'react';
 import TableCell from '@material-ui/core/TableCell';
 
 import TableRow from '@material-ui/core/TableRow';
-import DeleteConfirmation from '../../ui/dialogs/DeleteConfirmation';
+import DeleteConfirmation from '../../../ui/dialogs/DeleteConfirmation';
 import { useHistory } from 'react-router-dom';
-import { GAMES } from '../../router';
+import { GAMES } from '../../../router';
 import { useFirestore } from 'react-redux-firebase';
 
 const GamePlayerRow = ({ player, game }) => {

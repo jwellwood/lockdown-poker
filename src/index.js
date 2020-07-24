@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
 import store, { rrfProps } from './store';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import Routes from './router/Routes';
-import AppThemeWrapper from './utils/AppThemeWrapper';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { theme } from './shared/theme';
+import { CssBaseline } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-        <AppThemeWrapper>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
           <Routes />
-        </AppThemeWrapper>
+        </MuiThemeProvider>
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,

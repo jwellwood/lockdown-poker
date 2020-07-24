@@ -3,7 +3,7 @@ import React from 'react';
 import TableCell from '@material-ui/core/TableCell';
 
 import TableRow from '@material-ui/core/TableRow';
-import { useLoadPlayerGames } from '../../hooks/useLoadPlayerGames';
+import { useLoadPlayerGames } from '../../shared/hooks/useLoadPlayerGames';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 
 const PlayerTableRow = ({ player, games, index }) => {

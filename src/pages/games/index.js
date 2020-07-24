@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import GamesList from './GamesList';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_GAME } from '../../router';
-import PageContainer from '../../ui/layout/PageContainer';
+import PageContainer from '../../layout/PageContainer';
 
 const GamesPage = () => {
   useFirestoreConnect([
