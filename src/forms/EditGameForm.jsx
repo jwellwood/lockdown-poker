@@ -9,14 +9,16 @@ import SelectInput from '../ui/inputs/SelectInput';
 import { tableNameOptions, buyInOptions } from './utils/select-options';
 import Spinner from '../ui/spinners/Spinner.component';
 import FormContainer from '../ui/layout/FormContainer';
+import DeleteConfirmation from '../ui/dialogs/DeleteConfirmation';
+import { GAMES } from '../router';
 
-const EditGameForm = () => {
+const EditGameForm = ({ game }) => {
   const { id } = useParams();
   const history = useHistory();
   const fireStore = useFirestore();
   const { register, handleSubmit, errors } = useForm();
   // Local state
-  const [game, setGame] = useState({});
+  // const [game, setGame] = useState({});
   const [selectedDate, setSelectedDate] = useState(game.date);
   const [input, setInput] = useState({});
 
@@ -24,11 +26,6 @@ const EditGameForm = () => {
 
   const gameRef = fireStore.collection('games').doc(id);
 
-  useEffect(() => {
-    gameRef.get().then((doc) => {
-      setGame(doc.data());
-    });
-  }, []);
   useEffect(() => {
     if (game) {
       setInput({
@@ -52,6 +49,11 @@ const EditGameForm = () => {
     const data = { ...input, date: selectedDate }; // participants as empty array
     gameRef.update({ ...data });
     history.push('/');
+  };
+
+  const onDelete = () => {
+    gameRef.delete();
+    history.push(GAMES);
   };
 
   return game && input.buyIn ? (
@@ -101,9 +103,8 @@ const EditGameForm = () => {
           options={buyInOptions()}
         />
         <Button type='submit'>Submit</Button>
-        <pre>DATE: {JSON.stringify(selectedDate, null, 2)}</pre>
-        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
       </form>
+      <DeleteConfirmation onDelete={onDelete} type='game' />
     </FormContainer>
   ) : (
     <Spinner />

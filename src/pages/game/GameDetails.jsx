@@ -13,7 +13,6 @@ const GameDetails = ({ game, id }) => {
   return (
     <div>
       <Card>
-        <h3>Game details</h3>
         <Divider />
         <List>
           <ListItem>

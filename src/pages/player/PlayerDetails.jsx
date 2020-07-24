@@ -18,7 +18,6 @@ const PlayerDetails = ({ player, games, playerGames, gamesPlayedIn }) => {
   return (
     <div>
       <Card>
-        <h3>Player Details</h3>
         <List>
           <ListItem>
             <ListItemText primary='Games played' secondary={played} />

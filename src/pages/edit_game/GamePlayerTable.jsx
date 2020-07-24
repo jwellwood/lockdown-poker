@@ -11,12 +11,15 @@ import Spinner from '../../ui/spinners/Spinner.component';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import LinkButton from '../../ui/buttons/LinkButton.component';
+import FormContainer from '../../ui/layout/FormContainer';
+import GamePlayerRow from './GamePlayerRow';
 
-const GamePlayerTable = ({ players }) => {
+const GamePlayerTable = ({ players, game }) => {
   const { id } = useParams();
   const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
+
   return (
-    <>
+    <FormContainer>
       {!isEmpty && isLoaded ? (
         <LinkButton to={`/games/${id}/add_player`}>
           Add Player To Game
@@ -34,16 +37,20 @@ const GamePlayerTable = ({ players }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {players.map((player, i) => (
-                <PlayerTableRow key={player.id} player={player} index={i} />
-              ))} */}
+              {players.map((player, i) => (
+                <GamePlayerRow
+                  key={`${player.id}-${i}`}
+                  player={player}
+                  game={id}
+                />
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
       ) : (
         <Spinner />
       )}
-    </>
+    </FormContainer>
   );
 };
 
