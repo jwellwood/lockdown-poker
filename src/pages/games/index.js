@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import GamesList from './GamesList';
 import LinkButton from '../../ui/buttons/LinkButton.component';
 import { ADD_GAME } from '../../router';
-import ListPageContainer from '../../ui/layout/ListPageContainer';
+import PageContainer from '../../ui/layout/PageContainer';
 
 const GamesPage = () => {
   useFirestoreConnect([
@@ -17,13 +17,13 @@ const GamesPage = () => {
   const { games } = useSelector((state) => state.firestore.ordered);
 
   return (
-    <ListPageContainer title='Games'>
+    <PageContainer title='Games'>
       {!isEmpty && isLoaded ? (
         <LinkButton to={ADD_GAME}>Add Game</LinkButton>
       ) : null}
 
       <GamesList games={games} />
-    </ListPageContainer>
+    </PageContainer>
   );
 };
 

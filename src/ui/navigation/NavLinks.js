@@ -24,6 +24,7 @@ const useStyles = makeStyles({
     width: '100%',
     bottom: 0,
     position: 'fixed',
+    //Look up offset
   },
 });
 
