@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, Divider } from '@material-ui/core';
+import { List, ListItem } from '@material-ui/core';
 
 const GamePlayerDetails = ({ game }) => {
   return game.participants.map((player) => (

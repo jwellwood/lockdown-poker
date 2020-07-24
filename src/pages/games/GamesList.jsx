@@ -1,5 +1,5 @@
 import React from 'react';
-import { parseDate } from '../../utils/parseDate';
+import { parseDate } from '../../shared/utils/parseDate';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 

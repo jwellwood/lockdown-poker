@@ -6,12 +6,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import PlayerTableRow from './PlayerTableRow';
-import Spinner from '../../ui/spinners/Spinner.component';
+import Spinner from '../../../ui/spinners/Spinner.component';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import LinkButton from '../../ui/buttons/LinkButton.component';
-import FormContainer from '../../ui/layout/FormContainer';
+import LinkButton from '../../../ui/buttons/LinkButton.component';
+import FormContainer from '../../../layout/FormContainer';
 import GamePlayerRow from './GamePlayerRow';
 
 const GamePlayerTable = ({ players, game }) => {

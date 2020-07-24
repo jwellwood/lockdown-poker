@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import EditGameForm from '../../forms/EditGameForm';
-import PageContainer from '../../ui/layout/PageContainer';
+import PageContainer from '../../../layout/PageContainer';
 import GamePlayerTable from './GamePlayerTable';
 import { useFirestore } from 'react-redux-firebase';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
+import { useAuth } from '../../../shared/hooks/useAuth';
+import { SIGN_IN } from '../../../router';
+import EditGame from './EditGame.container';
 
 const EditGamePage = () => {
   const { id } = useParams();
@@ -16,9 +18,15 @@ const EditGamePage = () => {
     });
   }, [fireStore, id]);
 
+  const { isAuth } = useAuth();
+
+  if (!isAuth) {
+    return <Redirect to={SIGN_IN} />;
+  }
+
   return (
     <PageContainer title='Edit Game'>
-      <EditGameForm game={game} />
+      <EditGame game={game} />
       <GamePlayerTable players={game.participants} game={game} />
     </PageContainer>
   );
