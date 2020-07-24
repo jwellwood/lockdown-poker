@@ -17,6 +17,7 @@ import * as routes from '.';
 import GamePage from '../pages/game';
 import PlayerPage from '../pages/player';
 import EditPlayerPage from '../pages/edit_player';
+import EditGamePage from '../pages/edit_game';
 
 const Routes = () => {
   return (
@@ -29,9 +30,10 @@ const Routes = () => {
         <Route exact path={routes.PLAYER} component={PlayerPage} />
         <Route exact path={routes.EDIT_PLAYER} component={EditPlayerPage} />
         <Route exact path={routes.GAMES} component={GamesPage} />
-        <Route exact path={routes.SIGN_IN} component={SignInPage} />
         <Route exact path={routes.ADD_GAME} component={AddGamePage} />
         <Route exact path={routes.GAME} component={GamePage} />
+        <Route exact path={routes.EDIT_GAME} component={EditGamePage} />
+        <Route exact path={routes.SIGN_IN} component={SignInPage} />
         <Route
           exact
           path={routes.ADD_GAME_DETAILS}
