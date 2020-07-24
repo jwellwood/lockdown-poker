@@ -24,7 +24,7 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
 import { parseDate } from '../../utils/parseDate';
-import Spinner from '../../ui/spinners/Spinner.component';
+import Spinner from '../../utils/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -68,22 +68,14 @@ const HomePage = () => {
 
   useFirestoreConnect([
     {
-      collection: 'gamepreviews',
+      collection: 'games',
       orderBy: ['date'],
       limit: 1,
     },
   ]);
-  const gamePreview = useSelector(
-    (state) => state.firestore.ordered.gamepreviews
-  );
-  console.log(isLoaded);
+  const gamePreview = useSelector((state) => state.firestore.ordered.games);
+  console.log(gamePreview);
 
-  //@TODO get real date from firebase
-  const exampleDate = '24-7-2020 9:30PM';
-
-  const exampleZoomValue = 'https://www.zoom.us';
-  const exampleGameValue = 'https://www.bbc.com/hhashashdhashdhashdhasdhahsd';
-  // @TODO Add these values from firebase in useEffect
   useEffect(() => {
     const getNextGame = async () => {
       if (!gamePreview) return;
