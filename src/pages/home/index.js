@@ -78,15 +78,14 @@ const HomePage = () => {
 
   useEffect(() => {
     const getNextGame = async () => {
-      if (!games) return;
-      else {
+      if (!games) {
+        return;
+      } else {
         await setGameDate(parseDate(games[0].date));
         await setZoomInputValue({
-          ...zoomInputValue,
           value: games[0].zoomLink,
         });
         await setGameInputValue({
-          ...gameInputValue,
           value: games[0].gameLink,
         });
         setLoading(false);

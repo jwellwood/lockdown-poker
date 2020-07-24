@@ -4,7 +4,6 @@ const UserDetails = ({ player, id }) => {
   const { name, preferredPayment, iban } = player;
   return (
     <Card>
-      <h3>User Details</h3>
       <List>
         <ListItem>
           <ListItemText primary='Player ID' secondary={id} />

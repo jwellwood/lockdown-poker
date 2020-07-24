@@ -70,8 +70,6 @@ const AddGameDetailsForm = () => {
           options={buyInOptions()}
         />
         <Button type='submit'>Submit</Button>
-        <pre>DATE: {JSON.stringify(selectedDate, null, 2)}</pre>
-        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
       </form>
     </FormContainer>
   );

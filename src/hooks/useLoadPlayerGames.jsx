@@ -32,8 +32,10 @@ export const useLoadPlayerGames = (playerId, games) => {
   };
 
   useEffect(() => {
-    if (games) loadPlayerGames();
-    if (games) loadGamesPlayedIn();
+    if (games) {
+      loadPlayerGames();
+      loadGamesPlayedIn();
+    }
   }, [games]);
 
   return { playerGames, gamesPlayedIn };

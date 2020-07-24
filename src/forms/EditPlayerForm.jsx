@@ -23,14 +23,15 @@ const EditPlayerForm = () => {
   const [input, setInput] = useState({});
 
   useEffect(() => {
+    const playerRef = fireStore.collection('players').doc(id);
     playerRef.get().then((doc) => {
       setPlayer(doc.data());
     });
-  }, []);
+  }, [fireStore, id]);
   useEffect(() => {
     if (player) {
       const { name, preferredPayment, iban } = player;
-      setInput({ ...input, name, preferredPayment, iban });
+      setInput({ name, preferredPayment, iban });
     }
   }, [player]);
 
@@ -83,8 +84,6 @@ const EditPlayerForm = () => {
           errors={errors.iban || null}
         />
         <Button type='submit'>Update</Button>
-
-        <pre>INPUTS: {JSON.stringify(input, null, 2)}</pre>
       </form>
       <DeleteConfirmation onDelete={onDelete} type='player' />
     </FormContainer>
