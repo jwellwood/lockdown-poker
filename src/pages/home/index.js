@@ -24,7 +24,7 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { parseDate } from '../../utils/parseDate';
-import Spinner from '../../ui/spinners/Spinner.component';
+import Spinner from '../../utils/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -73,7 +73,9 @@ const HomePage = () => {
       limit: 1,
     },
   ]);
+  
   const games = useSelector((state) => state.firestore.ordered.games);
+
 
   useEffect(() => {
     const getNextGame = async () => {
