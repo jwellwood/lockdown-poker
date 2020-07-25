@@ -9,7 +9,7 @@ import {
 import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 
-const AddGamePlayerForm = ({ onChange, onSubmit, players }) => {
+const AddGamePlayerForm = ({ onChange, onSubmit, players, game }) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (
@@ -21,7 +21,7 @@ const AddGamePlayerForm = ({ onChange, onSubmit, players }) => {
           onChange={onChange}
           validators={register({ required: true })}
           errors={errors.preferredPayment || null}
-          options={playerNameOptions(players)}
+          options={playerNameOptions(players, game)}
         />
         <SelectInput
           inputName='buyIns'
