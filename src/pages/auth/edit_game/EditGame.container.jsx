@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useFirestore } from 'react-redux-firebase';
-import { GAMES } from '../../../router';
+import { GAMES } from 'router';
 import EditGameForm from './EditGameForm.component';
-import Spinner from '../../../ui/spinners/Spinner.component';
+import Spinner from 'components/spinners/Spinner.component';
 
 const EditGame = ({ game }) => {
   const { id } = useParams();

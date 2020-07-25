@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useFirestore } from 'react-redux-firebase';
 import { useHistory, useParams } from 'react-router-dom';
-import { PLAYERS } from '../../../router';
-import Spinner from '../../../ui/spinners/Spinner.component';
+import { PLAYERS } from 'router';
+import Spinner from 'components/spinners/Spinner.component';
 import EditPlayerForm from './EditPlayerForm.component';
 
 const EditPlayer = () => {

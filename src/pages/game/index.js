@@ -4,11 +4,11 @@ import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 
 import GameDetails from './GameDetails';
-import Spinner from '../../ui/spinners/Spinner.component';
+import Spinner from 'components/spinners/Spinner.component';
 import GamePlayerDetails from './GamePlayerDetails';
-import LinkButton from '../../ui/buttons/LinkButton.component';
-import PageContainer from '../../layout/PageContainer';
-import { useAuth } from '../../shared/hooks/useAuth';
+import LinkButton from 'components/buttons/LinkButton.component';
+import PageContainer from 'shared/layout/PageContainer';
+import { useAuth } from 'shared/hooks/useAuth';
 
 const GamePage = () => {
   const { id } = useParams();

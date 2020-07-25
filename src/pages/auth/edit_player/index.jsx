@@ -1,8 +1,8 @@
 import React from 'react';
-import PageContainer from '../../../layout/PageContainer';
-import { useAuth } from '../../../shared/hooks/useAuth';
+import PageContainer from 'shared/layout/PageContainer';
+import { useAuth } from 'shared/hooks/useAuth';
 import { Redirect } from 'react-router-dom';
-import { SIGN_IN } from '../../../router';
+import { SIGN_IN } from 'router';
 import EditPlayer from './EditPlayer.container';
 
 const EditPlayerPage = () => {

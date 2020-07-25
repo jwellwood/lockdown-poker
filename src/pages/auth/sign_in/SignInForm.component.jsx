@@ -1,6 +1,6 @@
 import React from 'react';
-import TextInput from '../../../ui/inputs/TextInput';
-import FormContainer from '../../../layout/FormContainer';
+import TextInput from 'components/inputs/TextInput';
+import FormContainer from 'shared/layout/FormContainer';
 import { useForm } from 'react-hook-form';
 import { Button } from '@material-ui/core';
 

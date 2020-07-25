@@ -5,9 +5,9 @@ import {
   playerNameOptions,
   finalPositionOptions,
   buyBackOptions,
-} from '../../../shared/utils/select-options';
-import SelectInput from '../../../ui/inputs/SelectInput';
-import FormContainer from '../../../layout/FormContainer';
+} from 'shared/utils/select-options';
+import SelectInput from 'components/inputs/SelectInput';
+import FormContainer from 'shared/layout/FormContainer';
 
 const AddPlayerToGameForm = ({ onChange, onSubmit, players }) => {
   const { register, handleSubmit, errors } = useForm();

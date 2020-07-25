@@ -8,7 +8,7 @@ import CasinoRounded from '@material-ui/icons/CasinoRounded';
 import HomeRounded from '@material-ui/icons/HomeRounded';
 import SupervisedUserRounded from '@material-ui/icons/SupervisedUserCircleRounded';
 import GroupRounded from '@material-ui/icons/GroupRounded';
-import { HOME, PLAYERS, GAMES, SIGN_IN } from '../../router';
+import { HOME, PLAYERS, GAMES, SIGN_IN } from 'router';
 
 const useStyles = makeStyles({
   topNav: {

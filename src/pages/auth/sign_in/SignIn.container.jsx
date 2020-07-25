@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useFirebase } from 'react-redux-firebase';
-import { useAuth } from '../../../shared/hooks/useAuth';
+import { useAuth } from 'shared/hooks/useAuth';
 import SignInForm from './SignInForm.component';
 
 const SignIn = () => {

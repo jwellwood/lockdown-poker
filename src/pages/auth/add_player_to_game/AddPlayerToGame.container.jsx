@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import { useHistory, useParams } from 'react-router-dom';
-import { GAMES } from '../../../router';
+import { GAMES } from 'router';
 import { useSelector } from 'react-redux';
-import Spinner from '../../../ui/spinners/Spinner.component';
+import Spinner from 'components/spinners/Spinner.component';
 import AddPlayerToGameForm from './AddPlayerToGameForm.component';
 
 const AddPlayerToGame = () => {

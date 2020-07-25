@@ -5,11 +5,11 @@ import VideoCamRounded from '@material-ui/icons/VideocamRounded';
 import LinkRounded from '@material-ui/icons/LinkRounded';
 import EventAvailableRounded from '@material-ui/icons/EventAvailableRounded';
 import FileCopyRounded from '@material-ui/icons/FileCopyRounded';
-import PageContainer from '../../layout/PageContainer';
+import PageContainer from 'shared/layout/PageContainer';
 import { useSelector } from 'react-redux';
-import LinkButton from '../../ui/buttons/LinkButton.component';
-import { ADD_GAME } from '../../router';
-import logo from '../../assets/images/logo.jpg';
+import LinkButton from 'components/buttons/LinkButton.component';
+import { ADD_GAME } from 'router';
+import logo from 'shared/assets/images/logo.jpg';
 import {
   List,
   ListItem,
@@ -23,8 +23,8 @@ import {
 } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { parseDate } from '../../shared/utils/parseDate';
-import Spinner from '../../ui/spinners/Spinner.component';
+import { parseDate } from 'shared/utils/parseDate';
+import Spinner from 'components/spinners/Spinner.component';
 
 const useStyles = makeStyles((theme) => ({
   logo: {

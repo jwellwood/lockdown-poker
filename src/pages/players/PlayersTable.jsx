@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PlayerTableRow from './PlayerTableRow';
-import Spinner from '../../ui/spinners/Spinner.component';
+import Spinner from 'components/spinners/Spinner.component';
 
 const PlayersTable = ({ players, games }) => {
   return players ? (

@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
-import Spinner from '../../ui/spinners/Spinner.component';
-import { useLoadPlayerGames } from '../../shared/hooks/useLoadPlayerGames';
+import Spinner from 'components/spinners/Spinner.component';
+import { useLoadPlayerGames } from 'shared/hooks/useLoadPlayerGames';
 import UserDetails from './UserDetails';
-import LinkButton from '../../ui/buttons/LinkButton.component';
-import PageContainer from '../../layout/PageContainer';
+import LinkButton from 'components/buttons/LinkButton.component';
+import PageContainer from 'shared/layout/PageContainer';
 
 const PlayerPage = () => {
   const { id } = useParams();
