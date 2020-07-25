@@ -5,11 +5,11 @@ import {
   playerNameOptions,
   finalPositionOptions,
   buyBackOptions,
-} from 'shared/utils/select-options';
+} from 'shared/utils';
 import SelectInput from 'components/inputs/SelectInput';
-import FormContainer from 'shared/layout/FormContainer';
+import { FormContainer } from 'shared/layout';
 
-const AddPlayerToGameForm = ({ onChange, onSubmit, players }) => {
+const AddGamePlayerForm = ({ onChange, onSubmit, players }) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (
@@ -46,4 +46,4 @@ const AddPlayerToGameForm = ({ onChange, onSubmit, players }) => {
   );
 };
 
-export default AddPlayerToGameForm;
+export default AddGamePlayerForm;

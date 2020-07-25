@@ -2,9 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@material-ui/core';
 import TextInput from 'components/inputs/TextInput';
-import { preferredPaymentOptions } from 'shared/utils/select-options';
+import { preferredPaymentOptions } from 'shared/utils';
 import SelectInput from 'components/inputs/SelectInput';
-import FormContainer from 'shared/layout/FormContainer';
+import { FormContainer } from 'shared/layout';
 
 const AddPlayerForm = ({ onChange, onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();

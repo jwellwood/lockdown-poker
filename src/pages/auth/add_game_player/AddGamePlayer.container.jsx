@@ -1,11 +1,11 @@
 import React from 'react';
-import PageContainer from 'shared/layout/PageContainer';
-import { useAuth } from 'shared/hooks/useAuth';
+import { PageContainer } from 'shared/layout';
+import { useAuth } from 'shared/hooks';
 import { Redirect } from 'react-router-dom';
 import { SIGN_IN } from 'router';
-import AddPlayerToGame from './AddPlayerToGame.container';
+import AddGamePlayerFormContainer from './AddGamePlayerFormContainer.container';
 
-const AddPlayerToGamePage = () => {
+export default () => {
   const { isAuth } = useAuth();
 
   if (!isAuth) {
@@ -13,9 +13,7 @@ const AddPlayerToGamePage = () => {
   }
   return (
     <PageContainer title='Add Player to Game'>
-      <AddPlayerToGame />
+      <AddGamePlayerFormContainer />
     </PageContainer>
   );
 };
-
-export default AddPlayerToGamePage;

@@ -4,9 +4,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { GAMES } from 'router';
 import { useSelector } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
-import AddPlayerToGameForm from './AddPlayerToGameForm.component';
+import AddGamePlayerForm from './AddGamePlayerForm.component';
 
-const AddPlayerToGame = () => {
+const AddGamePlayerFormContainer = () => {
   const { id } = useParams();
   const fireStore = useFirestore();
   const history = useHistory();
@@ -32,7 +32,7 @@ const AddPlayerToGame = () => {
     history.push(GAMES);
   };
   return players ? (
-    <AddPlayerToGameForm
+    <AddGamePlayerForm
       onChange={onChange}
       onSubmit={onSubmit}
       players={players}
@@ -42,4 +42,4 @@ const AddPlayerToGame = () => {
   );
 };
 
-export default AddPlayerToGame;
+export default AddGamePlayerFormContainer;

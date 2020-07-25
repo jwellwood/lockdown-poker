@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Divider, List, ListItem, ListItemText } from '@material-ui/core';
-import { parseDate } from 'shared/utils/parseDate';
+import { parseDate } from 'shared/utils';
 
 const GameDetails = ({ game, id }) => {
   const { date, table, buyIn, participants } = game;

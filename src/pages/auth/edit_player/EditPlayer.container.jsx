@@ -1,58 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useFirestore } from 'react-redux-firebase';
-import { useHistory, useParams } from 'react-router-dom';
-import { PLAYERS } from 'router';
-import Spinner from 'components/spinners/Spinner.component';
-import EditPlayerForm from './EditPlayerForm.component';
+import React from 'react';
+import { PageContainer } from 'shared/layout';
+import { useAuth } from 'shared/hooks';
+import { Redirect } from 'react-router-dom';
+import { SIGN_IN } from 'router';
+import EditPlayerFormContainer from './EditPlayerFormContainer.container';
 
-const EditPlayer = () => {
-  const { id } = useParams();
-  const history = useHistory();
-  const fireStore = useFirestore();
+export default () => {
+  const { isAuth } = useAuth();
 
-  const playerRef = fireStore.collection('players').doc(id);
-  const [player, setPlayer] = useState({});
-  const [input, setInput] = useState({});
-
-  useEffect(() => {
-    const playerRef = fireStore.collection('players').doc(id);
-    playerRef.get().then((doc) => {
-      setPlayer(doc.data());
-    });
-  }, [fireStore, id]);
-  useEffect(() => {
-    if (player) {
-      const { name, preferredPayment, iban } = player;
-      setInput({ name, preferredPayment, iban });
-    }
-  }, [player]);
-
-  const onChange = (e) =>
-    setInput({
-      ...input,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-
-  const onSubmit = () => {
-    const data = { ...input };
-    playerRef.update({ ...data });
-    history.push(PLAYERS);
-  };
-
-  const onDelete = () => {
-    playerRef.delete();
-    history.push(PLAYERS);
-  };
-  return player && input.name ? ( // TODO Improve this. Don't rely on just name
-    <EditPlayerForm
-      onChange={onChange}
-      onSubmit={onSubmit}
-      onDelete={onDelete}
-      input={input}
-    />
-  ) : (
-    <Spinner />
+  if (!isAuth) {
+    return <Redirect to={SIGN_IN} />;
+  }
+  return (
+    <PageContainer title='Edit Player'>
+      <EditPlayerFormContainer />
+    </PageContainer>
   );
 };
-
-export default EditPlayer;
