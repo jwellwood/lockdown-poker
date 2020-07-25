@@ -1,9 +1,18 @@
-export const playerNameOptions = (players) => {
-  const options = [{ text: '', value: '' }];
-  players.forEach((player) => {
-    options.push({ text: player.name, value: player.id });
-  });
-  return options;
+export const playerNameOptions = (players, game) => {
+  const gameParticipants = game.participants
+    ? game.participants.map((player) => player.name)
+    : [];
+
+  const unselectedPlayers = players.filter(
+    (player) => !gameParticipants.includes(player.id)
+  );
+
+  const playerList = unselectedPlayers.map((player) => ({
+    text: player.name,
+    value: player.id,
+  }));
+
+  return [{ text: '', value: '' }, ...playerList];
 };
 
 export const finalPositionOptions = (players) => {
