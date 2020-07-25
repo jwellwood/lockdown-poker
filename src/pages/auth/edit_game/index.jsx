@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PageContainer from '../../../layout/PageContainer';
+import PageContainer from 'shared/layout/PageContainer';
 import GamePlayerTable from './GamePlayerTable';
 import { useFirestore } from 'react-redux-firebase';
 import { useParams, Redirect } from 'react-router-dom';
-import { useAuth } from '../../../shared/hooks/useAuth';
-import { SIGN_IN } from '../../../router';
+import { useAuth } from 'shared/hooks/useAuth';
+import { SIGN_IN } from 'router';
 import EditGame from './EditGame.container';
 
 const EditGamePage = () => {

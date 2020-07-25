@@ -6,8 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-import logo from '../../assets/images/logo.jpg';
-import { HOME } from '../../router';
+import logo from 'shared/assets/images/logo.jpg';
+import { HOME } from 'router';
 import NavLinks from './NavLinks';
 
 const useStyles = makeStyles((theme) => ({

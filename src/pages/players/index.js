@@ -1,10 +1,10 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
-import LinkButton from '../../ui/buttons/LinkButton.component';
-import { ADD_PLAYER } from '../../router';
-import PageContainer from '../../layout/PageContainer';
-import Spinner from '../../ui/spinners/Spinner.component';
+import LinkButton from 'components/buttons/LinkButton.component';
+import { ADD_PLAYER } from 'router';
+import PageContainer from 'shared/layout/PageContainer';
+import Spinner from 'components/spinners/Spinner.component';
 import PlayersTable from './PlayersTable';
 
 const PlayersPage = () => {

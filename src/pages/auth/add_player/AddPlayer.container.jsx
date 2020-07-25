@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFirestore } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
-import { PLAYERS } from '../../../router';
+import { PLAYERS } from 'router';
 import AddPlayerForm from './AddPlayerForm.component';
 
 const AddPlayer = () => {

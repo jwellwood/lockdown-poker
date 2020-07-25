@@ -1,15 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import DateTimeInput from '../../../ui/inputs/DateTimeInput';
-import TextInput from '../../../ui/inputs/TextInput';
+import DateTimeInput from 'components/inputs/DateTimeInput';
+import TextInput from 'components/inputs/TextInput';
 import { Button } from '@material-ui/core';
-import SelectInput from '../../../ui/inputs/SelectInput';
-import {
-  tableNameOptions,
-  buyInOptions,
-} from '../../../shared/utils/select-options';
-import FormContainer from '../../../layout/FormContainer';
-import DeleteConfirmation from '../../../ui/dialogs/DeleteConfirmation';
+import SelectInput from 'components/inputs/SelectInput';
+import { tableNameOptions, buyInOptions } from 'shared/utils/select-options';
+import FormContainer from 'shared/layout/FormContainer';
+import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 
 const EditGameForm = ({
   onChange,

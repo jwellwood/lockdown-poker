@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFirestore } from 'react-redux-firebase';
-import { HOME } from '../../../router';
+import { HOME } from 'router';
 import AddGameForm from './AddGameForm.component';
 
 const AddGame = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PageContainer from '../../../layout/PageContainer';
+import PageContainer from 'shared/layout/PageContainer';
 import SignIn from './SignIn.container';
 
 const SignInPage = () => {
