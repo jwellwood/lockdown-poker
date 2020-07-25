@@ -3,7 +3,7 @@ import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_PLAYER } from 'router';
-import { PageContainer } from 'shared/layout';
+import { PageContainer, ContentContainer } from 'shared/layout';
 import Spinner from 'components/spinners/Spinner.component';
 import PlayersTable from './PlayersTable';
 import { useAuth } from 'shared/hooks';
@@ -20,11 +20,13 @@ export default () => {
   return (
     <PageContainer title='Players'>
       {isAuth ? <LinkButton to={ADD_PLAYER}>Add Player</LinkButton> : null}
-      {games && players ? (
-        <PlayersTable players={players} games={games} />
-      ) : (
-        <Spinner />
-      )}
+      <ContentContainer>
+        {games && players ? (
+          <PlayersTable players={players} games={games} />
+        ) : (
+          <Spinner />
+        )}
+      </ContentContainer>
     </PageContainer>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, Grid } from '@material-ui/core';
 import { parseDate } from 'shared/utils';
 
 const GameDetails = ({ game, id }) => {
@@ -9,36 +9,47 @@ const GameDetails = ({ game, id }) => {
     .map((player) => player.buyIns)
     .reduce((tot, acc) => +tot + +acc, 0);
 
+  // TODO write an algorithm to calc these properly
   const totalCash = totalBuyIns * buyIn;
+  const secondPlacePrize = participants.length > 1 ? buyIn * 2 : 0;
+  const firstPlacePrize = totalCash - secondPlacePrize;
+
+  const gameData = [
+    { primary: 'Game ID', secondary: id },
+    { primary: 'Date', secondary: parseDate(date) },
+    { primary: 'Table', secondary: table },
+  ];
+
+  const playerData = [
+    { primary: 'Players', secondary: participants.length },
+    { primary: 'Buy in', secondary: `€${buyIn}` },
+    {
+      primary: 'Prize money',
+      secondary: `€${totalCash} (€${firstPlacePrize}/€${secondPlacePrize})`,
+    },
+  ];
+
   return (
-    <div>
-      <Card>
-        <Divider />
-        <List>
-          <ListItem>
-            <ListItemText primary='Game ID' secondary={id} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Date' secondary={parseDate(date)} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Table' secondary={table} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Buy in' secondary={`€${buyIn}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Total pot' secondary={`€${totalCash}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary='Number of players'
-              secondary={participants.length}
-            />
-          </ListItem>
+    <Grid container direction='row' justify='space-evenly'>
+      <Grid item xs={12} sm={6}>
+        <List dense>
+          {gameData.map((item) => (
+            <ListItem key={item.primary}>
+              <ListItemText primary={item.primary} secondary={item.secondary} />
+            </ListItem>
+          ))}
         </List>
-      </Card>
-    </div>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <List dense>
+          {playerData.map((item) => (
+            <ListItem key={item.primary}>
+              <ListItemText primary={item.primary} secondary={item.secondary} />
+            </ListItem>
+          ))}
+        </List>
+      </Grid>
+    </Grid>
   );
 };
 

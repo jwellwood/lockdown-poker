@@ -1,12 +1,20 @@
 import React from 'react';
-import { parseDate } from 'shared/utils';
-import { List, ListItem, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  ListItemSecondaryAction,
+  Typography,
+} from '@material-ui/core';
+import { parseDate } from 'shared/utils';
 
 const GamesList = ({ games }) => {
-  return games ? (
-    <List style={{ overflow: 'scroll' }}>
-      {games.map((game) => {
+  return games.length ? (
+    <List>
+      {games.map((game, i) => {
         return (
           <ListItem
             key={game.id}
@@ -14,18 +22,22 @@ const GamesList = ({ games }) => {
             component={Link}
             to={`/games/${game.id}`}
           >
+            <ListItemAvatar>
+              <Avatar>{i + 1}</Avatar>
+            </ListItemAvatar>
             <ListItemText
               primary={parseDate(game.date)}
-              secondary={`Players: ${
-                game.participants && game.participants.length
-              }, Buy in: €${game.buyIn}`}
+              secondary={`€${game.buyIn}`}
             />
+            <ListItemSecondaryAction>
+              {`Players: ${game.participants && game.participants.length}`}
+            </ListItemSecondaryAction>
           </ListItem>
         );
       })}
     </List>
   ) : (
-    <div>No games yet!</div>
+    <Typography>No games yet!</Typography>
   );
 };
 
