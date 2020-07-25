@@ -10,7 +10,7 @@ import Spinner from 'components/spinners/Spinner.component';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import LinkButton from 'components/buttons/LinkButton.component';
-import FormContainer from 'shared/layout/FormContainer';
+import { FormContainer } from 'shared/layout';
 import GamePlayerRow from './GamePlayerRow';
 
 const GamePlayerTable = ({ players, game }) => {

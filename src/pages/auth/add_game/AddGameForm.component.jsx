@@ -4,8 +4,8 @@ import DateTimeInput from 'components/inputs/DateTimeInput';
 import TextInput from 'components/inputs/TextInput';
 import { Button } from '@material-ui/core';
 import SelectInput from 'components/inputs/SelectInput';
-import { tableNameOptions, buyInOptions } from 'shared/utils/select-options';
-import FormContainer from 'shared/layout/FormContainer';
+import { tableNameOptions, buyInOptions } from 'shared/utils';
+import { FormContainer } from 'shared/layout';
 
 const AddGameForm = ({ onChange, onSubmit, selectedDate, setSelectedDate }) => {
   const { register, handleSubmit, errors } = useForm();

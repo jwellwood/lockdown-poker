@@ -5,7 +5,7 @@ import VideoCamRounded from '@material-ui/icons/VideocamRounded';
 import LinkRounded from '@material-ui/icons/LinkRounded';
 import EventAvailableRounded from '@material-ui/icons/EventAvailableRounded';
 import FileCopyRounded from '@material-ui/icons/FileCopyRounded';
-import PageContainer from 'shared/layout/PageContainer';
+import { PageContainer } from 'shared/layout';
 import { useSelector } from 'react-redux';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_GAME } from 'router';
@@ -23,7 +23,7 @@ import {
 } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { parseDate } from 'shared/utils/parseDate';
+import { parseDate } from 'shared/utils';
 import Spinner from 'components/spinners/Spinner.component';
 
 const useStyles = makeStyles((theme) => ({

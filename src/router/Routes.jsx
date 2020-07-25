@@ -5,19 +5,19 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import * as routes from '.';
 import HomePage from 'pages/home';
 import Navbar from 'components/navigation/Navbar.component';
-import PlayersPage from 'pages/players';
-import GamesPage from 'pages/games';
-import SignInPage from 'pages/auth/sign_in';
-import AddPlayerPage from 'pages/auth/add_player';
-import AddGamePage from 'pages/auth/add_game';
-import * as routes from '.';
-import GamePage from 'pages/game';
-import PlayerPage from 'pages/player';
-import EditPlayerPage from 'pages/auth/edit_player';
-import EditGamePage from 'pages/auth/edit_game';
-import AddPlayerToGamePage from 'pages/auth/add_player_to_game';
+import { SignInPage } from 'pages/auth/sign_in';
+import { PlayersPage } from 'pages/players';
+import { PlayerPage } from 'pages/player';
+import { GamesPage } from 'pages/games';
+import { GamePage } from 'pages/game';
+import { AddPlayerPage } from 'pages/auth/add_player';
+import { AddGamePage } from 'pages/auth/add_game';
+import { AddGamePlayerPage } from 'pages/auth/add_game_player';
+import { EditPlayerPage } from 'pages/auth/edit_player';
+import { EditGamePage } from 'pages/auth/edit_game';
 
 const Routes = () => {
   return (
@@ -36,7 +36,7 @@ const Routes = () => {
         <Route
           exact
           path={routes.ADD_PLAYER_TO_GAME}
-          component={AddPlayerToGamePage}
+          component={AddGamePlayerPage}
         />
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
 
