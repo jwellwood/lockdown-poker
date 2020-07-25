@@ -1,6 +1,5 @@
 export const playerNameOptions = (players) => {
   const options = [{ text: '', value: '' }];
-
   players.forEach((player) => {
     options.push({ text: player.name, value: player.id });
   });
@@ -35,7 +34,7 @@ export const tableNameOptions = () => {
 
 export const buyInOptions = () => {
   const options = [{ text: '', value: '' }];
-  for (let i = 0; i < 30; i += 5) {
+  for (let i = 5; i < 30; i += 5) {
     options.push({ text: i, value: i });
   }
   return options;
