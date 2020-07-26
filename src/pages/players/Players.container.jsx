@@ -5,11 +5,11 @@ import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_PLAYER } from 'router';
 import { PageContainer, ContentContainer } from 'shared/layout';
 import Spinner from 'components/spinners/Spinner.component';
-import PlayersTable from './PlayersTable';
 import { useAuth } from 'shared/hooks';
+import PlayersList from './PlayersList';
 
 export default () => {
-  const { isAuth } = useAuth;
+  const { isAuth } = useAuth();
 
   useFirestoreConnect('players');
   useFirestoreConnect('games');
@@ -22,7 +22,7 @@ export default () => {
       {isAuth ? <LinkButton to={ADD_PLAYER}>Add Player</LinkButton> : null}
       <ContentContainer>
         {games && players ? (
-          <PlayersTable players={players} games={games} />
+          <PlayersList players={players} games={games} />
         ) : (
           <Spinner />
         )}

@@ -4,7 +4,6 @@ import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
 import Spinner from 'components/spinners/Spinner.component';
-import { useLoadPlayerGames } from 'shared/hooks';
 import UserDetails from './UserDetails';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { PageContainer } from 'shared/layout';
@@ -12,7 +11,8 @@ import { useAuth } from 'shared/hooks';
 
 export default () => {
   const { id } = useParams();
-  const { isAuth } = useAuth;
+
+  const { isAuth } = useAuth();
   useFirestoreConnect([
     {
       collection: 'players',
@@ -22,15 +22,12 @@ export default () => {
       collection: 'games',
     },
   ]);
-
   const player = useSelector(
     ({ firestore: { data } }) => data.players && data.players[id]
   );
 
+  useFirestoreConnect(['games']);
   const { games } = useSelector((state) => state.firestore.ordered);
-
-  const { playerGames, gamesPlayedIn } = useLoadPlayerGames(id, games);
-
   return (
     <PageContainer title='Player Details'>
       {player && games ? (
@@ -38,13 +35,11 @@ export default () => {
           {isAuth ? (
             <LinkButton to={`/players/edit/${id}`}>Edit Player</LinkButton>
           ) : null}
-          <UserDetails player={player} id={id} />
+          <UserDetails player={new Array({ ...player, id })} />
           <PlayerDetails
-            player={player}
+            player={new Array({ ...player, id })}
             id={id}
             games={games}
-            playerGames={playerGames}
-            gamesPlayedIn={gamesPlayedIn}
           />
         </div>
       ) : (

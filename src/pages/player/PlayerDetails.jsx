@@ -1,48 +1,43 @@
 import React from 'react';
-import { Card, List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
 
-const PlayerDetails = ({ player, games, playerGames, gamesPlayedIn }) => {
-  const played = playerGames.length;
-  const playedPercentage = (playerGames.length / games.length) * 100;
-  const totalBuyIns = playerGames
-    .map((game) => game.buyIns)
-    .reduce((tot, acc) => +tot + +acc, 0);
-  const buyBacks = totalBuyIns - played;
-  const positionFinishes = playerGames.map((game) => game.finalPosition);
-  const averageFinish = (
-    positionFinishes.reduce((tot, acc) => +tot + +acc, 0) / played
-  ).toFixed(2);
-  const bestFinish = Math.min(...positionFinishes);
-  const worstFinish = Math.max(...positionFinishes);
+const PlayerDetails = ({ player, games }) => {
+  const { playersWithGames } = usePlayerStatsArray(player, games);
+  const playerWithStats = playersWithGames[0];
+  const {
+    numberOfGamesPlayed,
+    numberOfBuyIns,
+    numberOfBuyBacks,
+    arrOfFinalPositions,
+    averageFinalPosition,
+    bestFinish,
+    worstFinish,
+  } = usePlayerStats(playerWithStats);
+  const playedPercentage = ((numberOfGamesPlayed * 100) / games.length).toFixed(
+    2
+  );
+  const positionList = arrOfFinalPositions.map((item) => `${item} ,`);
+
+  const data = [
+    { text: 'Games Played', value: numberOfGamesPlayed },
+    { text: 'Played %', value: playedPercentage },
+    { text: 'Buy ins', value: numberOfBuyIns },
+    { text: 'Buy Backs', value: numberOfBuyBacks },
+    { text: 'Average Finish', value: averageFinalPosition },
+    { text: 'List of Finishes', value: positionList },
+    { text: 'Best Finish', value: bestFinish },
+    { text: 'Worst Finish', value: worstFinish },
+  ];
 
   return (
-    <div>
-      <Card>
-        <List>
-          <ListItem>
-            <ListItemText primary='Games played' secondary={played} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Played %' secondary={playedPercentage} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Buy ins' secondary={totalBuyIns} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Buy backs' secondary={buyBacks} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Average' secondary={averageFinish} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Best finish' secondary={bestFinish} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary='Worst finish' secondary={worstFinish} />
-          </ListItem>
-        </List>
-      </Card>
-    </div>
+    <List>
+      {data.map((item) => (
+        <ListItem key={item.text}>
+          <ListItemText primary={item.text} secondary={item.value} />
+        </ListItem>
+      ))}
+    </List>
   );
 };
 

@@ -9,7 +9,7 @@ import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 
 const EditPlayerForm = ({ onChange, onSubmit, onDelete, input }) => {
   const { register, handleSubmit, errors } = useForm();
-  console.log(input);
+
   return (
     <FormContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
