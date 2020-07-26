@@ -13,9 +13,9 @@ const GamePlayerDetails = ({ game, players }) => {
     <List>
       {game.participants.map((player) => {
         // Name is stored as ID, so we need to convert it back in the view
-        const getNameFromId = players.find((p) => {
-          return p.id === player.name ? p.name : '';
-        });
+        const getNameFromId = players.find((p) =>
+          p.id === player.name ? p.name : ''
+        );
 
         const buyBacks = player.buyIns - 1;
         const totalMoney = player.buyIns * game.buyIn;
@@ -25,7 +25,7 @@ const GamePlayerDetails = ({ game, players }) => {
               <Avatar>{player.finalPosition}</Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={getNameFromId.name}
+              primary={getNameFromId.name || ''}
               secondary={`Buy backs: ${buyBacks}`}
             />
             <ListItemSecondaryAction>€{totalMoney}</ListItemSecondaryAction>

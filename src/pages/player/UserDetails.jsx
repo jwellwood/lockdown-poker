@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, List, ListItem, ListItemText } from '@material-ui/core';
-const UserDetails = ({ player, id }) => {
-  const { name, preferredPayment, iban } = player;
+const UserDetails = ({ player }) => {
+  const { name, preferredPayment, iban, id } = player[0];
   return (
     <Card>
       <List>

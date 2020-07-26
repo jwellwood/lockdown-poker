@@ -1,2 +1,3 @@
 export { useAuth } from './useAuth';
-export { useLoadPlayerGames } from './useLoadPlayerGames';
+export { usePlayerStatsArray } from './usePlayerStatsArray';
+export { usePlayerStats } from './usePlayerStats';
