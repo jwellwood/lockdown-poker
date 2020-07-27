@@ -4,10 +4,10 @@ import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
 import Spinner from 'components/spinners/Spinner.component';
-import UserDetails from './UserDetails';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { PageContainer } from 'shared/layout';
 import { useAuth } from 'shared/hooks';
+import PaymentDetails from './PaymentDetails';
 
 export default () => {
   const { id } = useParams();
@@ -35,16 +35,16 @@ export default () => {
           {isAuth ? (
             <LinkButton to={`/players/edit/${id}`}>Edit Player</LinkButton>
           ) : null}
-          <UserDetails player={new Array({ ...player, id })} />
           <PlayerDetails
-            player={new Array({ ...player, id })}
-            id={id}
+            player={new Array({ ...player, id })} // we have to do this to fit the data structure required in the stats hook
             games={games}
           />
+          <PaymentDetails player={player} />
         </div>
       ) : (
         <Spinner />
       )}
+      ;
     </PageContainer>
   );
 };
