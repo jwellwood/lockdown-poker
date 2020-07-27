@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, Card, Typography } from '@material-ui/core';
+import { Grid, Card, Typography, Container } from '@material-ui/core';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
+import PlayerGraphs from './PlayerGraphs';
 
 const PlayerDetails = ({ player, games }) => {
   const { name } = player[0];
@@ -20,7 +21,6 @@ const PlayerDetails = ({ player, games }) => {
   const playedPercentage = ((numberOfGamesPlayed * 100) / games.length).toFixed(
     0
   );
-  const positionList = arrOfFinalPositions.map((item) => `${item}, `);
 
   const data = [
     {
@@ -36,7 +36,7 @@ const PlayerDetails = ({ player, games }) => {
     },
     { text: 'Average Finish', primary: averageFinalPosition },
     //TODO These in graph/chart form
-    { text: 'List of Finishes', primary: positionList },
+
     { text: 'Best Finish', primary: bestFinish, secondary: `x${numberOfBest}` },
     {
       text: 'Worst Finish',
@@ -58,6 +58,9 @@ const PlayerDetails = ({ player, games }) => {
             </Card>
           </Grid>
         ))}
+        <Container maxWidth='xs'>
+          <PlayerGraphs data={arrOfFinalPositions} games={games} />
+        </Container>
       </Grid>
     </>
   );
