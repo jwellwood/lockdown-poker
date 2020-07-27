@@ -13,6 +13,11 @@ export const usePlayerStats = (player) => {
 
   const bestFinish = Math.min(...arrOfFinalPositions);
   const worstFinish = Math.max(...arrOfFinalPositions);
+  const numberOfBest = arrOfFinalPositions.filter((pos) => +pos === bestFinish)
+    .length;
+  const numberOfWorst = arrOfFinalPositions.filter(
+    (pos) => +pos === worstFinish
+  ).length;
 
   return {
     numberOfGamesPlayed,
@@ -22,5 +27,7 @@ export const usePlayerStats = (player) => {
     averageFinalPosition,
     bestFinish,
     worstFinish,
+    numberOfBest,
+    numberOfWorst,
   };
 };
