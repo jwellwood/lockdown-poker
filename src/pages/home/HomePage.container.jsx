@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-
+import isFuture from 'date-fns/isFuture';
+import parseISO from 'date-fns/parseISO';
+import closestTo from 'date-fns/closestTo';
+import closestIndexTo from 'date-fns/closestIndexTo';
 import VideoCamRounded from '@material-ui/icons/VideocamRounded';
 import LinkRounded from '@material-ui/icons/LinkRounded';
+import AttachMoneyRounded from '@material-ui/icons/AttachMoneyRounded';
 import EventAvailableRounded from '@material-ui/icons/EventAvailableRounded';
 import { PageContainer } from 'shared/layout';
 import { useSelector } from 'react-redux';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_GAME } from 'router';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { parseDate } from 'shared/utils';
+import { parseDateAndTime, parseDateAsISOString } from 'shared/utils';
 import Spinner from 'components/spinners/Spinner.component';
 import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
@@ -25,31 +29,46 @@ const HomePage = () => {
     value: '',
     copied: false,
   });
+  const [buyIn, setBuyIn] = useState('');
 
   useFirestoreConnect([
     {
       collection: 'games',
       orderBy: ['date'],
-      limit: 1,
     },
   ]);
 
   const games = useSelector((state) => state.firestore.ordered.games);
+  const gameDates =
+    games &&
+    games
+      //convert firebase timestamp to iso string
+      .map((game) => parseDateAsISOString(game.date))
+      // parseISO so that it works in closestTo function
+      .map((date) => parseISO(date));
+  const dateNow = new Date();
+  //Compares current date with game dates and gives us the closest by index.
+  const closestGameDateIndex = closestIndexTo(dateNow, gameDates);
+  //Gives us the closest game date in the correct format
+  const closestGameDate = closestTo(dateNow, gameDates);
+  const closestGame = games && games[closestGameDateIndex];
 
   useEffect(() => {
-    if (!games) {
+    if (!closestGame) {
       return;
     } else {
-      setGameDate(parseDate(games[0].date));
+      const { date, zoomLink, gameLink, buyIn } = closestGame;
+      setGameDate(parseDateAndTime(date));
       setZoomInputValue({
-        value: games[0].zoomLink,
+        value: zoomLink,
       });
       setGameInputValue({
-        value: games[0].gameLink,
+        value: gameLink,
       });
+      setBuyIn(buyIn);
       setLoading(false);
     }
-  }, [games]);
+  }, [closestGame]);
 
   const onCopy = (copyId) => {
     if (copyId === 'zoom')
@@ -63,7 +82,7 @@ const HomePage = () => {
       icon: <EventAvailableRounded />,
       text: 'Next Game:',
       copyButton: false,
-      date: gameDate,
+      textFromDb: gameDate,
     },
     {
       icon: <VideoCamRounded />,
@@ -83,20 +102,36 @@ const HomePage = () => {
       copiedStatus: gameInputValue.copied,
       copiedMessage: 'Game link copied!',
     },
+    {
+      icon: <AttachMoneyRounded />,
+      text: 'Buy in:',
+      copyButton: false,
+      textFromDb: `€${buyIn}`,
+    },
   ];
+
+  const ContentToDisplay = () => {
+    if (games && !games.length) {
+      return <div>No games yet</div>;
+    } else if (isFuture(closestGameDate)) {
+      return <NextGameDetails nextGameData={nextGameData} onCopy={onCopy} />;
+    } else
+      return (
+        <LinkButton to={(games && `/games/${closestGame.id}`) || '/'}>
+          Go to latest game
+        </LinkButton>
+      );
+  };
+
   return (
     <PageContainer title='Home'>
-      {loading ? (
+      {loading && !isLoaded ? (
         <Spinner />
       ) : !isEmpty && isLoaded ? (
         <LinkButton to={ADD_GAME}>Add new game</LinkButton>
       ) : null}
       <LogoImageBox />
-      {loading ? (
-        <Spinner />
-      ) : (
-        <NextGameDetails nextGameData={nextGameData} onCopy={onCopy} />
-      )}
+      {loading && !isLoaded ? <Spinner /> : <ContentToDisplay />}
     </PageContainer>
   );
 };

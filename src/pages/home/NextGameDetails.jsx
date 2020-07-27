@@ -48,7 +48,7 @@ const NextGameDetails = ({ nextGameData, onCopy }) => {
           ({
             icon,
             text,
-            date,
+            textFromDb,
             inputValue,
             copyId,
             copiedStatus,
@@ -59,11 +59,11 @@ const NextGameDetails = ({ nextGameData, onCopy }) => {
               <ListItem className={classes.listItem}>
                 <ListItemIcon className={classes.icon}>{icon}</ListItemIcon>
                 <ListItemText>{text}</ListItemText>
-                {inputValue && !date ? (
+                {inputValue && !textFromDb ? (
                   <Input className={classes.input} value={inputValue} />
                 ) : (
                   <ListItemText className={classes.listItemText} variant='h6'>
-                    {date}
+                    {textFromDb}
                   </ListItemText>
                 )}
                 <ListItemSecondaryAction>
