@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
-const LinkButton = ({ children, to, type, color }) => {
+const BackButton = ({ children, type, color }) => {
+  let history = useHistory();
   return (
     <Button
       variant={type || 'text'}
-      component={RouterLink}
-      to={to}
+      onClick={() => history.goBack()}
       color={color || 'default'}>
       {children}
     </Button>
   );
 };
 
-export default LinkButton;
+export default BackButton;

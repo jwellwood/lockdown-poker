@@ -29,7 +29,7 @@ export default () => {
   useFirestoreConnect(['games']);
   const { games } = useSelector((state) => state.firestore.ordered);
   return (
-    <PageContainer title='Player Details'>
+    <PageContainer hasBackButton title='Player Details'>
       {player && games ? (
         <div>
           {isAuth ? (

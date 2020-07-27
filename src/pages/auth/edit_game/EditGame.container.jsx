@@ -25,7 +25,7 @@ export default () => {
   }
 
   return (
-    <PageContainer title='Edit Game'>
+    <PageContainer hasBackButton title='Edit Game'>
       <EditGameFormContainer game={game} />
       <GamePlayerTable players={game.participants} game={game} />
     </PageContainer>

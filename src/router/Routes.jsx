@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import * as routes from '.';
-import HomePage from 'pages/home';
+import { HomePage } from 'pages/home';
 import Navbar from 'components/navigation/Navbar.component';
 import { SignInPage } from 'pages/auth/sign_in';
 import { PlayersPage } from 'pages/players';
