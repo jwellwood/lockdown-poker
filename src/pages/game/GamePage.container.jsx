@@ -25,7 +25,7 @@ export default () => {
   const { players } = useSelector((state) => state.firestore.ordered);
 
   return (
-    <PageContainer title='Game Details'>
+    <PageContainer hasBackButton title='Game Details'>
       {game ? (
         <>
           {isAuth ? (

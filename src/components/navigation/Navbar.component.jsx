@@ -54,8 +54,13 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       {/* //Stops app bar covering content */}
-      <Toolbar />
-      {smallScreen && <NavLinks navType='bottomNav' />}
+      <Toolbar
+        style={{
+          background: 'pink',
+          width: '100%',
+        }}
+      />
+      <footer>{smallScreen && <NavLinks navType='bottomNav' />}</footer>
     </div>
   );
 }

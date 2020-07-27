@@ -12,7 +12,7 @@ export default () => {
     return <Redirect to={SIGN_IN} />;
   }
   return (
-    <PageContainer title='Add Player'>
+    <PageContainer hasBackButton title='Add Player'>
       <AddPlayerFormContainer />
     </PageContainer>
   );
