@@ -8,7 +8,7 @@ import {
   ListItemSecondaryAction,
   Typography,
 } from '@material-ui/core';
-import { getOrdinals } from 'shared/utils/getOrdinals';
+import { getOrdinals } from 'shared/utils';
 
 const GamePlayerDetails = ({ game, players }) => {
   return (

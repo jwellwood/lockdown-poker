@@ -1,38 +1,28 @@
 import React from 'react';
-import { Chart } from 'react-google-charts';
+import { Paper, Container, Grid } from '@material-ui/core';
+import PlayerPieChart from './PlayerPieChart';
+import PlayerLinGraph from './PlayerLineGraph';
 
-const PlayerGraphs = ({ data }) => {
-  const options = {
-    title: 'Position by game',
-    hAxis: { title: 'Games', viewWindow: { min: 1 }, format: '0' },
-    vAxis: {
-      title: 'Position',
-      viewWindow: { min: 1 },
-      direction: -1,
-      format: '0',
-    },
-    legend: 'none',
-    animation: {
-      startup: true,
-      easing: 'linear',
-      duration: 1500,
-    },
-    lineWidth: 5,
-    colors: ['red'],
-  };
-  const chartIds = ['x', 'position'];
-  const mappedData = data.map((item, i) => [i + 1, +item]);
-  const chartData = [chartIds, ...mappedData];
-
+const PlayerGraphs = ({ data, games }) => {
   return (
-    <Chart
-      chartType='LineChart'
-      data={chartData}
-      options={options}
-      width='100%'
-      height='200px'
-      legendToggle
-    />
+    <Container maxWidth='md'>
+      <Paper>
+        <Grid
+          container
+          justify='center'
+          alignContent='center'
+          alignItems='center'
+        >
+          <Grid item xs={12} sm={6}>
+            <PlayerPieChart positionArray={data} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <PlayerLinGraph data={data.reverse()} games={games} />
+            {/* reverse so the data shows games left to right */}
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 };
 

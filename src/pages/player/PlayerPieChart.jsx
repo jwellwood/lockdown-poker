@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
-import { getOrdinals } from 'shared/utils/getOrdinals';
+import { getOrdinals } from 'shared/utils';
 
 const PlayerPieChart = ({ positionArray }) => {
   const chartIds = ['position', 'frequency'];
