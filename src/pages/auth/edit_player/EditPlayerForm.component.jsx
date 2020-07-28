@@ -44,6 +44,7 @@ const EditPlayerForm = ({ onChange, onSubmit, onDelete, input }) => {
         />
         <SubmitButton />
       </form>
+
       <DeleteConfirmation onDelete={onDelete} type='player' />
     </FormContainer>
   );

@@ -1,4 +1,10 @@
 import React from 'react';
+// ICONS
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import {
   Typography,
   Container,
@@ -6,17 +12,11 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
-// ICONS
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
 import { getOrdinals } from 'shared/utils';
 import ListAvatar from 'components/avatars/ListAvatar.component';
-import PlayerGraphs from './PlayerGraphs';
 import ListValueText from 'components/typography/ListValueText';
+import PlayerGraphs from './PlayerGraphs';
 
 const PlayerDetails = ({ player, games }) => {
   const { name } = player[0];
@@ -45,8 +45,6 @@ const PlayerDetails = ({ player, games }) => {
       </Typography>
     </>
   );
-
-  const printValue = (value) => <Typography variant='h6'>{value}</Typography>;
 
   const data = [
     {
