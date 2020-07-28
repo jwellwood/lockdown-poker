@@ -5,10 +5,10 @@ import { usePlayerStatsArray } from 'shared/hooks';
 
 const PlayersList = ({ players, games }) => {
   const { sortedPlayers } = usePlayerStatsArray(players, games);
-
+  const playersToShow = sortedPlayers.filter((player) => player.games.length);
   return players.length ? (
     <List>
-      {sortedPlayers.map((player, i) => {
+      {playersToShow.map((player, i) => {
         return <PlayerListItem key={player.id} player={player} index={i} />;
       })}
     </List>

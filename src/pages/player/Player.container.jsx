@@ -31,17 +31,16 @@ export default () => {
   return (
     <PageContainer hasBackButton title='Player Details'>
       {player && games ? (
-        <div>
+        <>
           <AuthLinkButton to={`/players/edit/${id}`} isAuth={isAuth}>
             Edit Player
           </AuthLinkButton>
-
           <PlayerDetails
             player={new Array({ ...player, id })} // we have to do this to fit the data structure required in the stats hook
             games={games}
           />
           <PaymentDetails player={player} />
-        </div>
+        </>
       ) : (
         <Spinner />
       )}
