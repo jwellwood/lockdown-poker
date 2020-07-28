@@ -18,15 +18,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     top: 0,
     width: '100%',
-    background:
-      'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 25%, rgba(255,255,255,1) 55%)',
-  },
-  mobileNav: {
-    position: 'fixed',
-    top: 0,
-    width: '100%',
-    background:
-      'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 60%, rgba(255,255,255,1) 90%)',
+    background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 25%, #FFFFFF 55%)`,
   },
   title: {
     marginLeft: theme.spacing(1),
@@ -41,7 +33,7 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar className={bigScreen ? classes.nav : classes.mobileNav}>
+      <AppBar className={classes.nav}>
         <Toolbar>
           <Link to={HOME}>
             <Avatar src={logo} />
@@ -49,17 +41,11 @@ export default function Navbar() {
           <Typography variant='h6' className={classes.title}>
             Lockdown Poker
           </Typography>
-          {/* //@TODO @Joe - why this auth? */}
           {<div>{bigScreen && <NavLinks navType='topNav' />}</div>}
         </Toolbar>
       </AppBar>
       {/* //Stops app bar covering content */}
-      <Toolbar
-        style={{
-          background: 'pink',
-          width: '100%',
-        }}
-      />
+      <Toolbar />
       <footer>{smallScreen && <NavLinks navType='bottomNav' />}</footer>
     </div>
   );
