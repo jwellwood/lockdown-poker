@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from 'components/inputs/TextInput';
 import { FormContainer } from 'shared/layout';
 import { useForm } from 'react-hook-form';
-import { Button } from '@material-ui/core';
+import SubmitButton from 'components/buttons/SubmitButton';
 
 const SignInForm = ({ onChange, onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -26,7 +26,7 @@ const SignInForm = ({ onChange, onSubmit }) => {
           onChange={onChange}
           validators={register({ required: true })}
         />
-        <Button type='submit'>Submit</Button>
+        <SubmitButton />
       </form>
     </FormContainer>
   );

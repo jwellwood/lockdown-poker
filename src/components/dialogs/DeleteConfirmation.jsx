@@ -5,6 +5,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const DeleteConfirmation = ({ onDelete, type }) => {
   const [open, setOpen] = React.useState(false);
@@ -19,9 +21,9 @@ const DeleteConfirmation = ({ onDelete, type }) => {
 
   return (
     <div>
-      <Button variant='outlined' color='primary' onClick={handleClickOpen}>
-        Delete
-      </Button>
+      <IconButton aria-label='delete' onClick={handleClickOpen} color='primary'>
+        <DeleteIcon />
+      </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}

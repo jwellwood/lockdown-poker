@@ -1,20 +1,16 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { red, grey } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
   palette: {
-    type: 'light',
-    primary: { main: '#970004' },
-    secondary: { main: '#e7e7e7' },
-    background: {
-      default:
-        // 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,1,17,1) 0%, rgba(31,9,4,1) 79%)',
-        '#333',
-      contrastText: '#ffffff',
-    },
+    primary: { main: red['A700'] },
+    secondary: { main: grey[900] },
+    default: grey[900],
   },
   typography: {
     useNextVariants: true,
     fontFamily: 'Questrial',
-    color: '#1f0904',
+    default: grey[900],
   },
+  overrides: {},
 });

@@ -4,12 +4,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemAvatar,
-  Avatar,
   ListItemSecondaryAction,
   Typography,
 } from '@material-ui/core';
 import { parseDate } from 'shared/utils';
+import ListAvatar from 'components/avatars/ListAvatar.component';
 
 const GamesList = ({ games }) => {
   return games.length ? (
@@ -22,9 +21,7 @@ const GamesList = ({ games }) => {
             component={Link}
             to={`/games/${game.id}`}
           >
-            <ListItemAvatar>
-              <Avatar>{i + 1}</Avatar>
-            </ListItemAvatar>
+            <ListAvatar>{i + 1}</ListAvatar>
             <ListItemText
               primary={parseDate(game.date)}
               secondary={`€${game.buyIn}`}
