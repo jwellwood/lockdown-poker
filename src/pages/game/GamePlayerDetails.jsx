@@ -6,7 +6,9 @@ import {
   Avatar,
   ListItemText,
   ListItemSecondaryAction,
+  Typography,
 } from '@material-ui/core';
+import { getOrdinals } from 'shared/utils/getOrdinals';
 
 const GamePlayerDetails = ({ game, players }) => {
   return (
@@ -22,7 +24,12 @@ const GamePlayerDetails = ({ game, players }) => {
         return (
           <ListItem key={player.name}>
             <ListItemAvatar>
-              <Avatar>{player.finalPosition}</Avatar>
+              <Avatar>
+                {player.finalPosition}
+                <Typography component='span' variant='caption'>
+                  {getOrdinals(player.finalPosition)}
+                </Typography>
+              </Avatar>
             </ListItemAvatar>
             <ListItemText
               primary={getNameFromId.name || ''}

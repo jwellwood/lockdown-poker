@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid, Card, Typography, Container } from '@material-ui/core';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
 import PlayerGraphs from './PlayerGraphs';
+import PlayerPieChart from './PlayerPieChart';
+import { getOrdinals } from 'shared/utils/getOrdinals';
 
 const PlayerDetails = ({ player, games }) => {
   const { name } = player[0];
@@ -35,17 +37,20 @@ const PlayerDetails = ({ player, games }) => {
       secondary: `${numberOfBuyIns} buy ins total`,
     },
     { text: 'Average Finish', primary: averageFinalPosition },
-    //TODO These in graph/chart form
 
-    { text: 'Best Finish', primary: bestFinish, secondary: `x${numberOfBest}` },
+    {
+      text: 'Best Finish',
+      primary: `${bestFinish}${getOrdinals(bestFinish)}`,
+      secondary: `x${numberOfBest}`,
+    },
     {
       text: 'Worst Finish',
-      primary: worstFinish,
+      primary: `${worstFinish}${getOrdinals(worstFinish)}`,
       secondary: `x${numberOfWorst}`,
     },
   ];
 
-  return (
+  return numberOfGamesPlayed ? (
     <>
       <h1>{name}</h1>
       <Grid container justify='space-around' spacing={2}>
@@ -58,11 +63,29 @@ const PlayerDetails = ({ player, games }) => {
             </Card>
           </Grid>
         ))}
-        <Container maxWidth='xs'>
-          <PlayerGraphs data={arrOfFinalPositions} games={games} />
+        <Container maxWidth='md'>
+          <Grid
+            container
+            justify='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Grid item xs={12} sm={6}>
+              <PlayerPieChart positionArray={arrOfFinalPositions} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <PlayerGraphs
+                data={arrOfFinalPositions.reverse()}
+                games={games}
+              />
+              {/* reverse so the data shows games left to right */}
+            </Grid>
+          </Grid>
         </Container>
       </Grid>
     </>
+  ) : (
+    <Typography>No games played yet</Typography>
   );
 };
 
