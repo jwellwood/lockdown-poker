@@ -17,7 +17,6 @@ const PlayerPieChart = ({ positionArray }) => {
     }, {});
   const occurrence = countOccurrences(ordinalLabels);
   const mappedData = Object.entries(occurrence);
-  console.log(mappedData);
   const chartData = [chartIds, ...mappedData];
 
   const options = {

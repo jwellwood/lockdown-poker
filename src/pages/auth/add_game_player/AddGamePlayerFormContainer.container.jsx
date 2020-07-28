@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import { useHistory, useParams } from 'react-router-dom';
-import { GAMES } from 'router';
 import { useSelector } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
 import AddGamePlayerForm from './AddGamePlayerForm.component';
@@ -37,7 +36,7 @@ const AddGamePlayerFormContainer = () => {
       participants: fireStore.FieldValue.arrayUnion(data),
     });
 
-    history.push(GAMES);
+    history.goBack();
   };
   return players && game ? (
     <AddGamePlayerForm

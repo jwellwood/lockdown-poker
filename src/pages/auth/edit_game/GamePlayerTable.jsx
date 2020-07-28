@@ -13,7 +13,7 @@ import GamePlayerRow from './GamePlayerRow';
 import { useAuth } from 'shared/hooks/useAuth';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
-const GamePlayerTable = ({ players, game }) => {
+const GamePlayerTable = ({ players, playerData }) => {
   const { id } = useParams();
   const { isAuth } = useAuth();
 
@@ -36,6 +36,7 @@ const GamePlayerTable = ({ players, game }) => {
             <TableBody>
               {players.map((player, i) => (
                 <GamePlayerRow
+                  players={playerData}
                   key={`${player.id}-${i}`}
                   player={player}
                   game={id}
