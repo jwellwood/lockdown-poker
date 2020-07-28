@@ -2,7 +2,6 @@ import React from 'react';
 import { Chart } from 'react-google-charts';
 
 const PlayerGraphs = ({ data }) => {
-  console.log(data);
   const options = {
     title: 'Position by game',
     hAxis: { title: 'Games', viewWindow: { min: 1 }, format: '0' },

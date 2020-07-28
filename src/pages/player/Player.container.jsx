@@ -44,7 +44,6 @@ export default () => {
       ) : (
         <Spinner />
       )}
-      ;
     </PageContainer>
   );
 };
