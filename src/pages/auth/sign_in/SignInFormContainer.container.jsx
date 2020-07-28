@@ -28,7 +28,9 @@ const SignInFormContainer = () => {
   ) : (
     <>
       <div>Signed in as {email}</div>
-      <Button onClick={onLogout}>logout</Button>
+      <Button onClick={onLogout} variant='contained' color='secondary'>
+        logout
+      </Button>
     </>
   );
 };

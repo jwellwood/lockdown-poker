@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import {
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   Typography,
   makeStyles,
 } from '@material-ui/core';
 import { usePlayerStats } from 'shared/hooks';
-import ListAvatar from 'components/avatars/ListAvatar.component';
 import { getOrdinals } from 'shared/utils';
+import ListAvatar from 'components/avatars/ListAvatar.component';
+import ListValueText from 'components/typography/ListValueText';
 
 const useStyles = makeStyles((theme) => ({
   highlightedText: {
@@ -26,6 +26,8 @@ const PlayerListItem = ({ player, index }) => {
     averageFinalPosition,
   } = usePlayerStats(player);
 
+  const position = isNaN(averageFinalPosition) ? null : averageFinalPosition;
+
   const secondaryText = (
     <>
       <Typography variant='caption'>PL: </Typography>
@@ -35,15 +37,6 @@ const PlayerListItem = ({ player, index }) => {
       |<Typography variant='caption'> BB: </Typography>
       <Typography component='span' className={classes.highlightedText}>
         {numberOfBuyBacks}
-      </Typography>
-    </>
-  );
-
-  const valueText = (
-    <>
-      <Typography variant='caption'>AVG </Typography>
-      <Typography component='span' variant='h6'>
-        {averageFinalPosition}
       </Typography>
     </>
   );
@@ -60,7 +53,7 @@ const PlayerListItem = ({ player, index }) => {
         <Typography variant='caption'>{getOrdinals(index + 1)}</Typography>
       </ListAvatar>
       <ListItemText primary={player.name} secondary={secondaryText} />
-      <ListItemSecondaryAction>{valueText}</ListItemSecondaryAction>
+      <ListValueText>{position}</ListValueText>
     </ListItem>
   );
 };

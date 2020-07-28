@@ -4,9 +4,7 @@ import {
   Container,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
-  ListItemSecondaryAction,
 } from '@material-ui/core';
 // ICONS
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -16,7 +14,9 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
 import { getOrdinals } from 'shared/utils';
+import ListAvatar from 'components/avatars/ListAvatar.component';
 import PlayerGraphs from './PlayerGraphs';
+import ListValueText from 'components/typography/ListValueText';
 
 const PlayerDetails = ({ player, games }) => {
   const { name } = player[0];
@@ -38,12 +38,12 @@ const PlayerDetails = ({ player, games }) => {
   );
 
   const printFinish = (type) => (
-    <Typography variant='h6'>
+    <>
       {type}
       <Typography component='span' variant='caption'>
         {getOrdinals(type)}
       </Typography>
-    </Typography>
+    </>
   );
 
   const printValue = (value) => <Typography variant='h6'>{value}</Typography>;
@@ -52,19 +52,19 @@ const PlayerDetails = ({ player, games }) => {
     {
       icon: <PlaylistPlayIcon />,
       primary: 'Games Played',
-      value: printValue(numberOfGamesPlayed),
+      value: numberOfGamesPlayed,
       secondary: `${playedPercentage}% of ${games.length} games`,
     },
     {
       icon: <EqualizerIcon />,
       primary: 'Average Finish',
       secondary: '',
-      value: printValue(averageFinalPosition),
+      value: averageFinalPosition,
     },
     {
       icon: <MonetizationOnIcon />,
       primary: 'Buy Backs',
-      value: printValue(numberOfBuyBacks),
+      value: numberOfBuyBacks,
       secondary: `${numberOfBuyIns} buy ins total`,
     },
     {
@@ -83,14 +83,16 @@ const PlayerDetails = ({ player, games }) => {
 
   return numberOfGamesPlayed ? (
     <>
-      <h1>{name}</h1>
+      <Typography variant='h3' style={{ margin: '10px auto' }}>
+        {name}
+      </Typography>
       <Container maxWidth='sm'>
         <List dense>
           {data.map(({ primary, secondary, value, icon }, i) => (
             <ListItem key={primary + i}>
-              <ListItemIcon>{icon}</ListItemIcon>
+              <ListAvatar>{icon}</ListAvatar>
               <ListItemText primary={primary} secondary={secondary} />
-              <ListItemSecondaryAction>{value}</ListItemSecondaryAction>
+              <ListValueText>{value}</ListValueText>
             </ListItem>
           ))}
         </List>
