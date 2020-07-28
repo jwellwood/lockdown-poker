@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { ADD_GAME } from 'router';
 import { PageContainer, ContentContainer } from 'shared/layout';
 import { useAuth } from 'shared/hooks';
-import LinkButton from 'components/buttons/LinkButton.component';
 import Spinner from 'components/spinners/Spinner.component';
 import GamesList from './GamesList';
+import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
 export default () => {
   const { isAuth } = useAuth();
@@ -20,7 +20,9 @@ export default () => {
 
   return (
     <PageContainer title='Games'>
-      {isAuth ? <LinkButton to={ADD_GAME}>Add Game</LinkButton> : null}
+      <AuthLinkButton to={ADD_GAME} isAuth={isAuth}>
+        Add Game
+      </AuthLinkButton>
       <ContentContainer>
         {games ? <GamesList games={games} /> : <Spinner />}
       </ContentContainer>

@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { useAuth } from 'shared/hooks';
 import { PageContainer, ContentContainer } from 'shared/layout';
 import Spinner from 'components/spinners/Spinner.component';
-import LinkButton from 'components/buttons/LinkButton.component';
 import GamePlayerDetails from './GamePlayerDetails';
 import GameDetails from './GameDetails';
+import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
 export default () => {
   const { id } = useParams();
@@ -28,9 +28,10 @@ export default () => {
     <PageContainer hasBackButton title='Game Details'>
       {game ? (
         <>
-          {isAuth ? (
-            <LinkButton to={`/games/edit/${id}`}>Edit Game</LinkButton>
-          ) : null}
+          <AuthLinkButton to={`/games/edit/${id}`} isAuth={isAuth}>
+            Edit Game
+          </AuthLinkButton>
+
           <ContentContainer>
             <GameDetails game={game} id={id} />
           </ContentContainer>

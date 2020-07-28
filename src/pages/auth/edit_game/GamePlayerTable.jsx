@@ -7,23 +7,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Spinner from 'components/spinners/Spinner.component';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import LinkButton from 'components/buttons/LinkButton.component';
 import { FormContainer } from 'shared/layout';
 import GamePlayerRow from './GamePlayerRow';
+import { useAuth } from 'shared/hooks/useAuth';
+import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
 const GamePlayerTable = ({ players, game }) => {
   const { id } = useParams();
-  const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
+  const { isAuth } = useAuth();
 
   return (
     <FormContainer>
-      {!isEmpty && isLoaded ? (
-        <LinkButton to={`/games/${id}/add_player`}>
-          Add Player To Game
-        </LinkButton>
-      ) : null}
+      <AuthLinkButton to={`/games/${id}/add_player`} isAuth={isAuth}>
+        Add Player To Game
+      </AuthLinkButton>
       {players ? (
         <TableContainer component={Paper}>
           <Table aria-label='simple table'>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
-import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_PLAYER } from 'router';
 import { PageContainer, ContentContainer } from 'shared/layout';
 import Spinner from 'components/spinners/Spinner.component';
 import { useAuth } from 'shared/hooks';
 import PlayersList from './PlayersList';
+import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
 export default () => {
   const { isAuth } = useAuth();
@@ -19,7 +19,10 @@ export default () => {
 
   return (
     <PageContainer title='Players'>
-      {isAuth ? <LinkButton to={ADD_PLAYER}>Add Player</LinkButton> : null}
+      <AuthLinkButton to={ADD_PLAYER} isAuth={isAuth}>
+        Add Player
+      </AuthLinkButton>
+
       <ContentContainer>
         {games && players ? (
           <PlayersList players={players} games={games} />
