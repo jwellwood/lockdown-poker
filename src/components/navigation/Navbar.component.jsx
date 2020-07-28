@@ -10,21 +10,32 @@ import logo from 'shared/assets/images/logo.jpg';
 import { HOME } from 'router';
 import NavLinks from './NavLinks';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  nav: {
-    position: 'fixed',
-    top: 0,
-    width: '100%',
-    background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 25%, #FFFFFF 55%)`,
-  },
-  title: {
-    marginLeft: theme.spacing(1),
-    flexGrow: 1,
-  },
-}));
+const useStyles = makeStyles(
+  (theme) => (
+    console.log(theme),
+    {
+      root: {
+        flexGrow: 1,
+      },
+      nav: {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light}  25%, ${theme.palette.common.white} 55%)`,
+      },
+      mobileNav: {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light}  60%, ${theme.palette.common.white} 90%)`,
+      },
+      title: {
+        marginLeft: theme.spacing(1),
+        flexGrow: 1,
+      },
+    }
+  )
+);
 
 export default function Navbar() {
   const classes = useStyles();
@@ -33,7 +44,8 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.nav}>
+      {/* Makes sure gradient doesn't obscure text in mobile view */}
+      <AppBar className={bigScreen ? classes.nav : classes.mobileNav}>
         <Toolbar>
           <Link to={HOME}>
             <Avatar src={logo} />
