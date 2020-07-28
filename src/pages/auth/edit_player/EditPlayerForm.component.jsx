@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '@material-ui/core';
 import TextInput from 'components/inputs/TextInput';
 import { preferredPaymentOptions } from 'shared/utils';
 import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
+import SubmitButton from 'components/buttons/SubmitButton';
 
 const EditPlayerForm = ({ onChange, onSubmit, onDelete, input }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -42,7 +42,7 @@ const EditPlayerForm = ({ onChange, onSubmit, onDelete, input }) => {
           })} // min = Belgium, max = Seychelles!
           errors={errors.iban || null}
         />
-        <Button type='submit'>Update</Button>
+        <SubmitButton />
       </form>
       <DeleteConfirmation onDelete={onDelete} type='player' />
     </FormContainer>

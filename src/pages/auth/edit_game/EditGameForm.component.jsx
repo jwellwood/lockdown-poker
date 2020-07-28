@@ -2,11 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import DateTimeInput from 'components/inputs/DateTimeInput';
 import TextInput from 'components/inputs/TextInput';
-import { Button } from '@material-ui/core';
 import SelectInput from 'components/inputs/SelectInput';
 import { tableNameOptions, buyInOptions } from 'shared/utils';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
+import SubmitButton from 'components/buttons/SubmitButton';
 
 const EditGameForm = ({
   onChange,
@@ -64,7 +64,7 @@ const EditGameForm = ({
           errors={errors.buyIn || null}
           options={buyInOptions()}
         />
-        <Button type='submit'>Submit</Button>
+        <SubmitButton />
       </form>
       <DeleteConfirmation onDelete={onDelete} type='game' />
     </FormContainer>

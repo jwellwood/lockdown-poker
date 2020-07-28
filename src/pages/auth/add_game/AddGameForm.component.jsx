@@ -2,10 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import DateTimeInput from 'components/inputs/DateTimeInput';
 import TextInput from 'components/inputs/TextInput';
-import { Button } from '@material-ui/core';
 import SelectInput from 'components/inputs/SelectInput';
 import { tableNameOptions, buyInOptions } from 'shared/utils';
 import { FormContainer } from 'shared/layout';
+import SubmitButton from 'components/buttons/SubmitButton';
 
 const AddGameForm = ({ onChange, onSubmit, selectedDate, setSelectedDate }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -52,7 +52,7 @@ const AddGameForm = ({ onChange, onSubmit, selectedDate, setSelectedDate }) => {
           errors={errors.buyIn || null}
           options={buyInOptions()}
         />
-        <Button type='submit'>Submit</Button>
+        <SubmitButton />
       </form>
     </FormContainer>
   );

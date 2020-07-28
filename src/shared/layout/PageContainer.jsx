@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Paper, Typography, Divider } from '@material-ui/core';
+import { Grid, Paper, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BackButton from '../../components/buttons/BackButton.component';
+import PageTitle from 'components/headers/PageTitle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     //Stops bottom navigation hiding content
     marginBottom: theme.spacing(8),
-    width: '90%',
+    width: '100%',
     color: theme.typography.color,
     boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
   },
@@ -50,7 +51,8 @@ const PageContainer = ({ title, children, hasBackButton }) => {
       <Paper className={classes.paper}>
         <Grid container direction='column'>
           <Grid item xs={12} className={classes.title}>
-            <Typography variant='subtitle1'>{title}</Typography>
+            <PageTitle>{title}</PageTitle>
+
             {hasBackButton && (
               <BackButton className={classes.backButton}>Back</BackButton>
             )}

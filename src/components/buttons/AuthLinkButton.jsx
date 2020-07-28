@@ -8,7 +8,7 @@ const AuthLinkButton = ({ children, isAuth, to, type, color }) => {
       variant={type || 'contained'}
       component={RouterLink}
       to={to}
-      color={color || 'default'}
+      color={color || 'secondary'}
     >
       {children}
     </Button>

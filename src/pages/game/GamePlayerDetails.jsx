@@ -2,13 +2,12 @@ import React from 'react';
 import {
   List,
   ListItem,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
   ListItemSecondaryAction,
   Typography,
 } from '@material-ui/core';
 import { getOrdinals } from 'shared/utils';
+import ListAvatar from 'components/avatars/ListAvatar.component';
 
 const GamePlayerDetails = ({ game, players }) => {
   return (
@@ -23,14 +22,13 @@ const GamePlayerDetails = ({ game, players }) => {
         const totalMoney = player.buyIns * game.buyIn;
         return (
           <ListItem key={player.name}>
-            <ListItemAvatar>
-              <Avatar>
-                {player.finalPosition}
-                <Typography component='span' variant='caption'>
-                  {getOrdinals(player.finalPosition)}
-                </Typography>
-              </Avatar>
-            </ListItemAvatar>
+            <ListAvatar>
+              {player.finalPosition}
+              <Typography component='span' variant='caption'>
+                {getOrdinals(player.finalPosition)}
+              </Typography>
+            </ListAvatar>
+
             <ListItemText
               primary={getNameFromId.name || ''}
               secondary={`Buy backs: ${buyBacks}`}
