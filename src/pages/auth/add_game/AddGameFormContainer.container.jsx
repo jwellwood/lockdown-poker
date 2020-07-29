@@ -18,7 +18,11 @@ const AddGameFormContainer = () => {
     });
 
   const onSubmit = () => {
-    const data = { ...input, date: selectedDate, participants: [] };
+    const data = {
+      ...input,
+      date: selectedDate,
+      participants: [],
+    };
     // participants as empty array so it immediately exists in DB
     fireStore.add('games', { ...data });
     history.push(HOME);
