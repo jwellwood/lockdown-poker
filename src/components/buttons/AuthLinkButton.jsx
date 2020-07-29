@@ -1,14 +1,23 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core';
 
-const AuthLinkButton = ({ children, isAuth, to, type, color }) => {
+const useStyles = makeStyles((theme) => ({
+  button: {
+    backgroundColor: theme.palette.warning.main,
+  },
+}));
+
+const AuthLinkButton = ({ children, isAuth, to }) => {
+  const classes = useStyles();
+
   return isAuth ? (
     <Button
-      variant={type || 'contained'}
+      variant='contained'
       component={RouterLink}
       to={to}
-      color={color || 'secondary'}
+      className={classes.button}
     >
       {children}
     </Button>

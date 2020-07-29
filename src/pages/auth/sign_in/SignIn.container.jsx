@@ -6,7 +6,9 @@ import Version from './Version';
 export default () => {
   return (
     <PageContainer title='Admin'>
-      <SignInFormContainer />
+      <div>
+        <SignInFormContainer />
+      </div>
       <Version />
     </PageContainer>
   );

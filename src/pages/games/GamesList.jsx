@@ -1,16 +1,19 @@
 import React from 'react';
-import { List, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import GameListItem from './GameListItem';
+import { ListContainer } from 'shared/layout';
 
 const GamesList = ({ games }) => {
-  return games.length ? (
-    <List>
-      {games.map((game, i) => (
-        <GameListItem game={game} index={i} key={game.id} />
-      ))}
-    </List>
-  ) : (
-    <Typography>No games yet!</Typography>
+  return (
+    <ListContainer>
+      {games.length ? (
+        games.map((game, i) => (
+          <GameListItem game={game} index={i} key={game.id} />
+        ))
+      ) : (
+        <Typography>No games yet!</Typography>
+      )}
+    </ListContainer>
   );
 };
 

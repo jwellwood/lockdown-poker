@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { useAuth } from 'shared/hooks';
-import { PageContainer, ContentContainer } from 'shared/layout';
+import { PageContainer } from 'shared/layout';
 import Spinner from 'components/spinners/Spinner.component';
 import GamePlayerDetails from './GamePlayerDetails';
 import GameDetails from './GameDetails';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
+import { Typography } from '@material-ui/core';
 
 export default () => {
   const { id } = useParams();
@@ -32,16 +33,14 @@ export default () => {
             Edit Game
           </AuthLinkButton>
 
-          <ContentContainer>
-            <GameDetails game={game} id={id} />
-          </ContentContainer>
-          <ContentContainer>
-            {players ? (
-              <GamePlayerDetails game={game} players={players} />
-            ) : (
-              <Spinner />
-            )}
-          </ContentContainer>
+          <GameDetails game={game} />
+
+          <Typography variant='h6'>Players</Typography>
+          {players ? (
+            <GamePlayerDetails game={game} players={players} />
+          ) : (
+            <Spinner />
+          )}
         </>
       ) : (
         <Spinner />

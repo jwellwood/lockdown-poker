@@ -11,10 +11,18 @@ const PlayerPieChart = ({ positionArray }) => {
       return `${data}${getOrdinals(data)}`;
     })
     .sort();
+
   const countOccurrences = (arr) =>
-    arr.reduce((total, curr) => {
-      return (total[curr] = ++total[curr] || 1), total;
+    arr.reduce(function (acc, curr) {
+      if (typeof acc[curr] == 'undefined') {
+        acc[curr] = 1;
+      } else {
+        acc[curr] += 1;
+      }
+
+      return acc;
     }, {});
+
   const occurrence = countOccurrences(ordinalLabels);
   const mappedData = Object.entries(occurrence);
   const chartData = [chartIds, ...mappedData];

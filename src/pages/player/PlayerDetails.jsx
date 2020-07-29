@@ -5,18 +5,13 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
-import {
-  Typography,
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-} from '@material-ui/core';
+import { Typography, ListItem, ListItemText } from '@material-ui/core';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
 import { getOrdinals } from 'shared/utils';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import PlayerGraphs from './PlayerGraphs';
+import { ListContainer } from 'shared/layout';
 
 const PlayerDetails = ({ player, games }) => {
   const { name } = player[0];
@@ -84,17 +79,16 @@ const PlayerDetails = ({ player, games }) => {
       <Typography variant='h3' style={{ margin: '10px auto' }}>
         {name}
       </Typography>
-      <Container maxWidth='sm'>
-        <List dense>
-          {data.map(({ primary, secondary, value, icon }, i) => (
-            <ListItem key={primary + i}>
-              <ListAvatar>{icon}</ListAvatar>
-              <ListItemText primary={primary} secondary={secondary} />
-              <ListValueText>{value}</ListValueText>
-            </ListItem>
-          ))}
-        </List>
-      </Container>
+      <ListContainer>
+        {data.map(({ primary, secondary, value, icon }, i) => (
+          <ListItem key={primary + i}>
+            <ListAvatar>{icon}</ListAvatar>
+            <ListItemText primary={primary} secondary={secondary} />
+            <ListValueText>{value}</ListValueText>
+          </ListItem>
+        ))}
+      </ListContainer>
+
       <PlayerGraphs data={arrOfFinalPositions} games={games} />
     </>
   ) : (

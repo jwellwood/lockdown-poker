@@ -2,7 +2,7 @@ import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import { ADD_PLAYER } from 'router';
-import { PageContainer, ContentContainer } from 'shared/layout';
+import { PageContainer } from 'shared/layout';
 import { useAuth } from 'shared/hooks';
 import Spinner from 'components/spinners/Spinner.component';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
@@ -23,13 +23,11 @@ export default () => {
         Add Player
       </AuthLinkButton>
 
-      <ContentContainer>
-        {games && players ? (
-          <PlayersList players={players} games={games} />
-        ) : (
-          <Spinner />
-        )}
-      </ContentContainer>
+      {games && players ? (
+        <PlayersList players={players} games={games} />
+      ) : (
+        <Spinner />
+      )}
     </PageContainer>
   );
 };
