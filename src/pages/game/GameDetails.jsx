@@ -1,8 +1,17 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Grid } from '@material-ui/core';
+// Icons
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import AllOutIcon from '@material-ui/icons/AllOut';
+import PeopleIcon from '@material-ui/icons/People';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import EuroIcon from '@material-ui/icons/Euro';
+import { ListItem, ListItemText } from '@material-ui/core';
 import { parseDate } from 'shared/utils';
+import ListAvatar from 'components/avatars/ListAvatar.component';
+import ListValueText from 'components/typography/ListValueText';
+import { ListContainer } from 'shared/layout';
 
-const GameDetails = ({ game, id }) => {
+const GameDetails = ({ game }) => {
   const { date, table, buyIn, participants } = game;
 
   const totalBuyIns = participants
@@ -14,42 +23,44 @@ const GameDetails = ({ game, id }) => {
   const secondPlacePrize = participants.length > 1 ? buyIn * 2 : 0;
   const firstPlacePrize = totalCash - secondPlacePrize;
 
-  const gameData = [
-    { primary: 'Game ID', secondary: id },
-    { primary: 'Date', secondary: parseDate(date) },
-    { primary: 'Table', secondary: table },
-  ];
-
-  const playerData = [
-    { primary: 'Players', secondary: participants.length },
-    { primary: 'Buy in', secondary: `€${buyIn}` },
+  const data = [
     {
+      icon: <CalendarTodayIcon />,
+      primary: 'Date',
+      secondary: parseDate(date),
+      value: '',
+    },
+    { icon: <AllOutIcon />, primary: 'Table', secondary: table, value: '' },
+    {
+      icon: <PeopleIcon />,
+      primary: 'Players',
+      secondary: '',
+      value: participants.length,
+    },
+    {
+      icon: <MonetizationOnIcon />,
+      primary: 'Buy in',
+      secondary: '',
+      value: `€${buyIn}`,
+    },
+    {
+      icon: <EuroIcon />,
       primary: 'Prize money',
-      secondary: `€${totalCash} (€${firstPlacePrize}/€${secondPlacePrize})`,
+      secondary: `€${firstPlacePrize}/€${secondPlacePrize}`,
+      value: `€${totalCash}`,
     },
   ];
 
   return (
-    <Grid container direction='row' justify='space-evenly'>
-      <Grid item xs={12} sm={6}>
-        <List dense>
-          {gameData.map((item) => (
-            <ListItem key={item.primary}>
-              <ListItemText primary={item.primary} secondary={item.secondary} />
-            </ListItem>
-          ))}
-        </List>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <List dense>
-          {playerData.map((item) => (
-            <ListItem key={item.primary}>
-              <ListItemText primary={item.primary} secondary={item.secondary} />
-            </ListItem>
-          ))}
-        </List>
-      </Grid>
-    </Grid>
+    <ListContainer>
+      {data.map(({ primary, secondary, icon, value }) => (
+        <ListItem key={primary}>
+          <ListAvatar>{icon}</ListAvatar>
+          <ListItemText primary={primary} secondary={secondary} />
+          <ListValueText>{value}</ListValueText>
+        </ListItem>
+      ))}
+    </ListContainer>
   );
 };
 

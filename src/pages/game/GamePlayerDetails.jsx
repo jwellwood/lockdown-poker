@@ -1,43 +1,43 @@
 import React from 'react';
 import {
-  List,
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
   Typography,
+  ListItemAvatar,
+  Avatar,
 } from '@material-ui/core';
-import { getOrdinals } from 'shared/utils';
-import ListAvatar from 'components/avatars/ListAvatar.component';
+import { getOrdinals, getNameFromId } from 'shared/utils';
+import { ListContainer } from 'shared/layout';
 
 const GamePlayerDetails = ({ game, players }) => {
-  return (
-    <List>
-      {game.participants.map((player) => {
-        // Name is stored as ID, so we need to convert it back in the view
-        const getNameFromId = players.find((p) =>
-          p.id === player.name ? p.name : ''
-        );
+  const sortedPlayers = [...game.participants].sort(
+    (a, b) => a.finalPosition - b.finalPosition
+  );
 
+  return (
+    <ListContainer>
+      {sortedPlayers.map((player) => {
+        const name = getNameFromId(players, player);
         const buyBacks = player.buyIns - 1;
         const totalMoney = player.buyIns * game.buyIn;
         return (
           <ListItem key={player.name}>
-            <ListAvatar>
-              {player.finalPosition}
-              <Typography component='span' variant='caption'>
-                {getOrdinals(player.finalPosition)}
-              </Typography>
-            </ListAvatar>
+            <ListItemAvatar>
+              <Avatar>
+                {player.finalPosition}
+                <Typography component='span' variant='caption'>
+                  {getOrdinals(player.finalPosition)}
+                </Typography>
+              </Avatar>
+            </ListItemAvatar>
 
-            <ListItemText
-              primary={getNameFromId.name || ''}
-              secondary={`Buy backs: ${buyBacks}`}
-            />
+            <ListItemText primary={name} secondary={`Buy backs: ${buyBacks}`} />
             <ListItemSecondaryAction>€{totalMoney}</ListItemSecondaryAction>
           </ListItem>
         );
       })}
-    </List>
+    </ListContainer>
   );
 };
 

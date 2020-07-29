@@ -16,9 +16,12 @@ import { parseDateAndTime, parseDateAsISOString } from 'shared/utils';
 import Spinner from 'components/spinners/Spinner.component';
 import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
+import { useAuth } from 'shared/hooks/useAuth';
+import AuthLinkButton from 'components/buttons/AuthLinkButton';
 
 const HomePage = () => {
-  const { isEmpty, isLoaded } = useSelector((state) => state.firebase.auth);
+  const { isAuth } = useAuth();
+
   const [gameDate, setGameDate] = useState('');
   const [loading, setLoading] = useState(true);
   const [zoomInputValue, setZoomInputValue] = useState({
@@ -125,13 +128,11 @@ const HomePage = () => {
 
   return (
     <PageContainer title='Home'>
-      {loading && !isLoaded ? (
-        <Spinner />
-      ) : !isEmpty && isLoaded ? (
-        <LinkButton to={ADD_GAME}>Add new game</LinkButton>
-      ) : null}
+      <AuthLinkButton to={ADD_GAME} isAuth={isAuth}>
+        Add new game
+      </AuthLinkButton>
       <LogoImageBox />
-      {loading && !isLoaded ? <Spinner /> : <ContentToDisplay />}
+      {loading ? <Spinner /> : <ContentToDisplay />}
     </PageContainer>
   );
 };

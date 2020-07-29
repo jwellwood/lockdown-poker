@@ -70,7 +70,8 @@ const NextGameDetails = ({ nextGameData, onCopy }) => {
                   {copyButton && (
                     <CopyToClipboard
                       onCopy={() => onCopy(copyId)}
-                      text={inputValue}>
+                      text={inputValue}
+                    >
                       <IconButton className={classes.icon}>
                         <FileCopyRounded
                           style={{

@@ -1,29 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import logo from 'shared/assets/images/logo.jpg';
+import MainHeader from 'components/headers/MainHeader';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    maxHeight: '50%',
+    margin: theme.spacing(4),
   },
-  appTitle: { margin: theme.spacing(1, 0) },
 }));
 
 const LogoImageBox = () => {
   const classes = useStyles();
   return (
-    <Grid className={classes.logo} container>
-      <Grid item xs={12}>
-        <img src={logo} alt='site logo' />
-      </Grid>
-      <Grid item xs={12}>
-        <Typography className={classes.appTitle} variant='h5'>
-          Lockdown Poker
-        </Typography>
-      </Grid>
-    </Grid>
+    <div>
+      <img className={classes.logo} src={logo} alt='site logo' />
+      <MainHeader>Welcome!</MainHeader>
+    </div>
   );
 };
 

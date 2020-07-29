@@ -7,11 +7,12 @@ import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import { useHistory } from 'react-router-dom';
 import { GAMES } from 'router';
 import { useFirestore } from 'react-redux-firebase';
+import { getNameFromId } from 'shared/utils';
 
 const GamePlayerRow = ({ player, players, game }) => {
   const fireStore = useFirestore();
   const history = useHistory();
-  const { name, buyIns, finalPosition } = player;
+  const { buyIns, finalPosition } = player;
 
   const buyBacks = buyIns - 1;
 
@@ -24,12 +25,12 @@ const GamePlayerRow = ({ player, players, game }) => {
     history.push(GAMES);
   };
 
-  const getNameFromId = players.find((p) => (p.id === name ? p.name : ''));
+  const name = getNameFromId(players, player);
 
   return (
     <TableRow>
       <TableCell component='th' scope='row'>
-        {getNameFromId.name || ''}
+        {name}
       </TableCell>
       <TableCell align='right'>{buyBacks}</TableCell>
       <TableCell align='right'>{finalPosition}</TableCell>

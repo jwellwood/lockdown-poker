@@ -21,7 +21,7 @@ const DeleteConfirmation = ({ onDelete, type }) => {
 
   return (
     <div>
-      <IconButton aria-label='delete' onClick={handleClickOpen} color='primary'>
+      <IconButton aria-label='delete' onClick={handleClickOpen} color='default'>
         <DeleteIcon />
       </IconButton>
       <Dialog

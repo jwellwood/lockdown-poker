@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BackButton from '../../components/buttons/BackButton.component';
 import PageTitle from 'components/headers/PageTitle';
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
+    padding: theme.spacing(1),
     margin: theme.spacing(1),
     //Stops bottom navigation hiding content
     marginBottom: theme.spacing(8),
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     margin: theme.spacing(1, 1, 0),
     padding: theme.spacing(0, 1, 0),
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
   },
   backButton: {
     float: 'right',
@@ -60,7 +61,7 @@ const PageContainer = ({ title, children, hasBackButton }) => {
             <CustomDivider />
           </div>
           <Grid container direction='column'>
-            {children}
+            <Container maxWidth='md'>{children}</Container>
           </Grid>
         </Grid>
       </Paper>
