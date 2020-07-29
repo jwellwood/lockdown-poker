@@ -20,7 +20,7 @@ const DeleteConfirmation = ({ onDelete, type }) => {
   };
 
   return (
-    <div>
+    <>
       <IconButton aria-label='delete' onClick={handleClickOpen} color='default'>
         <DeleteIcon />
       </IconButton>
@@ -48,7 +48,7 @@ const DeleteConfirmation = ({ onDelete, type }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 };
 

@@ -9,10 +9,8 @@ const EditGameFormContainer = ({ game }) => {
   const { id } = useParams();
   const history = useHistory();
   const fireStore = useFirestore();
-
-  const [selectedDate, setSelectedDate] = useState(game.date);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [input, setInput] = useState({});
-
   const gameRef = fireStore.collection('games').doc(id);
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const EditGameFormContainer = ({ game }) => {
         table: game.table,
         zoomLink: game.zoomLink,
       });
-      setSelectedDate(game.date);
+      if (game.date) setSelectedDate(game.date.toDate());
     }
   }, [game]);
 
