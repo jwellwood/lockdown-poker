@@ -1,3 +1,6 @@
+import { paymentOptions } from 'shared/assets/data/paymentOptions';
+import { tableNames } from 'shared/assets/data/tableNames';
+
 export const playerNameOptions = (players, game) => {
   const gameParticipants = game.participants
     ? game.participants.map((player) => player.name)
@@ -24,20 +27,14 @@ export const finalPositionOptions = (players) => {
 };
 
 export const preferredPaymentOptions = () => {
-  const list = ['Bank Transfer', 'Bizum', 'Paypal', 'Cash', 'Other'];
   const options = [{ text: '', value: '' }];
-  list.forEach((el) => {
-    options.push({ text: el, value: el });
-  });
+  paymentOptions.forEach((el) => options.push({ text: el, value: el }));
   return options;
 };
 
 export const tableNameOptions = () => {
-  const list = ['PokerNow', 'PokerStars', 'Live Table', 'Other'];
   const options = [{ text: '', value: '' }];
-  list.forEach((el) => {
-    options.push({ text: el, value: el });
-  });
+  tableNames.forEach((el) => options.push({ text: el, value: el }));
   return options;
 };
 
