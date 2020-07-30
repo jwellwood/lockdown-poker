@@ -5,13 +5,11 @@ import { ListContainer } from 'shared/layout';
 import PlayerListItem from './PlayerListItem';
 
 const PlayersList = ({ players, games }) => {
-  const { sortedPlayers } = usePlayerStatsArray(players, games);
-  const playersToShow = sortedPlayers.filter((player) => player.games.length);
-  const rest = sortedPlayers.filter((player) => !player.games.length);
+  const { sorted } = usePlayerStatsArray(players, games);
   return (
     <ListContainer>
-      {players.length ? (
-        [...playersToShow, ...rest].map((player, i) => {
+      {sorted.length ? (
+        sorted.map((player, i) => {
           return <PlayerListItem key={player.id} player={player} index={i} />;
         })
       ) : (
