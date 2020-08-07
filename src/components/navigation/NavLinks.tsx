@@ -8,7 +8,7 @@ import CasinoRounded from '@material-ui/icons/CasinoRounded';
 import HomeRounded from '@material-ui/icons/HomeRounded';
 import SupervisedUserRounded from '@material-ui/icons/SupervisedUserCircleRounded';
 import GroupRounded from '@material-ui/icons/GroupRounded';
-import { HOME, PLAYERS, GAMES, SIGN_IN } from 'router';
+import { HOME, PLAYERS, GAMES, SIGN_IN } from '../../router';
 
 const useStyles = makeStyles({
   topNav: {
@@ -27,9 +27,16 @@ const useStyles = makeStyles({
   },
 });
 
-const NavLinks = ({ navType }) => {
+interface Props {
+  navType: string;
+}
+interface LocationState {
+  pathname: string;
+}
+
+const NavLinks: React.FC<Props> = ({ navType }) => {
   const classes = useStyles();
-  let { pathname } = useLocation();
+  let { pathname } = useLocation<LocationState>();
   const [value, setValue] = React.useState(pathname);
   const navValues = ['/home', '/players', '/games', '/sign_in'];
   if (!navValues.filter((value) => pathname === value).length)
@@ -38,7 +45,7 @@ const NavLinks = ({ navType }) => {
     setValue(pathname);
   }, [pathname]);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
 

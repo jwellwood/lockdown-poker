@@ -1,7 +1,12 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-const FormErrorMessage = ({ type, error }) => {
+interface Props {
+  type: string;
+  error: { type: string };
+}
+
+const FormErrorMessage: React.FC<Props> = ({ type, error }) => {
   let message = null;
   switch (error.type) {
     case 'required':

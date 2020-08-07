@@ -4,7 +4,18 @@ import TextField from '@material-ui/core/TextField';
 // Internal
 import FormErrorMessage from './FormErrorMessage';
 
-const TextInput = ({
+interface Props {
+  inputName: string;
+  defaultValue: string;
+  onChange: () => void;
+  label: string;
+  //@TODO - check types of validators and errors
+  validators?: any;
+  errors?: any;
+  isPassword: boolean;
+  multiline: boolean;
+}
+const TextInput: React.FC<Props> = ({
   inputName,
   defaultValue,
   onChange,

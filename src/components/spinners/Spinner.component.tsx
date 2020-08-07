@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Spinner = () => {
+const Spinner: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

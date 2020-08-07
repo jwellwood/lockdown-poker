@@ -4,7 +4,25 @@ import TextField from '@material-ui/core/TextField';
 // Internal
 import FormErrorMessage from './FormErrorMessage';
 
-const SelectInput = ({
+type Option = {
+  text: string;
+  disabled: boolean;
+  value: string;
+};
+
+interface Props {
+  inputName: string;
+  defaultValue: string;
+  onChange: () => void;
+  label: string;
+  // @TODO - find types for validators and errors
+  validators?: any;
+  errors?: any;
+  options: Option[];
+  data_id: string;
+}
+
+const SelectInput: React.FC<Props> = ({
   inputName,
   defaultValue,
   onChange,
@@ -30,14 +48,12 @@ const SelectInput = ({
         variant='filled'
         margin='normal'
         fullWidth
-        inputRef={validators}
-      >
+        inputRef={validators}>
         {options.map((option) => (
           <option
             key={option.text}
             disabled={option.disabled}
-            value={option.value}
-          >
+            value={option.value}>
             {option.text}
           </option>
         ))}
