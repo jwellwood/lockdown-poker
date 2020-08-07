@@ -46,8 +46,7 @@ const PlayerListItem = ({ player, index }) => {
       key={player.id}
       button
       component={Link}
-      to={`/players/${player.id}`}
-    >
+      to={`/players/${player.id}`}>
       <ListAvatar>
         {index + 1}
         <Typography variant='caption'>{getOrdinals(index + 1)}</Typography>

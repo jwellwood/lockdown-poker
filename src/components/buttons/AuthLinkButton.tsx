@@ -9,7 +9,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthLinkButton = ({ children, isAuth, to }) => {
+interface Props {
+  children: React.ReactNode;
+  isAuth: boolean;
+  to: string;
+}
+
+const AuthLinkButton: React.FC<Props> = ({ children, isAuth, to }) => {
   const classes = useStyles();
 
   return isAuth ? (
@@ -17,8 +23,7 @@ const AuthLinkButton = ({ children, isAuth, to }) => {
       variant='contained'
       component={RouterLink}
       to={to}
-      className={classes.button}
-    >
+      className={classes.button}>
       {children}
     </Button>
   ) : null;
