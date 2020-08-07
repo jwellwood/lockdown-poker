@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import logo from 'shared/assets/images/logo.jpg';
-import { HOME } from 'router';
+import { HOME } from '../../router';
 import NavLinks from './NavLinks';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
   const classes = useStyles();
   const bigScreen = useMediaQuery('(min-width: 769px)');
   const smallScreen = useMediaQuery('(max-width: 768px)');
@@ -56,4 +56,5 @@ export default function Navbar() {
       <footer>{smallScreen && <NavLinks navType='bottomNav' />}</footer>
     </div>
   );
-}
+};
+export default Navbar;

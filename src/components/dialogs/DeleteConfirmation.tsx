@@ -8,7 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const DeleteConfirmation = ({ onDelete, type }) => {
+interface Props {
+  onDelete: () => void;
+  type: string;
+}
+
+const DeleteConfirmation: React.FC<Props> = ({ onDelete, type }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -28,8 +33,7 @@ const DeleteConfirmation = ({ onDelete, type }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
+        aria-describedby='alert-dialog-description'>
         <DialogTitle id='alert-dialog-title'>
           {'Confirm Permanent Deletion'}
         </DialogTitle>

@@ -1,12 +1,24 @@
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 // MUI
-import { DateTimePicker } from '@material-ui/pickers';
+import { DatePicker } from '@material-ui/pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import FormErrorMessage from './FormErrorMessage';
 
-const DateTimeInput = ({
+interface Props {
+  inputName: string;
+  disableFuture: boolean;
+  defaultValue: string;
+  onChange: () => void;
+  label: string;
+  // @TODO - find types for validators and errors
+  validators?: any;
+  errors?: any;
+}
+
+const DateInput: React.FC<Props> = ({
   inputName,
+  disableFuture,
   defaultValue,
   onChange,
   label,
@@ -16,15 +28,18 @@ const DateTimeInput = ({
   return (
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DateTimePicker
+        <DatePicker
+          disableFuture={disableFuture}
           color='secondary'
           inputVariant='filled'
           value={defaultValue}
           onChange={onChange}
-          openTo='dateTime'
+          openTo='date'
+          format='dd/MM/yyyy'
           label={label}
           name={inputName}
-          variant='filled'
+          views={['year', 'month', 'date']}
+          variant='dialog'
           margin='normal'
           fullWidth
           inputRef={validators}
@@ -35,4 +50,4 @@ const DateTimeInput = ({
   );
 };
 
-export default DateTimeInput;
+export default DateInput;

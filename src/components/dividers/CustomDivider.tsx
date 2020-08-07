@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import { useTheme } from '@material-ui/core';
 
-const CustomDivider = ({ customBackground, variant }) => {
+interface Props {
+  customBackground: string;
+  variant?: any;
+}
+
+const CustomDivider: React.FC<Props> = ({ customBackground, variant }) => {
   const theme = useTheme();
   return (
     <Divider
@@ -15,11 +19,6 @@ const CustomDivider = ({ customBackground, variant }) => {
       }}
     />
   );
-};
-
-CustomDivider.propTypes = {
-  customBackground: PropTypes.string,
-  variant: PropTypes.string,
 };
 
 export default CustomDivider;

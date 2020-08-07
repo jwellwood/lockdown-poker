@@ -4,7 +4,18 @@ import TextField from '@material-ui/core/TextField';
 // Internal
 import FormErrorMessage from './FormErrorMessage';
 
-const NumberInput = ({
+interface Props {
+  inputName: string;
+  defaultValue: number;
+  onChange: () => void;
+  label: string;
+  // @TODO - find types for validators and errors
+  validators?: any;
+  errors?: any;
+  disabled: boolean;
+}
+
+const NumberInput: React.FC<Props> = ({
   inputName,
   defaultValue,
   onChange,

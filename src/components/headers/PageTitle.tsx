@@ -1,7 +1,11 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-const PageTitle = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const PageTitle: React.FC<Props> = ({ children }) => {
   return <Typography variant='h6'>{children}</Typography>;
 };
 
