@@ -7,7 +7,12 @@ const useStyles = makeStyles((theme) => ({
     border: `2px solid ${theme.palette.primary.main}`,
   },
 }));
-const ListAvatar = ({ children }) => {
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const ListAvatar: React.FC<Props> = ({ children }) => {
   const classes = useStyles();
   return (
     <ListItemAvatar>

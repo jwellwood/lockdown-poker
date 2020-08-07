@@ -54,7 +54,12 @@ const PageContainer = ({ title, children, hasBackButton }) => {
           <Grid item xs={12} className={classes.title}>
             <PageTitle>{title}</PageTitle>
             {hasBackButton && (
-              <BackButton className={classes.backButton}>Back</BackButton>
+              <BackButton
+                color='inherit'
+                type='text'
+                className={classes.backButton}>
+                Back
+              </BackButton>
             )}
           </Grid>
           <div className={classes.divider}>
