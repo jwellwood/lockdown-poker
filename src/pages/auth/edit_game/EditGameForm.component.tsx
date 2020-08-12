@@ -7,8 +7,18 @@ import { tableNameOptions, buyInOptions } from 'shared/utils';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import SubmitButton from 'components/buttons/SubmitButton';
+import { IGame } from '../../../shared/utils/customTypes';
 
-const EditGameForm = ({
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: () => void;
+  onDelete: () => void;
+  input: IGame;
+  selectedDate: Date;
+  setSelectedDate: any;
+}
+
+const EditGameForm: React.FC<Props> = ({
   onChange,
   onSubmit,
   onDelete,
@@ -22,7 +32,6 @@ const EditGameForm = ({
     <FormContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DateTimeInput
-          disableFuture={false}
           inputName='date'
           label='Date'
           defaultValue={selectedDate}

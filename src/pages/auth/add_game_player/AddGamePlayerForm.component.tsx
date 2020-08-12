@@ -9,7 +9,19 @@ import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
 
-const AddGamePlayerForm = ({ onChange, onSubmit, players, game }) => {
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: () => void;
+  players: [];
+  game: {};
+}
+
+const AddGamePlayerForm: React.FC<Props> = ({
+  onChange,
+  onSubmit,
+  players,
+  game,
+}) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (

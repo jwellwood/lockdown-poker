@@ -7,14 +7,26 @@ import { tableNameOptions, buyInOptions } from 'shared/utils';
 import { FormContainer } from 'shared/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
 
-const AddGameForm = ({ onChange, onSubmit, selectedDate, setSelectedDate }) => {
+interface Props {
+  onChange: (e: any) => void;
+  onSubmit: () => void;
+  selectedDate: Date;
+  setSelectedDate: any;
+  // setSelectedDate: Dispatch<SetStateAction<Date>>;
+}
+
+const AddGameForm: React.FC<Props> = ({
+  onChange,
+  onSubmit,
+  selectedDate,
+  setSelectedDate,
+}) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (
     <FormContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DateTimeInput
-          disableFuture={false}
           inputName='date'
           label='Date'
           defaultValue={selectedDate}

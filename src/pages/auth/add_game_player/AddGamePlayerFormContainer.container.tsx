@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import { useHistory, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
 import AddGamePlayerForm from './AddGamePlayerForm.component';
+import { DocumentData } from '@firebase/firestore-types';
 
-const AddGamePlayerFormContainer = () => {
+const AddGamePlayerFormContainer: React.FC = () => {
   const { id } = useParams();
   const fireStore = useFirestore();
   const history = useHistory();
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState<DocumentData>();
   const [input, setInput] = useState({});
   useFirestoreConnect('players');
 
-  const { players } = useSelector((state) => state.firestore.ordered);
+  const { players } = useSelector(
+    (state: RootStateOrAny) => state.firestore.ordered
+  );
   const gameRef = fireStore.collection('games').doc(id);
 
   useEffect(() => {
@@ -23,13 +26,13 @@ const AddGamePlayerFormContainer = () => {
     });
   }, [fireStore, id]);
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
     });
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     const data = { ...input };
 
     gameRef.update({

@@ -6,20 +6,20 @@ import FormErrorMessage from './FormErrorMessage';
 
 type Option = {
   text: string;
-  disabled: boolean;
+  disabled?: boolean;
   value: string;
 };
 
 interface Props {
   inputName: string;
-  defaultValue: string;
-  onChange: () => void;
+  defaultValue?: string;
+  onChange: (e: any) => void;
   label: string;
   // @TODO - find types for validators and errors
   validators?: any;
   errors?: any;
   options: Option[];
-  data_id: string;
+  data_id?: string;
 }
 
 const SelectInput: React.FC<Props> = ({
