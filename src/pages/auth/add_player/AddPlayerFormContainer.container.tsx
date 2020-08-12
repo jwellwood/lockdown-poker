@@ -10,7 +10,7 @@ const AddPlayerFormContainer = () => {
   const initInput = { name: '', preferredPayment: '', iban: '' };
   const [input, setInput] = useState({ ...initInput });
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,

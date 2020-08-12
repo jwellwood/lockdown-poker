@@ -4,28 +4,35 @@ import { useFirestore } from 'react-redux-firebase';
 import { GAMES } from 'router';
 import EditGameForm from './EditGameForm.component';
 import Spinner from 'components/spinners/Spinner.component';
+import { IGame } from 'shared/utils/customTypes';
+import { initGame } from 'shared/utils/initGame';
 
-const EditGameFormContainer = ({ game }) => {
+interface Props {
+  game: IGame;
+}
+
+const EditGameFormContainer: React.FC<Props> = ({ game }) => {
   const { id } = useParams();
   const history = useHistory();
   const fireStore = useFirestore();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState<IGame>({ ...initGame });
   const gameRef = fireStore.collection('games').doc(id);
 
   useEffect(() => {
     if (game) {
       setInput({
+        ...initGame,
         buyIn: game.buyIn,
         gameLink: game.gameLink,
         table: game.table,
         zoomLink: game.zoomLink,
       });
-      if (game.date) setSelectedDate(game.date.toDate());
+      if (game.date) setSelectedDate(new Date(game.date));
     }
   }, [game]);
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,

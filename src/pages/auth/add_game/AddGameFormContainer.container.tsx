@@ -4,14 +4,14 @@ import { useFirestore } from 'react-redux-firebase';
 import { HOME } from 'router';
 import AddGameForm from './AddGameForm.component';
 
-const AddGameFormContainer = () => {
+const AddGameFormContainer: React.FC = () => {
   const fireStore = useFirestore();
   const history = useHistory();
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [input, setInput] = useState({});
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,

@@ -8,7 +8,7 @@ import FormErrorMessage from './FormErrorMessage';
 interface Props {
   inputName: string;
   defaultValue: Date;
-  onChange: () => void;
+  onChange: any;
   label: string;
   // @TODO - find types for validators and errors
   validators?: any;

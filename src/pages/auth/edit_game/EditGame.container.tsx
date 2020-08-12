@@ -6,22 +6,31 @@ import { useParams, Redirect } from 'react-router-dom';
 import { useAuth } from 'shared/hooks';
 import { SIGN_IN } from 'router';
 import EditGameFormContainer from './EditGameFormContainer.container';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
+import { IGame } from 'shared/utils/customTypes';
+import { initGame } from 'shared/utils/initGame';
 
 export default () => {
   const { id } = useParams();
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState<IGame>({
+    ...initGame,
+  });
   const fireStore = useFirestore();
   useEffect(() => {
     const gameRef = fireStore.collection('games').doc(id);
     gameRef.get().then((doc) => {
-      setGame(doc.data());
+      //Ensures <DocumentData> is never undefined
+      const data = doc.data()!;
+      console.log(data);
+      if (data) setGame(data as IGame);
     });
   }, [fireStore, id]);
 
   const { isAuth } = useAuth();
-  const { players } = useSelector((state) => state.firestore.ordered);
+  const { players } = useSelector(
+    (state: RootStateOrAny) => state.firestore.ordered
+  );
 
   if (!isAuth) {
     return <Redirect to={SIGN_IN} />;
@@ -29,12 +38,8 @@ export default () => {
 
   return players ? (
     <PageContainer hasBackButton title='Edit Game'>
-      <GamePlayerTable
-        players={game.participants}
-        game={game}
-        playerData={players}
-      />
-      <EditGameFormContainer game={game} player={players} />
+      <GamePlayerTable players={game.participants} playerData={players} />
+      <EditGameFormContainer game={game} />
     </PageContainer>
   ) : (
     <Spinner />

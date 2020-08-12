@@ -6,14 +6,14 @@ import FormErrorMessage from './FormErrorMessage';
 
 interface Props {
   inputName: string;
-  defaultValue: string;
-  onChange: () => void;
+  defaultValue?: string;
+  onChange: (e: any) => void;
   label: string;
   //@TODO - check types of validators and errors
   validators?: any;
   errors?: any;
-  isPassword: boolean;
-  multiline: boolean;
+  isPassword?: boolean;
+  multiline?: boolean;
 }
 const TextInput: React.FC<Props> = ({
   inputName,

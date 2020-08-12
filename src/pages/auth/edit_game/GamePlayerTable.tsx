@@ -12,8 +12,14 @@ import { FormContainer } from 'shared/layout';
 import GamePlayerRow from './GamePlayerRow';
 import { useAuth } from 'shared/hooks/useAuth';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
+import { IGameParticipant } from 'shared/utils/customTypes';
 
-const GamePlayerTable = ({ players, playerData }) => {
+interface Props {
+  players: IGameParticipant[];
+  playerData: IGameParticipant[];
+}
+
+const GamePlayerTable: React.FC<Props> = ({ players, playerData }) => {
   const { id } = useParams();
   const { isAuth } = useAuth();
 
@@ -37,7 +43,7 @@ const GamePlayerTable = ({ players, playerData }) => {
               {players.map((player, i) => (
                 <GamePlayerRow
                   players={playerData}
-                  key={`${player.id}-${i}`}
+                  key={`${player.name}-${i}`}
                   player={player}
                   game={id}
                 />
