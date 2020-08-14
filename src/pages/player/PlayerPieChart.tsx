@@ -3,7 +3,11 @@ import { Chart } from 'react-google-charts';
 import { getOrdinals } from 'shared/utils';
 import { useTheme } from '@material-ui/core';
 
-const PlayerPieChart = ({ positionArray }) => {
+interface Props {
+  positionArray: number[];
+}
+
+const PlayerPieChart: React.FC<Props> = ({ positionArray }) => {
   const theme = useTheme();
   const chartIds = ['position', 'frequency'];
   const ordinalLabels = positionArray
@@ -12,14 +16,13 @@ const PlayerPieChart = ({ positionArray }) => {
     })
     .sort();
 
-  const countOccurrences = (arr) =>
-    arr.reduce(function (acc, curr) {
+  const countOccurrences = (arr: string[]) =>
+    arr.reduce(function (acc: any, curr: any) {
       if (typeof acc[curr] == 'undefined') {
         acc[curr] = 1;
       } else {
         acc[curr] += 1;
       }
-
       return acc;
     }, {});
 

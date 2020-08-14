@@ -9,8 +9,13 @@ import {
 } from '@material-ui/core';
 import PaymentIcon from '@material-ui/icons/Payment';
 import EuroIcon from '@material-ui/icons/Euro';
+import { IPlayer } from 'shared/utils/customTypes';
 
-const PaymentDetails = ({ player }) => {
+interface Props {
+  player: IPlayer;
+}
+
+const PaymentDetails: React.FC<Props> = ({ player }) => {
   const { preferredPayment, iban } = player;
   const data = [
     {

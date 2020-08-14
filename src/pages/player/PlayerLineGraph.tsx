@@ -2,7 +2,11 @@ import React from 'react';
 import { Chart } from 'react-google-charts';
 import { useTheme } from '@material-ui/core';
 
-const PlayerLinGraph = ({ data }) => {
+interface Props {
+  arrOfFinalPositions: number[];
+}
+
+const PlayerLineGraph: React.FC<Props> = ({ arrOfFinalPositions }) => {
   const theme = useTheme();
   const options = {
     title: 'Position by game',
@@ -32,7 +36,7 @@ const PlayerLinGraph = ({ data }) => {
     fontSize: theme.typography.fontSize,
   };
   const chartIds = ['x', 'position'];
-  const mappedData = data.map((item, i) => [i + 1, +item]);
+  const mappedData = arrOfFinalPositions.map((item, i) => [i + 1, +item]);
   const chartData = [chartIds, ...mappedData];
 
   return (
@@ -47,4 +51,4 @@ const PlayerLinGraph = ({ data }) => {
   );
 };
 
-export default PlayerLinGraph;
+export default PlayerLineGraph;
