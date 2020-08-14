@@ -20,7 +20,6 @@ export default () => {
     (state: RootStateOrAny) => state.firestore.ordered
   );
   //@TODO check if ID field is mentioned
-  console.log(games);
 
   return (
     <PageContainer title='Games'>
