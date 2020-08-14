@@ -4,12 +4,12 @@ import { useFirebase } from 'react-redux-firebase';
 import { useAuth } from 'shared/hooks';
 import SignInForm from './SignInForm.component';
 
-const SignInFormContainer = () => {
+const SignInFormContainer: React.FC = () => {
   const firebase = useFirebase();
   const { isAuth, email } = useAuth();
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({ email: '', password: '' });
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -19,7 +19,7 @@ const SignInFormContainer = () => {
     firebase.login({ ...input });
   };
 
-  const onLogout = (e) => {
+  const onLogout = (e?: React.ChangeEvent<HTMLInputElement>) => {
     firebase.logout();
   };
 
@@ -28,7 +28,7 @@ const SignInFormContainer = () => {
   ) : (
     <>
       <div>Signed in as {email}</div>
-      <Button onClick={onLogout} variant='contained' color='secondary'>
+      <Button onClick={() => onLogout()} variant='contained' color='secondary'>
         logout
       </Button>
     </>

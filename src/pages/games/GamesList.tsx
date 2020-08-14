@@ -2,8 +2,13 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import GameListItem from './GameListItem';
 import { ListContainer } from 'shared/layout';
+import { IGame } from 'shared/utils/customTypes';
 
-const GamesList = ({ games }) => {
+interface Props {
+  games: IGame[];
+}
+
+const GamesList: React.FC<Props> = ({ games }) => {
   return (
     <ListContainer>
       {games.length ? (
