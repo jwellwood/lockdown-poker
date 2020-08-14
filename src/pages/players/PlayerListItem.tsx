@@ -10,6 +10,12 @@ import { usePlayerStats } from 'shared/hooks';
 import { getOrdinals } from 'shared/utils';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
+import { IPlayerWithStats } from 'shared/utils/customTypes';
+
+interface Props {
+  player: IPlayerWithStats;
+  index: number;
+}
 
 const useStyles = makeStyles((theme) => ({
   highlightedText: {
@@ -18,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PlayerListItem = ({ player, index }) => {
+const PlayerListItem: React.FC<Props> = ({ player, index }) => {
   const classes = useStyles();
   const {
     numberOfGamesPlayed,
@@ -26,7 +32,9 @@ const PlayerListItem = ({ player, index }) => {
     averageFinalPosition,
   } = usePlayerStats(player);
 
-  const position = isNaN(averageFinalPosition) ? null : averageFinalPosition;
+  const position = isNaN(averageFinalPosition as any)
+    ? null
+    : averageFinalPosition;
 
   const secondaryText = (
     <>

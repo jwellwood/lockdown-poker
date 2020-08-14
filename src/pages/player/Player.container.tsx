@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import PlayerDetails from './PlayerDetails';
 import Spinner from 'components/spinners/Spinner.component';
 import { PageContainer } from 'shared/layout';
@@ -23,11 +23,14 @@ export default () => {
     },
   ]);
   const player = useSelector(
-    ({ firestore: { data } }) => data.players && data.players[id]
+    (state: RootStateOrAny) =>
+      state.firestore.data.players && state.firestore.data.players[id]
   );
 
   useFirestoreConnect(['games']);
-  const { games } = useSelector((state) => state.firestore.ordered);
+  const { games } = useSelector(
+    (state: RootStateOrAny) => state.firestore.ordered
+  );
   return (
     <PageContainer hasBackButton title='Player Details'>
       {player && games ? (

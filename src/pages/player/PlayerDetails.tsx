@@ -12,8 +12,14 @@ import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import PlayerGraphs from './PlayerGraphs';
 import { ListContainer } from 'shared/layout';
+import { IPlayer, IGame } from 'shared/utils/customTypes';
 
-const PlayerDetails = ({ player, games }) => {
+interface Props {
+  player: IPlayer[];
+  games: IGame[];
+}
+
+const PlayerDetails: React.FC<Props> = ({ player, games }) => {
   const { name } = player[0];
   const { playersWithGames } = usePlayerStatsArray(player, games);
   const playerWithStats = playersWithGames[0];
@@ -32,7 +38,7 @@ const PlayerDetails = ({ player, games }) => {
     0
   );
 
-  const printFinish = (type) => (
+  const printFinish = (type: number) => (
     <>
       {type}
       <Typography component='span' variant='caption'>
@@ -89,7 +95,7 @@ const PlayerDetails = ({ player, games }) => {
         ))}
       </ListContainer>
 
-      <PlayerGraphs data={arrOfFinalPositions} games={games} />
+      <PlayerGraphs arrOfFinalPositions={arrOfFinalPositions} />
     </>
   ) : (
     <Typography>No games played yet</Typography>

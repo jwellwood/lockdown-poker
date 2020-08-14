@@ -1,9 +1,13 @@
 import React from 'react';
 import { Paper, Container, Grid } from '@material-ui/core';
 import PlayerPieChart from './PlayerPieChart';
-import PlayerLinGraph from './PlayerLineGraph';
+import PlayerLineGraph from './PlayerLineGraph';
 
-const PlayerGraphs = ({ data, games }) => {
+interface Props {
+  arrOfFinalPositions: number[];
+}
+
+const PlayerGraphs: React.FC<Props> = ({ arrOfFinalPositions }) => {
   return (
     <Container maxWidth='md'>
       <Paper>
@@ -11,13 +15,14 @@ const PlayerGraphs = ({ data, games }) => {
           container
           justify='center'
           alignContent='center'
-          alignItems='center'
-        >
+          alignItems='center'>
           <Grid item xs={12} sm={6}>
-            <PlayerPieChart positionArray={data} />
+            <PlayerPieChart positionArray={arrOfFinalPositions} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <PlayerLinGraph data={data.reverse()} games={games} />
+            <PlayerLineGraph
+              arrOfFinalPositions={arrOfFinalPositions.reverse()}
+            />
             {/* reverse so the data shows games left to right */}
           </Grid>
         </Grid>

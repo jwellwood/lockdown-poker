@@ -30,3 +30,17 @@ export interface INextGameData {
   copyButton?: boolean;
   copiedMessage?: string;
 }
+
+export interface IPlayerWithStats {
+  numberOfGamesPlayed: number;
+  numberOfBuyIns: number;
+  numberOfBuyBacks: number;
+  arrOfFinalPositions: number[];
+  averageFinalPosition: number;
+  bestFinish: number;
+  worstFinish: number;
+  numberOfBest: number;
+  numberOfWorst: number;
+  id: string;
+  name: string;
+}
