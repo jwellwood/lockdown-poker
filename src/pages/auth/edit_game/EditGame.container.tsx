@@ -22,7 +22,6 @@ export default () => {
     gameRef.get().then((doc) => {
       //Ensures <DocumentData> is never undefined
       const data = doc.data()!;
-      console.log(data);
       if (data) setGame(data as IGame);
     });
   }, [fireStore, id]);
