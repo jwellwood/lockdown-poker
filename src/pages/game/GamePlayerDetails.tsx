@@ -9,18 +9,24 @@ import {
 } from '@material-ui/core';
 import { getOrdinals, getNameFromId } from 'shared/utils';
 import { ListContainer } from 'shared/layout';
+import { IGameParticipant, IGame } from 'shared/utils/customTypes';
 
-const GamePlayerDetails = ({ game, players }) => {
+interface Props {
+  game: IGame;
+  players: IGameParticipant[];
+}
+
+const GamePlayerDetails: React.FC<Props> = ({ game, players }) => {
   const sortedPlayers = [...game.participants].sort(
-    (a, b) => a.finalPosition - b.finalPosition
+    (a, b) => +a.finalPosition - +b.finalPosition
   );
 
   return (
     <ListContainer>
       {sortedPlayers.map((player) => {
         const name = getNameFromId(players, player);
-        const buyBacks = player.buyIns - 1;
-        const totalMoney = player.buyIns * game.buyIn;
+        const buyBacks = +player.buyIns - 1;
+        const totalMoney = +player.buyIns * +game.buyIn;
         return (
           <ListItem key={player.name}>
             <ListItemAvatar>

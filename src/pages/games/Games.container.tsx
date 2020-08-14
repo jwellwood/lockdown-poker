@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { ADD_GAME } from 'router';
 import { PageContainer } from 'shared/layout';
 import { useAuth } from 'shared/hooks';
@@ -16,7 +16,11 @@ export default () => {
       orderBy: ['date', 'desc'],
     },
   ]);
-  const { games } = useSelector((state) => state.firestore.ordered);
+  const { games } = useSelector(
+    (state: RootStateOrAny) => state.firestore.ordered
+  );
+  //@TODO check if ID field is mentioned
+  console.log(games);
 
   return (
     <PageContainer title='Games'>

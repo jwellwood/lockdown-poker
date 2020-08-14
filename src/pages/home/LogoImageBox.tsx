@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LogoImageBox = () => {
+const LogoImageBox: React.FC = () => {
   const classes = useStyles();
   return (
     <div>

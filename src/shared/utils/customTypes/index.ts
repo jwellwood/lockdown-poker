@@ -17,4 +17,16 @@ export interface IGame {
   participants: IGameParticipant[];
   table: string;
   zoomLink: string;
+  id?: string;
+}
+
+export interface INextGameData {
+  icon: JSX.Element | Element;
+  text: string;
+  textFromDb?: string;
+  inputValue?: string;
+  copyId?: string;
+  copiedStatus?: boolean;
+  copyButton?: boolean;
+  copiedMessage?: string;
 }

@@ -9,14 +9,19 @@ import {
 import { parseDate } from 'shared/utils';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
+import { IGame } from 'shared/utils/customTypes';
 
+interface Props {
+  game: IGame;
+  index: number;
+}
 const useStyles = makeStyles((theme) => ({
   highlightedText: {
     color: theme.palette.primary.main,
     fontWeight: 'bold',
   },
 }));
-const GameListItem = ({ game, index }) => {
+const GameListItem: React.FC<Props> = ({ game, index }) => {
   const classes = useStyles();
   const { buyIn, participants } = game;
   const secondaryText = (
@@ -37,7 +42,7 @@ const GameListItem = ({ game, index }) => {
     .reduce((tot, acc) => +tot + +acc, 0);
 
   // TODO write an algorithm to calc these properly
-  const totalCash = totalBuyIns * buyIn;
+  const totalCash = totalBuyIns * +buyIn;
 
   return (
     <ListItem key={game.id} button component={Link} to={`/games/${game.id}`}>

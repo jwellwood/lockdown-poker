@@ -4,7 +4,12 @@ import { FormContainer } from 'shared/layout';
 import { useForm } from 'react-hook-form';
 import SubmitButton from 'components/buttons/SubmitButton';
 
-const SignInForm = ({ onChange, onSubmit }) => {
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: () => void;
+}
+
+const SignInForm: React.FC<Props> = ({ onChange, onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
   return (
     <FormContainer>

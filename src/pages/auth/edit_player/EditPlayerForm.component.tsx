@@ -6,8 +6,21 @@ import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import SubmitButton from 'components/buttons/SubmitButton';
+import { IPlayer } from 'shared/utils/customTypes';
 
-const EditPlayerForm = ({ onChange, onSubmit, onDelete, input }) => {
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: () => void;
+  onDelete: () => void;
+  input: IPlayer;
+}
+
+const EditPlayerForm: React.FC<Props> = ({
+  onChange,
+  onSubmit,
+  onDelete,
+  input,
+}) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (

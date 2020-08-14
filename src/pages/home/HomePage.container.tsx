@@ -8,7 +8,7 @@ import LinkRounded from '@material-ui/icons/LinkRounded';
 import AttachMoneyRounded from '@material-ui/icons/AttachMoneyRounded';
 import EventAvailableRounded from '@material-ui/icons/EventAvailableRounded';
 import { PageContainer } from 'shared/layout';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import LinkButton from 'components/buttons/LinkButton.component';
 import { ADD_GAME } from 'router';
 import { useFirestoreConnect } from 'react-redux-firebase';
@@ -18,6 +18,7 @@ import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
 import { useAuth } from 'shared/hooks/useAuth';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
+import { IGame } from 'shared/utils/customTypes';
 
 const HomePage = () => {
   const { isAuth } = useAuth();
@@ -37,18 +38,20 @@ const HomePage = () => {
   useFirestoreConnect([
     {
       collection: 'games',
-      orderBy: ['date'],
+      orderBy: ['date', 'desc'],
     },
   ]);
 
-  const games = useSelector((state) => state.firestore.ordered.games);
+  const games = useSelector(
+    (state: RootStateOrAny) => state.firestore.ordered.games
+  );
   const gameDates =
     games &&
     games
       //convert firebase timestamp to iso string
-      .map((game) => parseDateAsISOString(game.date))
+      .map((game: IGame) => parseDateAsISOString(game.date))
       // parseISO so that it works in closestTo function
-      .map((date) => parseISO(date));
+      .map((date: string) => parseISO(date));
   const dateNow = new Date();
   //Compares current date with game dates and gives us the closest by index.
   const closestGameDateIndex = closestIndexTo(dateNow, gameDates);
@@ -64,16 +67,18 @@ const HomePage = () => {
       setGameDate(parseDateAndTime(date));
       setZoomInputValue({
         value: zoomLink,
+        copied: false,
       });
       setGameInputValue({
         value: gameLink,
+        copied: false,
       });
       setBuyIn(buyIn);
       setLoading(false);
     }
   }, [closestGame]);
 
-  const onCopy = (copyId) => {
+  const onCopy = (copyId: string) => {
     if (copyId === 'zoom')
       setZoomInputValue({ ...zoomInputValue, copied: true });
     if (copyId === 'game')

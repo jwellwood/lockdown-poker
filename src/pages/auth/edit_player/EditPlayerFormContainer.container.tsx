@@ -4,20 +4,26 @@ import { useHistory, useParams } from 'react-router-dom';
 import { PLAYERS } from 'router';
 import Spinner from 'components/spinners/Spinner.component';
 import EditPlayerForm from './EditPlayerForm.component';
+import { IPlayer } from 'shared/utils/customTypes';
 
-const EditPlayerFormContainer = () => {
+const EditPlayerFormContainer: React.FC = () => {
   const { id } = useParams();
   const history = useHistory();
   const fireStore = useFirestore();
 
   const playerRef = fireStore.collection('players').doc(id);
-  const [player, setPlayer] = useState({});
-  const [input, setInput] = useState({});
+  const [player, setPlayer] = useState<IPlayer>();
+  const [input, setInput] = useState<IPlayer>({
+    iban: '',
+    name: '',
+    preferredPayment: '',
+  });
 
   useEffect(() => {
     const playerRef = fireStore.collection('players').doc(id);
     playerRef.get().then((doc) => {
-      setPlayer(doc.data());
+      const docData = doc.data();
+      if (docData) setPlayer(docData as IPlayer);
     });
   }, [fireStore, id]);
   useEffect(() => {
@@ -27,7 +33,7 @@ const EditPlayerFormContainer = () => {
     }
   }, [player]);
 
-  const onChange = (e) =>
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,

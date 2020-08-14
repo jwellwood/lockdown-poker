@@ -10,8 +10,13 @@ import { parseDate } from 'shared/utils';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import { ListContainer } from 'shared/layout';
+import { IGame } from 'shared/utils/customTypes';
 
-const GameDetails = ({ game }) => {
+interface Props {
+  game: IGame;
+}
+
+const GameDetails: React.FC<Props> = ({ game }) => {
   const { date, table, buyIn, participants } = game;
 
   const totalBuyIns = participants
@@ -19,8 +24,8 @@ const GameDetails = ({ game }) => {
     .reduce((tot, acc) => +tot + +acc, 0);
 
   // TODO write an algorithm to calc these properly
-  const totalCash = totalBuyIns * buyIn;
-  const secondPlacePrize = participants.length > 1 ? buyIn * 2 : 0;
+  const totalCash = totalBuyIns * +buyIn;
+  const secondPlacePrize = participants.length > 1 ? +buyIn * 2 : 0;
   const firstPlacePrize = totalCash - secondPlacePrize;
 
   const data = [
@@ -52,7 +57,7 @@ const GameDetails = ({ game }) => {
   ];
 
   return (
-    <ListContainer>
+    <ListContainer dense={false}>
       {data.map(({ primary, secondary, icon, value }) => (
         <ListItem key={primary}>
           <ListAvatar>{icon}</ListAvatar>

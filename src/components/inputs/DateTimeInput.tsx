@@ -27,6 +27,7 @@ const DateTimeInput: React.FC<Props> = ({
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DateTimePicker
+          ampm={false}
           color='secondary'
           inputVariant='filled'
           value={defaultValue}
