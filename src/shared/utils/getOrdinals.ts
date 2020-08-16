@@ -1,4 +1,4 @@
-export const getOrdinals = (num) => {
+export const getOrdinals = (num: any) => {
   if (typeof num === 'string') num = +num;
   switch (num) {
     case 1:

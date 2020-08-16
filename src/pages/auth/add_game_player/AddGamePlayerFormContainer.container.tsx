@@ -5,12 +5,13 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
 import AddGamePlayerForm from './AddGamePlayerForm.component';
 import { DocumentData } from '@firebase/firestore-types';
+import { IGame } from 'shared/utils/customTypes';
 
 const AddGamePlayerFormContainer: React.FC = () => {
   const { id } = useParams();
   const fireStore = useFirestore();
   const history = useHistory();
-  const [game, setGame] = useState<DocumentData>();
+  const [game, setGame] = useState<IGame | DocumentData>();
   const [input, setInput] = useState({});
   useFirestoreConnect('players');
 

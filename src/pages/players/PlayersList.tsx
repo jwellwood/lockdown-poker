@@ -6,7 +6,7 @@ import PlayerListItem from './PlayerListItem';
 import { IPlayerWithStats, IGame } from 'shared/utils/customTypes';
 
 interface Props {
-  players: IPlayerWithStats;
+  players: IPlayerWithStats[];
   games: IGame[];
 }
 

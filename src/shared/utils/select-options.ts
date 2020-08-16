@@ -1,9 +1,14 @@
 import { paymentOptions } from 'shared/assets/data/paymentOptions';
 import { tableNames } from 'shared/assets/data/tableNames';
+import { IGameParticipant, IGame } from 'shared/utils/customTypes';
+import { DocumentData } from '@firebase/firestore-types';
 
-export const playerNameOptions = (players, game) => {
+export const playerNameOptions = (
+  players: IGameParticipant[],
+  game: IGame | DocumentData
+) => {
   const gameParticipants = game.participants
-    ? game.participants.map((player) => player.name)
+    ? game.participants.map((player: IGameParticipant) => player.name)
     : [];
 
   const unselectedPlayers = players.filter(
@@ -18,10 +23,10 @@ export const playerNameOptions = (players, game) => {
   return [{ text: '', value: '' }, ...playerList];
 };
 
-export const finalPositionOptions = (players) => {
+export const finalPositionOptions = (players: IGameParticipant[]) => {
   const options = [{ text: '', value: '' }];
   for (let i = 0; i < players.length; i++) {
-    options.push({ text: `${i + 1}`, value: i + 1 });
+    options.push({ text: `${i + 1}`, value: `${i + 1}` });
   }
   return options;
 };
@@ -41,7 +46,7 @@ export const tableNameOptions = () => {
 export const buyInOptions = () => {
   const options = [{ text: '', value: '' }];
   for (let i = 5; i < 30; i += 5) {
-    options.push({ text: i, value: i });
+    options.push({ text: `${i}`, value: `${i}` });
   }
   return options;
 };
@@ -49,7 +54,7 @@ export const buyInOptions = () => {
 export const buyBackOptions = () => {
   const options = [{ text: '', value: '' }];
   for (let i = 1; i < 6; i++) {
-    options.push({ text: i, value: i });
+    options.push({ text: `${i}`, value: `${i}` });
   }
   return options;
 };

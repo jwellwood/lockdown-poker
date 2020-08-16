@@ -3,7 +3,7 @@ import Divider from '@material-ui/core/Divider';
 import { useTheme } from '@material-ui/core';
 
 interface Props {
-  customBackground: string;
+  customBackground?: string;
   variant?: any;
 }
 

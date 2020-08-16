@@ -12,10 +12,10 @@ import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import PlayerGraphs from './PlayerGraphs';
 import { ListContainer } from 'shared/layout';
-import { IPlayer, IGame } from 'shared/utils/customTypes';
+import { IPlayerWithStats, IGame } from 'shared/utils/customTypes';
 
 interface Props {
-  player: IPlayer[];
+  player: IPlayerWithStats[];
   games: IGame[];
 }
 

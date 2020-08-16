@@ -19,7 +19,7 @@ import { AddGamePlayerPage } from 'pages/auth/add_game_player';
 import { EditPlayerPage } from 'pages/auth/edit_player';
 import { EditGamePage } from 'pages/auth/edit_game';
 
-const Routes = () => {
+const Routes: React.FC = () => {
   return (
     <Router>
       <Navbar />

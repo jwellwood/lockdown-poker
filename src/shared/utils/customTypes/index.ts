@@ -1,18 +1,24 @@
-export declare type IGameParticipant = {
+export interface IGameParticipant {
   buyIns: string;
   finalPosition: string;
   name: string;
-};
+  id: string;
+}
 
-export declare type IPlayer = {
+export interface IPlayer {
   iban: string;
   name: string;
   preferredPayment: string;
-};
+}
+
+export interface IRawDate {
+  seconds: number;
+  nanoseconds: number;
+}
 
 export interface IGame {
   buyIn: string;
-  date: Date;
+  date: any;
   gameLink: string;
   participants: IGameParticipant[];
   table: string;
@@ -31,7 +37,7 @@ export interface INextGameData {
   copiedMessage?: string;
 }
 
-export interface IPlayerWithStats {
+export interface IPlayerWithStats extends IPlayer {
   numberOfGamesPlayed: number;
   numberOfBuyIns: number;
   numberOfBuyBacks: number;
@@ -42,5 +48,6 @@ export interface IPlayerWithStats {
   numberOfBest: number;
   numberOfWorst: number;
   id: string;
-  name: string;
+  games: IGame[];
+  stats: IGameParticipant[];
 }

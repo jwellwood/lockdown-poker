@@ -12,6 +12,7 @@ import Spinner from 'components/spinners/Spinner.component';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
 import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
+import { IRawDate } from 'shared/utils/customTypes';
 
 const HomePage = () => {
   const { isAuth } = useAuth();
@@ -34,8 +35,8 @@ const HomePage = () => {
     setLoading(false);
   }, [games]);
 
-  const isInFuture = (gameDate: Date): boolean => {
-    const parsedDate: Date = getDateFromTimestamp(gameDate);
+  const isInFuture = (gameDate: IRawDate): boolean => {
+    const parsedDate: IRawDate | Date = getDateFromTimestamp(gameDate);
     return isFuture(parsedDate);
   };
 

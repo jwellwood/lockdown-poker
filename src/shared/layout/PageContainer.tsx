@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Grid, Paper, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BackButton from '../../components/buttons/BackButton.component';
 import PageTitle from 'components/headers/PageTitle';
 import CustomDivider from '../../components/dividers/CustomDivider';
+
+interface Props {
+  title: string;
+  hasBackButton?: boolean;
+  //@TODO Find out why it's not accepting React.ReactNode for children
+  children: any;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
     //Stops bottom navigation hiding content
     marginBottom: theme.spacing(8),
     width: '100%',
-    color: theme.typography.color,
+    // @TODO check this
+    color: theme.palette.text.primary,
     boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
   },
   title: {
@@ -45,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageContainer = ({ title, children, hasBackButton }) => {
+const PageContainer: React.FC<Props> = ({ title, children, hasBackButton }) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
@@ -54,12 +61,11 @@ const PageContainer = ({ title, children, hasBackButton }) => {
           <Grid item xs={12} className={classes.title}>
             <PageTitle>{title}</PageTitle>
             {hasBackButton && (
-              <BackButton
-                color='inherit'
-                type='text'
-                className={classes.backButton}>
-                Back
-              </BackButton>
+              <div className={classes.backButton}>
+                <BackButton color='inherit' type='text'>
+                  Back
+                </BackButton>
+              </div>
             )}
           </Grid>
           <div className={classes.divider}>
@@ -72,11 +78,6 @@ const PageContainer = ({ title, children, hasBackButton }) => {
       </Paper>
     </Grid>
   );
-};
-
-PageContainer.propTypes = {
-  title: PropTypes.string.isRequired,
-  hasBackButton: PropTypes.bool,
 };
 
 export default PageContainer;
