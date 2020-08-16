@@ -8,12 +8,14 @@ import {
 import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
+import { IGame } from 'shared/utils/customTypes';
+import { DocumentData } from '@firebase/firestore-types';
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
   players: [];
-  game: {};
+  game: IGame | DocumentData;
 }
 
 const AddGamePlayerForm: React.FC<Props> = ({

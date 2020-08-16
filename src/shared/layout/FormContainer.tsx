@@ -1,7 +1,11 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-const FormContainer = ({ children }) => {
+interface Props {
+  children: any;
+}
+
+const FormContainer: React.FC<Props> = ({ children }) => {
   return (
     <Container maxWidth='sm' style={{ textAlign: 'left' }}>
       {children}

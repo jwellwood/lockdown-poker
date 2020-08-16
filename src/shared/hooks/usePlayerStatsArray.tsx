@@ -1,8 +1,14 @@
 import { useMemo } from 'react';
+import { IGame, IPlayerWithStats } from 'shared/utils/customTypes';
 
-export const usePlayerStatsArray = (players, games) =>
+export const usePlayerStatsArray = (
+  players: IPlayerWithStats[],
+  games: IGame[]
+) =>
   useMemo(() => {
-    const playersWithGames = players.reduce((arr, player) => {
+    const playersWithGames = players.reduce((arr: any, player: any) => {
+      console.log(arr);
+      console.log(player);
       const filteredGames = games.filter((game) =>
         game.participants.map((pt) => pt.name).includes(player.id)
       );
@@ -18,18 +24,20 @@ export const usePlayerStatsArray = (players, games) =>
       return arr;
     }, []);
 
-    const rankingByAveragePosition = playersWithGames.map((player) => ({
-      ...player,
-      averagePosition: player.stats.length
-        ? player.stats
-            .map((stat) => stat.finalPosition)
-            .reduce((a, b) => +a + +b, 0) / player.games.length
-        : null,
-    }));
+    const rankingByAveragePosition = playersWithGames.map(
+      (player: IPlayerWithStats) => ({
+        ...player,
+        averagePosition: player.stats.length
+          ? player.stats
+              .map((stat) => stat.finalPosition)
+              .reduce((a, b) => +a + +b, 0) / player.games.length
+          : null,
+      })
+    );
 
     const sorted = [...rankingByAveragePosition].sort((a, b) => {
       return (
-        (a.averagePosition === null) - (b.averagePosition === null) ||
+        +(a.averagePosition === null) - +(b.averagePosition === null) ||
         -(b.averagePosition > a.averagePosition) ||
         +(b.averagePosition < a.averagePosition)
       );
