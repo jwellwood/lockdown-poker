@@ -23,12 +23,12 @@ const NextGameDetails: React.FC<Props> = ({ nextGameData }) => {
     {
       icon: <EventAvailableRounded />,
       primary: 'Date',
-      action: parseDateAndTime(nextGameData.date),
+      secondary: parseDateAndTime(nextGameData.date),
     },
     {
       icon: <AttachMoneyRounded />,
       primary: 'Buy-in',
-      action: `€${nextGameData.buyIn}`,
+      secondary: `€${nextGameData.buyIn}`,
     },
     {
       icon: <VideoCamRounded />,
