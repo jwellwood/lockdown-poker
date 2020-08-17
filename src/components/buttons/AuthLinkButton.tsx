@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    backgroundColor: theme.palette.warning.main,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      backgroundColor: theme.palette.warning.main,
+    },
+  })
+);
 
 interface Props {
   children: React.ReactNode;

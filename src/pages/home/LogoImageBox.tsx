@@ -1,13 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import logo from 'shared/assets/images/logo.jpg';
 import MainHeader from 'components/headers/MainHeader';
 
-const useStyles = makeStyles((theme) => ({
-  logo: {
-    margin: theme.spacing(4),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    logo: {
+      margin: theme.spacing(4),
+    },
+  })
+);
 
 const LogoImageBox: React.FC = () => {
   const classes = useStyles();
