@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 interface Props {
-  children: React.ReactNode;
+  children: string;
 }
 
 const PageTitle: React.FC<Props> = ({ children }) => {
