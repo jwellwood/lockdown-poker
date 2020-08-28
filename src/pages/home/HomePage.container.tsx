@@ -13,6 +13,7 @@ import AuthLinkButton from 'components/buttons/AuthLinkButton';
 import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
 import { IRawDate } from 'shared/utils/customTypes';
+import NoGamesYet from 'components/typography/NoGamesYet';
 
 const HomePage = () => {
   const { isAuth } = useAuth();
@@ -42,7 +43,7 @@ const HomePage = () => {
 
   const ContentToDisplay = () => {
     if (games && !games.length) {
-      return <div>No games yet</div>;
+      return <NoGamesYet />;
     } else if (latestGame && isInFuture(latestGame.date)) {
       return <NextGameDetails nextGameData={latestGame} />;
     } else

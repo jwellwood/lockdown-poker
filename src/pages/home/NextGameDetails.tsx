@@ -13,6 +13,7 @@ import CopyButton from './CopyButton';
 import { parseDateAndTime } from 'shared/utils';
 import { IGame } from 'shared/utils/customTypes';
 import { shortenTextLength } from 'shared/utils/shortenTextLength';
+import NextGameContainer from './NextGameContainer';
 
 interface Props {
   nextGameData: IGame;
@@ -46,15 +47,17 @@ const NextGameDetails: React.FC<Props> = ({ nextGameData }) => {
 
   return (
     <Container maxWidth='xs'>
-      <List>
-        {listData.map((item) => (
-          <ListItem key={item.primary} alignItems='flex-start'>
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.primary} secondary={item.secondary} />
-            <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+      <NextGameContainer>
+        <List>
+          {listData.map((item) => (
+            <ListItem key={item.primary} alignItems='flex-start'>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.primary} secondary={item.secondary} />
+              <ListItemSecondaryAction>{item.action}</ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+      </NextGameContainer>
     </Container>
   );
 };
