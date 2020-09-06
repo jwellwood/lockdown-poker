@@ -7,8 +7,6 @@ export const usePlayerStatsArray = (
 ) =>
   useMemo(() => {
     const playersWithGames = players.reduce((arr: any, player: any) => {
-      console.log(arr);
-      console.log(player);
       const filteredGames = games.filter((game) =>
         game.participants.map((pt) => pt.name).includes(player.id)
       );

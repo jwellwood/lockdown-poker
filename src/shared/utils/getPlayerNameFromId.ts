@@ -5,7 +5,6 @@ export const getNameFromId = (
   players: IGameParticipant[],
   player: IGameParticipant
 ) => {
-  console.log(player);
   const foundPlayer = players.find((p) => p.id === player.name);
   return foundPlayer ? foundPlayer.name : '';
 };

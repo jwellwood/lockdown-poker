@@ -15,15 +15,13 @@ const PlayerGraphs: React.FC<Props> = ({ arrOfFinalPositions }) => {
           container
           justify='center'
           alignContent='center'
-          alignItems='center'>
+          alignItems='center'
+        >
           <Grid item xs={12} sm={6}>
             <PlayerPieChart positionArray={arrOfFinalPositions} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <PlayerLineGraph
-              arrOfFinalPositions={arrOfFinalPositions.reverse()}
-            />
-            {/* reverse so the data shows games left to right */}
+            <PlayerLineGraph arrOfFinalPositions={arrOfFinalPositions} />
           </Grid>
         </Grid>
       </Paper>
