@@ -1,7 +1,6 @@
 import { IPlayerWithStats } from 'shared/utils/customTypes';
 
 export const usePlayerStats = (player: IPlayerWithStats) => {
-  console.log(player);
   const { games, stats } = player;
   //@TODO Check stats type
 
@@ -11,7 +10,6 @@ export const usePlayerStats = (player: IPlayerWithStats) => {
     .reduce((a: number, b: number) => +a + +b, 0);
   const numberOfBuyBacks = numberOfBuyIns - numberOfGamesPlayed;
   const arrOfFinalPositions = stats.map((stat: any) => stat.finalPosition);
-  console.log(arrOfFinalPositions);
   const averageFinalPosition = (
     arrOfFinalPositions.reduce((a: number, b: number) => +a + +b, 0) /
     numberOfGamesPlayed

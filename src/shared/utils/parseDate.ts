@@ -3,7 +3,6 @@ import formatISO from 'date-fns/formatISO';
 import { IRawDate } from 'shared/utils/customTypes';
 
 export const parseDateAndTime = (rawDate: IRawDate) => {
-  console.log(rawDate);
   const timestamp = rawDate.seconds;
   return format(timestamp * 1000, `MMMM do yyyy HH:mm`);
 };

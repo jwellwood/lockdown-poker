@@ -22,7 +22,6 @@ interface Props {
 
 const GameDetails: React.FC<Props> = ({ game }) => {
   const { date, table, buyIn, participants, zoomLink, gameLink } = game;
-  console.log(game);
 
   const totalBuyIns = participants
     .map((player) => player.buyIns)
