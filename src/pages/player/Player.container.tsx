@@ -27,7 +27,12 @@ export default () => {
       state.firestore.data.players && state.firestore.data.players[id]
   );
 
-  useFirestoreConnect(['games']);
+  useFirestoreConnect([
+    {
+      collection: 'games',
+      orderBy: ['date', 'desc'],
+    },
+  ]);
   const { games } = useSelector(
     (state: RootStateOrAny) => state.firestore.ordered
   );

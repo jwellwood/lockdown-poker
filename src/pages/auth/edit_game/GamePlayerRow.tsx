@@ -5,8 +5,8 @@ import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import { useHistory } from 'react-router-dom';
 import { GAMES } from 'router';
 import { useFirestore } from 'react-redux-firebase';
-import { getNameFromId } from 'shared/utils';
-import { IGameParticipant } from 'shared/utils/customTypes';
+import { getNameFromId } from 'shared/utils/functions';
+import { IGameParticipant } from 'types';
 
 interface Props {
   player: IGameParticipant;

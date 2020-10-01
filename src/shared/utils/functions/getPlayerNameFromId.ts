@@ -1,5 +1,5 @@
 // Name is stored as ID, so we need to convert it back in the view
-import { IGameParticipant } from './customTypes';
+import { IGameParticipant } from '../../../types';
 
 export const getNameFromId = (
   players: IGameParticipant[],

@@ -36,7 +36,9 @@ const PlayerLineGraph: React.FC<Props> = ({ arrOfFinalPositions }) => {
     fontSize: theme.typography.fontSize,
   };
   const chartIds = ['x', 'position'];
-  const mappedData = arrOfFinalPositions.map((item, i) => [i + 1, +item]);
+  const mappedData = arrOfFinalPositions
+    .reverse()
+    .map((item, i) => [i + 1, +item]);
   const chartData = [chartIds, ...mappedData];
 
   return (

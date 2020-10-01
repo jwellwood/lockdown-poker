@@ -1,4 +1,4 @@
-import { getOrdinals } from '../index';
+import { getOrdinals } from '../functions/index';
 
 describe('getOrdinals function tests', () => {
   test('works with strings', () => {

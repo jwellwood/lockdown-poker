@@ -1,6 +1,6 @@
 import { paymentOptions } from 'shared/assets/data/paymentOptions';
 import { tableNames } from 'shared/assets/data/tableNames';
-import { IGameParticipant, IGame } from 'shared/utils/customTypes';
+import { IGameParticipant, IGame } from 'types';
 import { DocumentData } from '@firebase/firestore-types';
 
 export const playerNameOptions = (

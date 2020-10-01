@@ -5,7 +5,7 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
 import AddGamePlayerForm from './AddGamePlayerForm.component';
 import { DocumentData } from '@firebase/firestore-types';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 
 const AddGamePlayerFormContainer: React.FC = () => {
   const { id } = useParams();

@@ -1,7 +1,7 @@
 import React from 'react';
 import GameListItem from './GameListItem';
 import { ListContainer } from 'shared/layout';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 import NoGamesYet from 'components/typography/NoGamesYet';
 
 interface Props {

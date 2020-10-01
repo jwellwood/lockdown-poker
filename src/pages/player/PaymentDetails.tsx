@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import PaymentIcon from '@material-ui/icons/Payment';
 import EuroIcon from '@material-ui/icons/Euro';
-import { IPlayer } from 'shared/utils/customTypes';
+import { IPlayer } from 'types';
 
 interface Props {
   player: IPlayer;

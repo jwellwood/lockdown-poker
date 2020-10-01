@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
-import { getOrdinals } from 'shared/utils';
+import { getOrdinals } from 'shared/utils/functions';
 import { useTheme } from '@material-ui/core';
 
 interface Props {

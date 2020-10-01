@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import DateTimeInput from 'components/inputs/DateTimeInput';
 import TextInput from 'components/inputs/TextInput';
 import SelectInput from 'components/inputs/SelectInput';
-import { tableNameOptions, buyInOptions } from 'shared/utils';
+import { tableNameOptions, buyInOptions } from 'shared/utils/functions';
 import { FormContainer } from 'shared/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
 

@@ -7,9 +7,9 @@ import {
   ListItemAvatar,
   Avatar,
 } from '@material-ui/core';
-import { getOrdinals, getNameFromId } from 'shared/utils';
+import { getOrdinals, getNameFromId } from 'shared/utils/functions';
 import { ListContainer } from 'shared/layout';
-import { IGameParticipant, IGame } from 'shared/utils/customTypes';
+import { IGameParticipant, IGame } from 'types';
 
 interface Props {
   game: IGame;

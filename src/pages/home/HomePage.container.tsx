@@ -5,14 +5,14 @@ import isFuture from 'date-fns/isFuture';
 import { ADD_GAME } from 'router';
 import { PageContainer } from 'shared/layout';
 import { useAuth } from 'shared/hooks/useAuth';
-import { getDateFromTimestamp } from 'shared/utils/parseDate';
-import { IGame } from 'shared/utils/customTypes';
+import { getDateFromTimestamp } from 'shared/utils/functions/parseDate';
+import { IGame } from 'types';
 import LinkButton from 'components/buttons/LinkButton.component';
 import Spinner from 'components/spinners/Spinner.component';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
 import NextGameDetails from './NextGameDetails';
 import LogoImageBox from './LogoImageBox';
-import { IRawDate } from 'shared/utils/customTypes';
+import { IRawDate } from 'types';
 import NoGamesYet from 'components/typography/NoGamesYet';
 
 const HomePage = () => {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import TextInput from 'components/inputs/TextInput';
-import { preferredPaymentOptions } from 'shared/utils';
+import { preferredPaymentOptions } from 'shared/utils/functions';
 import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import SubmitButton from 'components/buttons/SubmitButton';
-import { IPlayer } from 'shared/utils/customTypes';
+import { IPlayer } from 'types';
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

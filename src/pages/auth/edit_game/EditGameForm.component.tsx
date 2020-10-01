@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import DateTimeInput from 'components/inputs/DateTimeInput';
 import TextInput from 'components/inputs/TextInput';
 import SelectInput from 'components/inputs/SelectInput';
-import { tableNameOptions, buyInOptions } from 'shared/utils';
+import { tableNameOptions, buyInOptions } from 'shared/utils/functions';
 import { FormContainer } from 'shared/layout';
 import DeleteConfirmation from 'components/dialogs/DeleteConfirmation';
 import SubmitButton from 'components/buttons/SubmitButton';
-import { IGame } from '../../../shared/utils/customTypes';
+import { IGame } from '../../../types';
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
