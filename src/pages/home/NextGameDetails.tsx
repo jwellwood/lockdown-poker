@@ -10,9 +10,9 @@ import LinkRounded from '@material-ui/icons/LinkRounded';
 import AttachMoneyRounded from '@material-ui/icons/AttachMoneyRounded';
 import EventAvailableRounded from '@material-ui/icons/EventAvailableRounded';
 import CopyButton from './CopyButton';
-import { parseDateAndTime } from 'shared/utils';
-import { IGame } from 'shared/utils/customTypes';
-import { shortenTextLength } from 'shared/utils/shortenTextLength';
+import { parseDateAndTime } from 'shared/utils/functions';
+import { IGame } from 'types';
+import { shortenTextLength } from 'shared/utils/functions/shortenTextLength';
 import NextGameContainer from './NextGameContainer';
 
 interface Props {

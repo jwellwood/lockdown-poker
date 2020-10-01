@@ -12,7 +12,7 @@ import { FormContainer } from 'shared/layout';
 import GamePlayerRow from './GamePlayerRow';
 import { useAuth } from 'shared/hooks/useAuth';
 import AuthLinkButton from 'components/buttons/AuthLinkButton';
-import { IGameParticipant } from 'shared/utils/customTypes';
+import { IGameParticipant } from 'types';
 
 interface Props {
   players: IGameParticipant[];

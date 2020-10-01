@@ -8,7 +8,7 @@ import { SIGN_IN } from 'router';
 import EditGameFormContainer from './EditGameFormContainer.container';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import Spinner from 'components/spinners/Spinner.component';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 import { initGame } from 'shared/utils/initGame';
 
 export default () => {

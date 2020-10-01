@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { IGame, IPlayerWithStats } from 'shared/utils/customTypes';
+import { IGame, IPlayerWithStats } from 'types';
 
 export const usePlayerStatsArray = (
   players: IPlayerWithStats[],

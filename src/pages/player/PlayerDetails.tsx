@@ -7,12 +7,12 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import { Typography, ListItem, ListItemText } from '@material-ui/core';
 import { usePlayerStats, usePlayerStatsArray } from 'shared/hooks';
-import { getOrdinals } from 'shared/utils';
+import { getOrdinals } from 'shared/utils/functions';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import PlayerGraphs from './PlayerGraphs';
 import { ListContainer } from 'shared/layout';
-import { IPlayerWithStats, IGame } from 'shared/utils/customTypes';
+import { IPlayerWithStats, IGame } from 'types';
 
 interface Props {
   player: IPlayerWithStats[];
@@ -21,6 +21,7 @@ interface Props {
 
 const PlayerDetails: React.FC<Props> = ({ player, games }) => {
   const { name } = player[0];
+  console.log(games);
   const { playersWithGames } = usePlayerStatsArray(player, games);
   const playerWithStats = playersWithGames[0];
   const {

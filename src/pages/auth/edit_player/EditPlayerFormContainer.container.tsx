@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { PLAYERS } from 'router';
 import Spinner from 'components/spinners/Spinner.component';
 import EditPlayerForm from './EditPlayerForm.component';
-import { IPlayer } from 'shared/utils/customTypes';
+import { IPlayer } from 'types';
 
 const EditPlayerFormContainer: React.FC = () => {
   const { id } = useParams();

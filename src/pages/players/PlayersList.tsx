@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { usePlayerStatsArray } from 'shared/hooks';
 import { ListContainer } from 'shared/layout';
 import PlayerListItem from './PlayerListItem';
-import { IPlayerWithStats, IGame } from 'shared/utils/customTypes';
+import { IPlayerWithStats, IGame } from 'types';
 
 interface Props {
   players: IPlayerWithStats[];

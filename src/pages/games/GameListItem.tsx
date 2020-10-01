@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem, ListItemText, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { parseDate } from 'shared/utils';
+import { parseDate } from 'shared/utils/functions';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 
 interface Props {
   game: IGame;

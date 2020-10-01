@@ -8,13 +8,13 @@ import LinkRounded from '@material-ui/icons/LinkRounded';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import EuroIcon from '@material-ui/icons/Euro';
 import { ListItem, ListItemText } from '@material-ui/core';
-import { parseDate } from 'shared/utils';
+import { parseDate } from 'shared/utils/functions';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
 import { ListContainer } from 'shared/layout';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 import CopyButton from '../home/CopyButton';
-import { shortenTextLength } from 'shared/utils/shortenTextLength';
+import { shortenTextLength } from 'shared/utils/functions/shortenTextLength';
 
 interface Props {
   game: IGame;

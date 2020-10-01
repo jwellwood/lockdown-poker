@@ -4,11 +4,11 @@ import {
   playerNameOptions,
   finalPositionOptions,
   buyBackOptions,
-} from 'shared/utils';
+} from 'shared/utils/functions';
 import SelectInput from 'components/inputs/SelectInput';
 import { FormContainer } from 'shared/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 import { DocumentData } from '@firebase/firestore-types';
 
 interface Props {

@@ -7,10 +7,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { usePlayerStats } from 'shared/hooks';
-import { getOrdinals } from 'shared/utils';
+import { getOrdinals } from 'shared/utils/functions';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
-import { IPlayerWithStats } from 'shared/utils/customTypes';
+import { IPlayerWithStats } from 'types';
 
 interface Props {
   player: IPlayerWithStats;
@@ -54,7 +54,8 @@ const PlayerListItem: React.FC<Props> = ({ player, index }) => {
       key={player.id}
       button
       component={Link}
-      to={`/players/${player.id}`}>
+      to={`/players/${player.id}`}
+    >
       <ListAvatar>
         {index + 1}
         <Typography variant='caption'>{getOrdinals(index + 1)}</Typography>

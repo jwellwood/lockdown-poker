@@ -4,7 +4,7 @@ import { useFirestore } from 'react-redux-firebase';
 import { GAMES } from 'router';
 import EditGameForm from './EditGameForm.component';
 import Spinner from 'components/spinners/Spinner.component';
-import { IGame } from 'shared/utils/customTypes';
+import { IGame } from 'types';
 import { initGame } from 'shared/utils/initGame';
 
 interface Props {
