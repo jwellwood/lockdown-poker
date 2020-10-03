@@ -50,4 +50,5 @@ export interface IPlayerWithStats extends IPlayer {
   id: string;
   games: IGame[];
   stats: IGameParticipant[];
+  ranking?: number;
 }
