@@ -1,31 +1,25 @@
 import { IPlayerWithStats } from 'types';
+import { useArrayOfFinalPositions } from './useArrayOfFinalPositions';
+import { useBuyIns } from './useBuyIns';
 
 export const usePlayerStats = (player: IPlayerWithStats) => {
   const { games, stats } = player;
-  //@TODO Check stats type
-
   const numberOfGamesPlayed = games.length;
-  const numberOfBuyIns = stats
-    .map((stat: any) => stat.buyIns)
-    .reduce((a: number, b: number) => +a + +b, 0);
-  const numberOfBuyBacks = numberOfBuyIns - numberOfGamesPlayed;
-  const arrOfFinalPositions = stats.map((stat: any) => stat.finalPosition);
-  console.log(stats, arrOfFinalPositions);
-  const averageFinalPosition = (
-    arrOfFinalPositions.reduce((a: number, b: number) => +a + +b, 0) /
-    numberOfGamesPlayed
-  ).toFixed(2);
+  const ranking = player.ranking;
 
-  const bestFinish = Math.min(...arrOfFinalPositions);
-  const worstFinish = Math.max(...arrOfFinalPositions);
-  const numberOfBest = arrOfFinalPositions.filter(
-    (pos: number) => +pos === bestFinish
-  ).length;
-  const numberOfWorst = arrOfFinalPositions.filter(
-    (pos: number) => +pos === worstFinish
-  ).length;
+  const { numberOfBuyIns, numberOfBuyBacks } = useBuyIns(games, stats);
+
+  const {
+    arrOfFinalPositions,
+    averageFinalPosition,
+    bestFinish,
+    worstFinish,
+    numberOfBest,
+    numberOfWorst,
+  } = useArrayOfFinalPositions(player);
 
   return {
+    ranking,
     numberOfGamesPlayed,
     numberOfBuyIns,
     numberOfBuyBacks,

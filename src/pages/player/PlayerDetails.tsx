@@ -21,7 +21,6 @@ interface Props {
 
 const PlayerDetails: React.FC<Props> = ({ player, games }) => {
   const { name } = player[0];
-  console.log(games);
   const { playersWithGames } = usePlayerStatsArray(player, games);
   const playerWithStats = playersWithGames[0];
   const {

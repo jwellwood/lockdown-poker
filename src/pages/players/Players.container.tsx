@@ -20,7 +20,6 @@ export default () => {
   const { games } = useSelector(
     (state: RootStateOrAny) => state.firestore.ordered
   );
-
   return (
     <PageContainer title='Player Rankings'>
       <AuthLinkButton to={ADD_PLAYER} isAuth={isAuth}>

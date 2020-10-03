@@ -10,11 +10,12 @@ import { usePlayerStats } from 'shared/hooks';
 import { getOrdinals } from 'shared/utils/functions';
 import ListAvatar from 'components/avatars/ListAvatar.component';
 import ListValueText from 'components/typography/ListValueText';
-import { IPlayerWithStats } from 'types';
+import { IGame, IPlayerWithStats } from 'types';
 
 interface Props {
   player: IPlayerWithStats;
   index: number;
+  games: IGame[];
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -22,31 +23,41 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     fontWeight: 'bold',
   },
+  blueText: {
+    color: '#1565c0',
+    fontWeight: 'bold',
+  },
+  avgText: {
+    color: '#00838f',
+    fontWeight: 'bold',
+  },
 }));
 
-const PlayerListItem: React.FC<Props> = ({ player, index }) => {
+const PlayerListItem: React.FC<Props> = ({ player, games, index }) => {
   const classes = useStyles();
   const {
     numberOfGamesPlayed,
     numberOfBuyBacks,
     averageFinalPosition,
+    ranking,
   } = usePlayerStats(player);
 
-  const position = isNaN(averageFinalPosition as any)
-    ? null
-    : averageFinalPosition;
+  const position = isNaN(ranking as any) ? null : ranking?.toFixed(3);
 
   const secondaryText = (
-    <>
-      <Typography variant='caption'>PL: </Typography>
-      <Typography component='span' className={classes.highlightedText}>
-        {numberOfGamesPlayed}{' '}
-      </Typography>
-      |<Typography variant='caption'> BB: </Typography>
-      <Typography component='span' className={classes.highlightedText}>
+    <span>
+      <Typography variant='caption' className={classes.highlightedText}>
+        {numberOfGamesPlayed}
+      </Typography>{' '}
+      |{' '}
+      <Typography variant='caption' className={classes.blueText}>
         {numberOfBuyBacks}
+      </Typography>{' '}
+      |{' '}
+      <Typography variant='caption' className={classes.avgText}>
+        {+averageFinalPosition || '-'}
       </Typography>
-    </>
+    </span>
   );
 
   return (
