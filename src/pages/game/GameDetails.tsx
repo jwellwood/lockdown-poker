@@ -15,6 +15,7 @@ import { ListContainer } from 'shared/layout';
 import { IGame } from 'types';
 import CopyButton from '../home/CopyButton';
 import { shortenTextLength } from 'shared/utils/functions/shortenTextLength';
+import { useGameStats } from 'shared/hooks/useGameStats';
 
 interface Props {
   game: IGame;
@@ -23,14 +24,9 @@ interface Props {
 const GameDetails: React.FC<Props> = ({ game }) => {
   const { date, table, buyIn, participants, zoomLink, gameLink } = game;
 
-  const totalBuyIns = participants
-    .map((player) => player.buyIns)
-    .reduce((tot, acc) => +tot + +acc, 0);
-
-  // TODO write an algorithm to calc these properly
-  const totalCash = totalBuyIns * +buyIn;
-  const secondPlacePrize = participants.length > 1 ? +buyIn * 2 : 0;
-  const firstPlacePrize = totalCash - secondPlacePrize;
+  const { totalPot, moneyToWinner, moneyToSecond, moneyToThird } = useGameStats(
+    game
+  );
 
   const data = [
     {
@@ -59,7 +55,6 @@ const GameDetails: React.FC<Props> = ({ game }) => {
       secondary: '',
       value: participants.length,
     },
-
     {
       icon: <MonetizationOnIcon />,
       primary: 'Buy in',
@@ -69,8 +64,10 @@ const GameDetails: React.FC<Props> = ({ game }) => {
     {
       icon: <EuroIcon />,
       primary: 'Prize money',
-      secondary: `€${firstPlacePrize}/€${secondPlacePrize}`,
-      value: `€${totalCash}`,
+      secondary: `€${moneyToWinner}/€${moneyToSecond}${
+        moneyToThird ? `/€${moneyToThird}` : ''
+      }`,
+      value: `€${totalPot}`,
     },
   ];
 
