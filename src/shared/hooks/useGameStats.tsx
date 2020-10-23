@@ -14,7 +14,7 @@ export const useGameStats = (game: IGame) => {
   const moneyToThird = totalPot >= thirdPlaysForFreeValue ? +buyIn : 0;
   const moneyToSecond =
     totalPot >= +buyIn * secondPlaysForFreeValue ? +buyIn * 2 : +buyIn;
-  const moneyToWinner = totalPot - (moneyToSecond - moneyToThird);
+  const moneyToWinner = totalPot - (moneyToSecond + moneyToThird);
 
   return { totalPot, moneyToWinner, moneyToSecond, moneyToThird };
 };
